@@ -18,6 +18,7 @@ public class GreetClient {
     }
 
     public String sendMessage(String msg) throws IOException {
+
         out.println(msg);
         String resp = in.readLine();
         return resp;
@@ -32,6 +33,8 @@ public class GreetClient {
     public static void main(String[] args) throws IOException {
         GreetClient client= new GreetClient();
         client.startConnection("localhost", 6666);
-        client.sendMessage("Hi from all of us");
+        for (int i = 0; i < 100; i++) {
+            client.sendMessage("Hi from all of us");
+        }
     }
 }

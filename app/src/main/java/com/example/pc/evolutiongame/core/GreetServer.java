@@ -16,16 +16,34 @@ public class GreetServer {
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
+//        out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        String greeting = in.readLine();
-//        if ("hello server".equals(greeting)) {
-//            out.println("hello client");
-//        }
-//        else {
-//            out.println("unrecognised greeting");
-//        }
-        out.println(greeting);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while(!Thread.interrupted()) {
+                        out = new PrintWriter(clientSocket.getOutputStream(), true);
+                        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                        String greeting = in.readLine();
+                        System.out.println(greeting);
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+//        out = new PrintWriter(clientSocket.getOutputStream(), true);
+//        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+//        String greeting = in.readLine();
+////        if ("hello server".equals(greeting)) {
+////            out.println("hello client");
+////        }
+////        else {
+////            out.println("unrecognised greeting");
+////        }
+//        System.out.println(greeting);
     }
 
     public void stop() throws IOException {
