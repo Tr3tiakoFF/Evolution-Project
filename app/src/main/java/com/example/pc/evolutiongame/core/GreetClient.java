@@ -1,5 +1,7 @@
 package com.example.pc.evolutiongame.core;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,9 +20,9 @@ public class GreetClient {
     }
 
     public String sendMessage(String msg) throws IOException {
-
         out.println(msg);
         String resp = in.readLine();
+        System.out.println(resp);
         return resp;
     }
 
@@ -36,5 +38,6 @@ public class GreetClient {
         for (int i = 0; i < 100; i++) {
             client.sendMessage("Hi from all of us");
         }
+        client.stopConnection();
     }
 }

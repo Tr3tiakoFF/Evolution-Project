@@ -1,11 +1,11 @@
-package com.example.pc.evolutiongame.model;
+package com.example.pc.evolutiongame.logic;
+
+import com.example.pc.evolutiongame.model.Card;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Deck {
-    List<Card> cards = new ArrayList<Card>();
-
+public class DeckShufler {
     public List<Card> deckShuffle (List<Card> deck){
         for (int i = deck.size() -1; i >= 0; i--) {
 

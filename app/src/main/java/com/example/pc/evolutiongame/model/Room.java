@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
-    Deck deck = new Deck();
-
     Field field = new Field();
 
     List<Player> players = new ArrayList<Player>();
+
+    List<Card> deck = new ArrayList<Card>();
+
 }
