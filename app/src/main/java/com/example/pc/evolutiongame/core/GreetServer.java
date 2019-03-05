@@ -41,6 +41,7 @@ public class GreetServer {
                         String greeting = new String(bytes);
                         out.println(greeting);
                         System.out.println(greeting);
+                        a++;
                     }
                 }
                 catch (Exception e){

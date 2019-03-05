@@ -1,0 +1,25 @@
+@startuml
+
+class  Room
+class  Card
+class  Animal
+class  Property
+class  Rule
+class  FoodStorage
+class  Player
+class  Field
+
+Card *-- Animal
+Card *-- Property
+
+Room *-- Player
+Room *-- Field
+Room *-- Card
+
+Animal *-- Property
+
+Player *-- Card
+
+Field *-- Animal
+
+@enduml
