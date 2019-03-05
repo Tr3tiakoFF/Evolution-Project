@@ -18,7 +18,7 @@ public class CardGiver {
 
     public static List<List<Card>> getCardsForPlayers(int playerCount, List<Card> deck) {
         List<List<Card>> listOfCards = new ArrayList<List<Card>>() {};
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < playerCount; i++) {
             List<Card> localeList = getCardsForPlayer(deck);
             listOfCards.add(localeList);
         }

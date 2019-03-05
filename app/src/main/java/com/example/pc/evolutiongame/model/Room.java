@@ -83,4 +83,14 @@ public class Room {
             System.out.println(field.getAnimals().get(i).toString());
         }
     }
+
+    public int getCurrentPlayerAnimalsCount(Player player) {
+        int animalCount = 0;
+        for (int i = 0; i < this.field.getAnimalsCount(); i++) {
+            if (field.getAnimals().get(i).playerConnect == player){
+                animalCount++;
+            }
+        }
+        return animalCount;
+    }
 }

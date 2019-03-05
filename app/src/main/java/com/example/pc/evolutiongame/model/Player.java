@@ -34,4 +34,19 @@ public class Player {
         field.addAnimal(this);
         cards.remove(localRandomCardNumber);
     }
+
+    public void playProperty(Field field, int localRandomCardNumber, int localRandomAnimalNumber) {
+        if(ifValid(field.getAnimals().get(localRandomAnimalNumber).properties,cards.get(localRandomCardNumber).property))
+            field.getAnimals().get(localRandomAnimalNumber).properties.add(cards.get(localRandomCardNumber).property);
+        cards.remove(localRandomCardNumber);
+    }
+
+    private boolean ifValid(List<Property> properties, Property property) {
+        for (int i = 0; i < properties.size(); i++) {
+            if (properties.get(i) == property){
+                return false;
+            }
+        }
+        return true;
+    }
 }

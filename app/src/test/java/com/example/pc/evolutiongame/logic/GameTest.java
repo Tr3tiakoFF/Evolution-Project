@@ -36,8 +36,6 @@ public class GameTest {
         }
         Assert.assertNotEquals(0,cardsForPlayers.get(0).size());
 
-//      Cards
-
         room.setAllNotPass();
 
 
@@ -53,6 +51,41 @@ public class GameTest {
             Assert.assertNotNull(currentCard);
 
             room.getCurrentPlayer().playAnimal(room.getField(), localRandomCardNumber);
+
+            if(room.getCurrentPlayer().getCardsCount() == 0){
+                room.getCurrentPlayer().setPass(true);
+            }
+            room.setNextPlayer();
+        }
+        while (room.allPlayersPass());
+
+
+
+
+
+        cardsForPlayers = CardGiver.getCardsForPlayers(room.countPlayers(), room.getDeck());
+
+        for (int i = 0; i < room.countPlayers(); i++) {
+            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
+        }
+        Assert.assertNotEquals(0,cardsForPlayers.get(0).size());
+
+        room.setAllNotPass();
+
+
+        do {
+            Player currentPlayer = room.getCurrentPlayer();
+            Assert.assertNotNull(currentPlayer);
+
+            int cardCount = room.getCurrentPlayer().getCardsCount();
+
+            int localRandomCardNumber = (int)(Math.random()* room.getCurrentPlayer().getCardsCount());
+            int localRandomAnimalNumber = (int)(Math.random()* room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
+
+            Card currentCard = currentPlayer.getCard(localRandomCardNumber);
+            Assert.assertNotNull(currentCard);
+
+            room.getCurrentPlayer().playProperty(room.getField(), localRandomCardNumber, localRandomAnimalNumber);
 
             if(room.getCurrentPlayer().getCardsCount() == 0){
                 room.getCurrentPlayer().setPass(true);
