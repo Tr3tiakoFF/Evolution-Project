@@ -43,8 +43,6 @@ public class GameTest {
             Player currentPlayer = room.getCurrentPlayer();
             Assert.assertNotNull(currentPlayer);
 
-            int cardCount = room.getCurrentPlayer().getCardsCount();
-
             int localRandomCardNumber = (int)(Math.random()* room.getCurrentPlayer().getCardsCount());
 
             Card currentCard = currentPlayer.getCard(localRandomCardNumber);
@@ -76,8 +74,6 @@ public class GameTest {
         do {
             Player currentPlayer = room.getCurrentPlayer();
             Assert.assertNotNull(currentPlayer);
-
-            int cardCount = room.getCurrentPlayer().getCardsCount();
 
             int localRandomCardNumber = (int)(Math.random()* room.getCurrentPlayer().getCardsCount());
             int localRandomAnimalNumber = (int)(Math.random()* room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
