@@ -1,7 +1,6 @@
 package com.example.pc.evolutiongame.model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Player {
@@ -36,12 +35,12 @@ public class Player {
     }
 
     public void playProperty(Field field, int localRandomCardNumber, int localRandomAnimalNumber) {
-        if(ifValid(field.getAnimals().get(localRandomAnimalNumber).properties,cards.get(localRandomCardNumber).property))
+        if (isValid(field.getAnimals().get(localRandomAnimalNumber).properties, cards.get(localRandomCardNumber).property))
             field.getAnimals().get(localRandomAnimalNumber).properties.add(cards.get(localRandomCardNumber).property);
         cards.remove(localRandomCardNumber);
     }
 
-    private boolean ifValid(List<Property> properties, Property property) {
+    private boolean isValid(List<Property> properties, Property property) {
         for (int i = 0; i < properties.size(); i++) {
             if (properties.get(i) == property){
                 return false;
