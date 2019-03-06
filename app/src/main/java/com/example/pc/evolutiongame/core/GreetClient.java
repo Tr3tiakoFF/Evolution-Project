@@ -1,7 +1,5 @@
 package com.example.pc.evolutiongame.core;
 
-import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,17 +11,28 @@ public class GreetClient {
     private PrintWriter out;
     private BufferedReader in;
 
-    public void startConnection(String ip, int port) throws IOException {
-        clientSocket = new Socket(ip, port);
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+    public void startConnection(final String ip, final int port) throws IOException {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    clientSocket = new Socket(ip, port);
+                    out = new PrintWriter(clientSocket.getOutputStream(), true);
+                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
-    public String sendMessage(String msg) throws IOException {
-        out.println(msg);
-        String resp = in.readLine();
-        System.out.println(resp);
-        return resp;
+    public void sendMessage(final String msg) throws IOException {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                out.println(msg);
+            }
+        }).start();
     }
 
     public void stopConnection() throws IOException {
