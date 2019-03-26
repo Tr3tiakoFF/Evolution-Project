@@ -9,7 +9,7 @@ class  FoodStorage
 class  Player
 class  Field
 
-Card *-- Animal
+
 Card *-- Property
 
 Room *-- Player
@@ -19,6 +19,7 @@ Room *-- Card
 Animal *-- Property
 
 Player *-- Card
+Player *-- Animal
 
 Field *-- Animal
 
