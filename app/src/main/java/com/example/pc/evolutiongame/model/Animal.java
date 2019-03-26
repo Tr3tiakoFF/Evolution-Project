@@ -4,23 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Animal {
-    int capacityFood = 1;
+    int capacityFood = 0;
 
-    Animal(){
+    boolean mustDie = false;
 
+    Animal() {
     }
     Animal(Player player){
         this.playerConnect = player;
     }
+
     Player playerConnect;
 
     List<Property> properties = new ArrayList<Property>();
 
-//    public int calculateFoodCapacity(){
-//        for (int i = 0; i < properties.size(); i++) {
-//            Property localProperty = properties.get(i);
-//        }
-//    }
+    public void calculateFoodCapacity() {
+        int foodCapacity = 1;
+        for (int i = 0; i < properties.size(); i++) {
+            if (properties.get(i).equals(LowLevelAnimalProperty.PARASITE))
+                foodCapacity += 2;
+            if (properties.get(i).equals(LowLevelAnimalProperty.CARNIVOROUS))
+                foodCapacity += 1;
+            if (properties.get(i).equals(LowLevelAnimalProperty.HIGH_BODY_WEIGHT))
+                foodCapacity += 1;
+        }
+        this.capacityFood = foodCapacity;
+    }
+
+    public void getFood() {
+        this.capacityFood--;
+    }
+
+    public boolean mustDieCheck() {
+        if (capacityFood != 0)
+            return true;
+        return false;
+    }
 
     @Override
     public String toString() {

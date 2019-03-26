@@ -20,25 +20,22 @@ public class GreetServer {
             @Override
             public void run() {
                 try {
+                    System.out.println("GreetServerStarted");
                     serverSocket = new ServerSocket(port);
                     clientSocket = serverSocket.accept();
                     out = new PrintWriter(clientSocket.getOutputStream(), true);
                     inputStream = clientSocket.getInputStream();
-                    in = new BufferedReader(new InputStreamReader(inputStream));
+                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             try {
                                 while (!Thread.interrupted()) {
                                     //CharBuffer charBuffer = CharBuffer.allocate(1024);
-                                    byte[] bytes = new byte[1024];
-                                    int readBytes = inputStream.read(bytes);
-                                    if (readBytes == -1) {
-                                        System.out.println("Client is closed!");
-                                        break;
-                                    }
-                                    String greeting = new String(bytes);
-                                    System.out.println(greeting);
+                                    StringBuilder textBuilder = new StringBuilder();
+                                    String msg = in.readLine();
+                                    if (msg != null)
+                                        System.out.println(msg);
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -64,6 +61,7 @@ public class GreetServer {
     }
 
     public void stop() throws IOException {
+        System.out.println("GreetServerStoped");
         in.close();
         out.close();
         clientSocket.close();

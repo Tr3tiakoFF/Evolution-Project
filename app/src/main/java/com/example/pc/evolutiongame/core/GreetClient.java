@@ -2,9 +2,10 @@ package com.example.pc.evolutiongame.core;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+
+import static java.lang.Thread.sleep;
 
 public class GreetClient {
     private Socket clientSocket;
@@ -16,9 +17,10 @@ public class GreetClient {
             @Override
             public void run() {
                 try {
+                    System.out.println("ConnectionStarted");
+                    ;
                     clientSocket = new Socket(ip, port);
-                    out = new PrintWriter(clientSocket.getOutputStream(), true);
-                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+//                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -30,23 +32,35 @@ public class GreetClient {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                out.println(msg);
+                if (!clientSocket.isClosed()) {
+                    try {
+                        out = new PrintWriter(clientSocket.getOutputStream(), true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    out.write(msg);
+                    System.out.println("MsgSent " + msg);
+                }
             }
         }).start();
     }
 
     public void stopConnection() throws IOException {
-        in.close();
+        System.out.println("ConnectionStopped");
+//        in.close();
         out.close();
         clientSocket.close();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         GreetClient client= new GreetClient();
         client.startConnection("localhost", 6666);
-        for (int i = 0; i < 100; i++) {
-            client.sendMessage("Hi from all of us");
+        sleep(1000);
+        for (int i = 0; i < 10; i++) {
+            client.sendMessage("Hi from all of us " + i);
+            sleep(1000);
         }
+        sleep(1000);
         client.stopConnection();
     }
 }

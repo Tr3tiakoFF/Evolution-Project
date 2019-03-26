@@ -1,9 +1,12 @@
 package com.example.pc.evolutiongame.model;
 
+import com.example.pc.evolutiongame.logic.FoodGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
+
     private int playerControlCount = 0;
 
     private Field field = new Field();
@@ -12,13 +15,18 @@ public class Room {
 
     private List<Card> deck;
 
+    public int capacityFood = 0;
+
+
+
     public Room(List<Card> deck) {
         this.deck = deck;
     }
 
     public Room() {
-
     }
+
+
 
     public void setPlayers(List<Player> players) {
         this.players = players;
@@ -57,11 +65,15 @@ public class Room {
     }
 
     public boolean allPlayersPass() {
+        int localeNum = 0;
         for (int i = 0; i < this.players.size(); i++) {
-            if(this.getPlayers().get(i).isPass() == true)
-                return false;
+            if (this.getPlayers().get(i).isPass() == false)
+                localeNum++;
         }
-        return true;
+        if (localeNum == 0)
+            return true;
+        else
+            return false;
     }
 
     public void setAllNotPass() {
@@ -92,5 +104,23 @@ public class Room {
             }
         }
         return animalCount;
+    }
+
+    public void setAllPass() {
+        for (int i = 0; i < this.players.size(); i++) {
+            this.players.get(i).setPass(true);
+        }
+    }
+
+    public void setCapacityFood(int countPlayers) {
+        this.capacityFood = FoodGenerator.generateFood(countPlayers);
+    }
+
+    public int getCapacityFood() {
+        return capacityFood;
+    }
+
+    public void loseFood() {
+        this.capacityFood--;
     }
 }

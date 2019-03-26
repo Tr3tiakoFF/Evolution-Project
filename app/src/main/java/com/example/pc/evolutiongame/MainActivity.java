@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 
         Button startServer = (Button) findViewById(R.id.button_1);
         Button startClient = (Button) findViewById(R.id.button_2);
-        Button sendMassage = (Button) findViewById(R.id.button_3);
+        final Button sendMassage = (Button) findViewById(R.id.button_3);
         Button stopClient = (Button) findViewById(R.id.button_4);
         Button stopServer = (Button) findViewById(R.id.button_5);
 
@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
         sendMassage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String massage = editText.toString();
+                String massage = editText.getText().toString();
                 try {
                     greetClient.sendMessage(massage);
                 } catch (Exception e) {

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Card {
-    Property property;
+    List<Property> properties = new ArrayList<Property>();
 
-    public Card(AnimalProperty value_){
-        this.property = new Property(value_);
+    public Card(List<Property> values_) {
+        this.properties = values_;
     }
     public Card(){};
 }

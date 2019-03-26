@@ -1,13 +1,12 @@
 package com.example.pc.evolutiongame.model;
 
-import java.nio.DoubleBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Field {
-    static List<Animal> animals = new ArrayList<Animal>();
+    private List<Animal> animals = new ArrayList<Animal>();
 
-    public static void addAnimal(Player player) {
+    public void addAnimal(Player player) {
         animals.add(new Animal(player));
     }
 
@@ -17,5 +16,28 @@ public class Field {
 
     public int getAnimalsCount() {
         return getAnimals().size();
+    }
+
+    public void killAllMustDie() {
+        for (int i = 0; i < getAnimalsCount(); i++) {
+            if (getAnimals().get(i).mustDieCheck()) {
+                getAnimals().remove(i);
+                i--;
+            }
+        }
+    }
+
+    public void killAllMustNotDie() {
+        for (int i = 0; i < getAnimalsCount(); i++) {
+            if (!getAnimals().get(i).mustDieCheck()) {
+                getAnimals().remove(i);
+                i--;
+            }
+        }
+    }
+
+    public void killAll() {
+        killAllMustDie();
+        killAllMustNotDie();
     }
 }

@@ -1,12 +1,9 @@
 package com.example.pc.evolutiongame.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Property {
-    AnimalProperty value;
+    LowLevelAnimalProperty value;
 
-    public Property(AnimalProperty value_){
+    public Property(LowLevelAnimalProperty value_) {
         this.value = value_;
     }
 }

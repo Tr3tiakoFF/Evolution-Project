@@ -34,9 +34,10 @@ public class Player {
         cards.remove(localRandomCardNumber);
     }
 
-    public void playProperty(Field field, int localRandomCardNumber, int localRandomAnimalNumber) {
-        if (isValid(field.getAnimals().get(localRandomAnimalNumber).properties, cards.get(localRandomCardNumber).property))
-            field.getAnimals().get(localRandomAnimalNumber).properties.add(cards.get(localRandomCardNumber).property);
+    public void playProperty(Field field, int localRandomCardNumber, int localRandomAnimalNumber, int cardPropertyNum) {
+        if (isValid(field.getAnimals().get(localRandomAnimalNumber).properties, cards.get(localRandomCardNumber).properties.get(cardPropertyNum))
+                )
+            field.getAnimals().get(localRandomAnimalNumber).properties.add(cards.get(localRandomCardNumber).properties.get(cardPropertyNum));
         cards.remove(localRandomCardNumber);
     }
 
@@ -48,4 +49,12 @@ public class Player {
         }
         return true;
     }
+
+    public void giveFood(Room room, int localRandomAnimalNumber) {
+        if (room.getCapacityFood() == 0) {
+            room.getField().getAnimals().get(localRandomAnimalNumber).getFood();
+            room.loseFood();
+        } else setPass(true);
+    }
+
 }
