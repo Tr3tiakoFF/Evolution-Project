@@ -123,4 +123,12 @@ public class Room {
     public void loseFood() {
         this.capacityFood--;
     }
+
+    public int calculateAnimalNum(int animalNum, int playerNum) {
+        int plusCount = 0;
+        for (int i = 0; i < playerNum - 1; i++) {
+            plusCount += getCurrentPlayerAnimalsCount(getPlayers().get(i));
+        }
+        return plusCount + animalNum - 1;
+    }
 }

@@ -45,4 +45,19 @@ class Animal {
     public String toString() {
         return (playerConnect.toString());
     }
+
+    public boolean got(LowLevelAnimalProperty animalProperty) {
+        for (int i = 0; i < properties.size(); i++) {
+            if (properties.get(i).equals(animalProperty)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void getFood(int foodCount) {
+        for (int i = 0; i < foodCount; i++) {
+            getFood();
+        }
+    }
 }

@@ -56,5 +56,4 @@ public class Player {
             room.loseFood();
         } else setPass(true);
     }
-
 }

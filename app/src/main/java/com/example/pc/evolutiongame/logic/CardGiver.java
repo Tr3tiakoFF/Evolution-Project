@@ -1,15 +1,14 @@
 package com.example.pc.evolutiongame.logic;
 
 import com.example.pc.evolutiongame.model.Card;
-import com.example.pc.evolutiongame.model.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CardGiver {
-    public static List<Card> getCardsForPlayer(List<Card> deck){
+    public static List<Card> getCardsForPlayer(List<Card> deck, int cardsCount) {
         List<Card> cards = new ArrayList<Card>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < cardsCount; i++) {
             cards.add(deck.get(deck.size()-1));
             deck.remove(deck.size()-1);
         }
@@ -19,7 +18,7 @@ public class CardGiver {
     public static List<List<Card>> getCardsForPlayers(int playerCount, List<Card> deck) {
         List<List<Card>> listOfCards = new ArrayList<List<Card>>() {};
         for (int i = 0; i < playerCount; i++) {
-            List<Card> localeList = getCardsForPlayer(deck);
+            List<Card> localeList = getCardsForPlayer(deck, 6);
             listOfCards.add(localeList);
         }
         return listOfCards;

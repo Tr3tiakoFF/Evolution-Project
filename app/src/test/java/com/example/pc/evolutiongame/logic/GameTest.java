@@ -202,4 +202,21 @@ public class GameTest {
 
         room.getAnimalsList();
     }
+
+    /*
+     * room.getPlayer().playAnimal();
+     *
+     * class field
+     * {
+     *   List<Animal>
+     * }
+     *
+     * class Player{
+     * List<Animal>
+     * }
+     *
+     * player.list.add(field.list.get(int));
+     *
+     * */
+
 }
