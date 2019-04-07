@@ -7,11 +7,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class TcpServer {
-//    private ServerSocket serverSocket;
-//    private Socket clientSocket;
-//    private PrintWriter out;
-//    private BufferedReader in;
-//    private InputStream inputStream;
+    public static final String SERVER_HOST = "localhost";
+    public static final int SERVER_PORT = 6666;
+    private final Processable processable;
+
+    public TcpServer(Processable processable) {
+        this.processable = processable;
+    }
 
     public void start(final int port) {
         new Thread(new Runnable() {
@@ -35,7 +37,8 @@ public class TcpServer {
                                             System.out.printf("Client is disconnected->%s%n", clientSocket.getRemoteSocketAddress());
                                             break;
                                         }
-                                        System.out.printf("Received msg%s from->%s%n", msg, clientSocket.getRemoteSocketAddress());
+                                        System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
+                                        processable.process(msg);
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -48,29 +51,14 @@ public class TcpServer {
                 }
             }
         }).start();
-
-//        out = new PrintWriter(clientSocket.getOutputStream(), true);
-//        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-//        String greeting = in.readLine();
-//        if ("hello server".equals(greeting)) {
-//            out.println("hello client");
-//        }
-//        else {
-//            out.println("unrecognised greeting");
-//        }
-//        System.out.println(greeting);
     }
 
     public void stop() throws IOException {
         System.out.println("GreetServerStoped");
-//        in.close();
-//        out.close();
-//        clientSocket.close();
-//        serverSocket.close();
     }
 
     public static void main(String[] args) {
-        TcpServer server = new TcpServer();
-        server.start(6666);
+        TcpServer server = new TcpServer(new ProcessableImpl());
+        server.start(SERVER_PORT);
     }
 }

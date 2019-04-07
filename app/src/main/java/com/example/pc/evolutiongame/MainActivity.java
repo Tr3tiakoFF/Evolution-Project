@@ -12,7 +12,7 @@ import com.example.pc.evolutiongame.core.TcpServer;
 
 public class MainActivity extends Activity {
 
-    TcpServer tcpServer = new TcpServer();
+    TcpServer tcpServer = new TcpServer(null);
     TcpClient tcpClient = new TcpClient();
 
     Button startServer;

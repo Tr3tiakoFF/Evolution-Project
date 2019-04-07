@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import static com.example.pc.evolutiongame.core.TcpServer.SERVER_HOST;
+import static com.example.pc.evolutiongame.core.TcpServer.SERVER_PORT;
 import static java.lang.Thread.sleep;
 
 public class TcpClient {
     private Socket clientSocket;
     private PrintWriter out;
-//    private BufferedReader in;
 
     public void startConnection(final String ip, final int port) {
         new Thread(new Runnable() {
@@ -46,7 +47,7 @@ public class TcpClient {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         TcpClient client = new TcpClient();
-        client.startConnection("localhost", 6666);
+        client.startConnection(SERVER_HOST, SERVER_PORT);
 
         for (int i = 0; i < 10; i++) {
             client.sendMessage("Hi from all of us " + i);
