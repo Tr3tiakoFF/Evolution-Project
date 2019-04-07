@@ -95,6 +95,10 @@ public class Field {
         if (pray.got(LowLevelAnimalProperty.POISONOUS)) {
             getAnimals().get(killerNum).mustDie = true;
         }
+        if (pray.got(LowLevelAnimalProperty.TAIL_LOSS)) {
+            getAnimals().get(prayNum).removeTailLoss();
+            getAnimals().get(killerNum).getFood(1);
+        }
         return true;
     }
 }

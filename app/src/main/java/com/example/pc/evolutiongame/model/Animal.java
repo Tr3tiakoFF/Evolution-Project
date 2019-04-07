@@ -48,7 +48,7 @@ class Animal {
 
     public boolean got(LowLevelAnimalProperty animalProperty) {
         for (int i = 0; i < properties.size(); i++) {
-            if (properties.get(i).equals(animalProperty)) {
+            if (properties.get(i).value == animalProperty) {
                 return true;
             }
         }
@@ -58,6 +58,14 @@ class Animal {
     public void getFood(int foodCount) {
         for (int i = 0; i < foodCount; i++) {
             getFood();
+        }
+    }
+
+    public void removeTailLoss() {
+        for (int i = 0; i < properties.size(); i++) {
+            if (properties.get(i).value == LowLevelAnimalProperty.TAIL_LOSS) {
+                properties.remove(i);
+            }
         }
     }
 }

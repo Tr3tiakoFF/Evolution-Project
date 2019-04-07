@@ -1,6 +1,7 @@
 package com.example.pc.evolutiongame;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,16 +15,22 @@ public class MainActivity extends Activity {
     GreetServer greetServer = new GreetServer();
     GreetClient greetClient = new GreetClient();
 
+    Button startServer;
+    Button startClient;
+    Button sendMassage;
+    Button stopClient;
+    Button stopServer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.server_test_activity);
 
-        Button startServer = (Button) findViewById(R.id.button_1);
-        Button startClient = (Button) findViewById(R.id.button_2);
-        final Button sendMassage = (Button) findViewById(R.id.button_3);
-        Button stopClient = (Button) findViewById(R.id.button_4);
-        Button stopServer = (Button) findViewById(R.id.button_5);
+        startServer = (Button) findViewById(R.id.button_1);
+        startClient = (Button) findViewById(R.id.button_2);
+        sendMassage = (Button) findViewById(R.id.button_3);
+        stopClient = (Button) findViewById(R.id.button_4);
+        stopServer = (Button) findViewById(R.id.button_5);
 
         final EditText editText = (EditText) findViewById(R.id.editText);
 
@@ -33,6 +40,7 @@ public class MainActivity extends Activity {
                 try
                 {
                     greetServer.start(6666);
+                    open();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -86,5 +94,10 @@ public class MainActivity extends Activity {
                 }
             }
         });
+    }
+
+    public void open() {
+        Intent intent = new Intent(this, Activity2.class);
+        startActivity(intent);
     }
 }
