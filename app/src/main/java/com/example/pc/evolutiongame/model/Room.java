@@ -6,40 +6,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
-
-    private int playerControlCount = 0;
-
-    private Field field = new Field();
-
-    private List<Player> players = new ArrayList<Player>();
-
+    private final Field field;
+    private final List<Player> players;
     private List<Card> deck;
-
-    private int capacityFood = 0;
-
-
-    public Room(List<Card> deck) {
-        this.deck = deck;
-    }
+    private int capacityFood;
+    private int playerControlCount;
 
     public Room() {
-    }
-
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
+        this.field = new Field();
+        this.players = new ArrayList<>();
+        this.deck = new ArrayList<>();
+        this.capacityFood = 0;
+        this.playerControlCount = 0;
     }
 
     public List<Player> getPlayers() {
         return players;
     }
 
-    public List<Card> getDeck() {
-        return deck;
+    public void addDeck(List<Card> deck) {
+        this.deck.addAll(deck);
     }
 
-    public void setField(Field field) {
-        this.field = field;
+    public List<Card> getDeck() {
+        return deck;
     }
 
     public void addPlayer(Player player) {
@@ -54,12 +44,12 @@ public class Room {
         return this.players.size() >= 2;
     }
 
-    public int countPlayers() {
+    public int numberPlayers() {
         return players.size();
     }
 
     public Player getCurrentPlayer() {
-        return players.get(this.playerControlCount % this.countPlayers());
+        return players.get(this.playerControlCount % this.numberPlayers());
     }
 
     public boolean allPlayersPass() {
@@ -128,5 +118,9 @@ public class Room {
             plusCount += getCurrentPlayerAnimalsCount(getPlayers().get(i));
         }
         return plusCount + animalNum - 1;
+    }
+
+    public void addCardsToPlayer(int i, List<Card> cards) {
+        players.get(i).addCards(cards);
     }
 }

@@ -9,7 +9,7 @@ public class Player {
     List<Card> cards = new ArrayList<Card>();
 
     public void addCards(List<Card> cards) {
-        this.cards = cards;
+        this.cards.addAll(cards);
     }
 
     public Card getCard(int cardNum) {
@@ -29,21 +29,21 @@ public class Player {
     }
 
 
-    public void playAnimal(Field field ,int localRandomCardNumber) {
+    public void playAnimal(Field field, int localRandomCardNumber) {
         field.addAnimal(this);
         cards.remove(localRandomCardNumber);
     }
 
     public void playProperty(Field field, int localRandomCardNumber, int localRandomAnimalNumber, int cardPropertyNum) {
         if (isValid(field.getAnimals().get(localRandomAnimalNumber).properties, cards.get(localRandomCardNumber).properties.get(cardPropertyNum))
-                )
+        )
             field.getAnimals().get(localRandomAnimalNumber).properties.add(cards.get(localRandomCardNumber).properties.get(cardPropertyNum));
         cards.remove(localRandomCardNumber);
     }
 
     private boolean isValid(List<Property> properties, Property property) {
         for (int i = 0; i < properties.size(); i++) {
-            if (properties.get(i) == property){
+            if (properties.get(i) == property) {
                 return false;
             }
         }

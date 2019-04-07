@@ -13,27 +13,48 @@ import java.util.List;
 
 public class GameTest {
 
+    private Room room;
+
     @Test
-    public void cardPlayTest() {
-        List<Card> deck = DeckShufler.deckShuffle();
-        Room room = new Room(deck);
+    public void createRoomWhenServerIsRun() {
+        room = new Room();
+    }
 
-        Assert.assertNotNull(room.getDeck());
-        Assert.assertEquals(84, room.getDeck().size());
+    @Test(priority = 1)
+    public void waitMinimalNumberPlayersForGameAndAddThemToRoom() {
+        int numberOfPlayers = 2;
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < numberOfPlayers; i++) {
             room.addPlayer(new Player());
         }
-        Assert.assertTrue(room.canStartGame());
 
-        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.countPlayers(), room.getDeck());
+        Assert.assertTrue(room.canStartGame());
+    }
+
+    @Test(priority = 2)
+    public void deckShuffle() {
+        Assert.assertNotNull(room.getDeck());
+        Assert.assertTrue(room.getDeck().isEmpty());
+
+        room.addDeck(DeckShufler.deckShuffle());
+
+        Assert.assertEquals(84, room.getDeck().size());
+    }
+
+    @Test(priority = 3)
+    public void giveCardsForPlayers() {
+        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
         Assert.assertNotNull(cardsForPlayers);
 
-        for (int i = 0; i < room.countPlayers(); i++) {
-            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
+        for (int i = 0; i < room.numberPlayers(); i++) {
+            room.addCardsToPlayer(i, cardsForPlayers.get(i));
         }
+        // TODO: 4/7/19 need to check all players cards
         Assert.assertNotEquals(0, cardsForPlayers.get(0).size());
+    }
 
+    @Test
+    public void cardPlayTest() {
         room.setAllNotPass();
 
 
@@ -61,9 +82,9 @@ public class GameTest {
         }
 
 
-        cardsForPlayers = CardGiver.getCardsForPlayers(room.countPlayers(), room.getDeck());
+        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
 
-        for (int i = 0; i < room.countPlayers(); i++) {
+        for (int i = 0; i < room.numberPlayers(); i++) {
             room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
         }
         Assert.assertNotEquals(0, cardsForPlayers.get(0).size());
@@ -103,7 +124,7 @@ public class GameTest {
     @Test
     public void foodTest() {
         List<Card> deck = DeckShufler.deckShuffleForFoodTest();
-        Room room = new Room(deck);
+        Room room = new Room();
 
         Assert.assertNotNull(room.getDeck());
         Assert.assertEquals(84, room.getDeck().size());
@@ -114,10 +135,10 @@ public class GameTest {
 
         Assert.assertTrue(room.canStartGame());
 
-        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.countPlayers(), room.getDeck());
+        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
         Assert.assertNotNull(cardsForPlayers);
 
-        for (int i = 0; i < room.countPlayers(); i++) {
+        for (int i = 0; i < room.numberPlayers(); i++) {
             room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
         }
         Assert.assertNotEquals(0, cardsForPlayers.get(0).size());
@@ -142,9 +163,9 @@ public class GameTest {
         while (!room.allPlayersPass());
 
 
-        cardsForPlayers = CardGiver.getCardsForPlayers(room.countPlayers(), room.getDeck());
+        cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
 
-        for (int i = 0; i < room.countPlayers(); i++) {
+        for (int i = 0; i < room.numberPlayers(); i++) {
             room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
         }
         Assert.assertNotEquals(0, cardsForPlayers.get(0).size());
@@ -174,7 +195,7 @@ public class GameTest {
 
         room.setAllNotPass();
 
-        room.setCapacityFood(room.countPlayers());
+        room.setCapacityFood(room.numberPlayers());
 
 
         do {
@@ -209,21 +230,4 @@ public class GameTest {
 
         Assert.assertEquals(roomAsJson, "");
     }
-
-    /*
-     * room.getPlayer().playAnimal();
-     *
-     * class field
-     * {
-     *   List<Animal>
-     * }
-     *
-     * class Player{
-     * List<Animal>
-     * }
-     *
-     * player.list.add(field.list.get(int));
-     *
-     * */
-
 }

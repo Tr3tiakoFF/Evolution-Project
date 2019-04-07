@@ -12,7 +12,7 @@ public class AnimalFoodCapacityTest {
     @Test
     public void animalFoodCapacityTest() {
         List<Card> deck = DeckShufler.deckShuffleForFoodTest();
-        Room room = new Room(deck);
+        Room room = new Room();
 
         Assert.assertNotNull(room.getDeck());
         Assert.assertEquals(84, room.getDeck().size());
@@ -23,10 +23,10 @@ public class AnimalFoodCapacityTest {
 
         Assert.assertTrue(room.canStartGame());
 
-        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.countPlayers(), room.getDeck());
+        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
         Assert.assertNotNull(cardsForPlayers);
 
-        for (int i = 0; i < room.countPlayers(); i++) {
+        for (int i = 0; i < room.numberPlayers(); i++) {
             room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
         }
         Assert.assertNotEquals(0, cardsForPlayers.get(0).size());
@@ -53,9 +53,9 @@ public class AnimalFoodCapacityTest {
         while (!room.allPlayersPass());
 
 
-        cardsForPlayers = CardGiver.getCardsForPlayers(room.countPlayers(), room.getDeck());
+        cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
 
-        for (int i = 0; i < room.countPlayers(); i++) {
+        for (int i = 0; i < room.numberPlayers(); i++) {
             room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
         }
         Assert.assertNotEquals(0, cardsForPlayers.get(0).size());
