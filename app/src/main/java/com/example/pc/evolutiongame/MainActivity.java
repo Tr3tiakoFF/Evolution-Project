@@ -7,13 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.pc.evolutiongame.core.GreetClient;
-import com.example.pc.evolutiongame.core.GreetServer;
+import com.example.pc.evolutiongame.core.TcpClient;
+import com.example.pc.evolutiongame.core.TcpServer;
 
 public class MainActivity extends Activity {
 
-    GreetServer greetServer = new GreetServer();
-    GreetClient greetClient = new GreetClient();
+    TcpServer tcpServer = new TcpServer();
+    TcpClient tcpClient = new TcpClient();
 
     Button startServer;
     Button startClient;
@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 try
                 {
-                    greetServer.start(6666);
+                    tcpServer.start(6666);
                     open();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 try
                 {
-                    greetClient.startConnection("localhost", 6666);
+                    tcpClient.startConnection("localhost", 6666);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    greetServer.stop();
+                    tcpServer.stop();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    greetClient.stopConnection();
+                    tcpClient.stopConnection();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String massage = editText.getText().toString();
                 try {
-                    greetClient.sendMessage(massage);
+                    tcpClient.sendMessage(massage);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
