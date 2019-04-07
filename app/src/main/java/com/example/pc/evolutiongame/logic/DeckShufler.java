@@ -59,16 +59,16 @@ public class DeckShufler {
     private static List<Card> fill (){
         List<Card> deck = new ArrayList<Card>();
         try {
-            deck = put(deck, 4, Arrays.asList(new Property(CAMOUFLAGE)));
-            deck = put(deck, 4, Arrays.asList(new Property(BURROWING)));
-            deck = put(deck, 4, Arrays.asList(new Property(SHARP_VISION)));
+            deck = put(deck, 4, Arrays.asList(new Property(CAMOUFLAGE), new Property(FAT_TISSUE)));
+            deck = put(deck, 4, Arrays.asList(new Property(BURROWING), new Property(FAT_TISSUE)));
+            deck = put(deck, 4, Arrays.asList(new Property(SHARP_VISION), new Property(FAT_TISSUE)));
             deck = put(deck, 4, Arrays.asList(new Property(SYMBIOSYS)));
             deck = put(deck, 4, Arrays.asList(new Property(PIRACY)));
-            deck = put(deck, 4, Arrays.asList(new Property(GRAZING)));
+            deck = put(deck, 4, Arrays.asList(new Property(GRAZING), new Property(FAT_TISSUE)));
             deck = put(deck, 4, Arrays.asList(new Property(TAIL_LOSS)));
-            deck = put(deck, 4, Arrays.asList(new Property(HIBERNATION_ABILITY)));
-            deck = put(deck, 4, Arrays.asList(new Property(POISONOUS)));
-            deck = put(deck, 4, Arrays.asList(new Property(COMMUNICATION)));
+            deck = put(deck, 4, Arrays.asList(new Property(HIBERNATION_ABILITY), new Property(CARNIVOROUS)));
+            deck = put(deck, 4, Arrays.asList(new Property(POISONOUS), new Property(CARNIVOROUS)));
+            deck = put(deck, 4, Arrays.asList(new Property(COMMUNICATION), new Property(CARNIVOROUS)));
             deck = put(deck, 4, Arrays.asList(new Property(SCAVENGER)));
             deck = put(deck, 4, Arrays.asList(new Property(RUNNING)));
             deck = put(deck, 4, Arrays.asList(new Property(MIMICRY)));
@@ -87,7 +87,7 @@ public class DeckShufler {
     private static List<Card> fillForFood() {
         List<Card> deck = new ArrayList<Card>();
         try {
-            deck = put(deck, 84, Arrays.asList(new Property(HIGH_BODY_WEIGHT)));
+            deck = put(deck, 84, Arrays.asList(new Property(CARNIVOROUS)));
         } catch (Exception e) {
         }
 

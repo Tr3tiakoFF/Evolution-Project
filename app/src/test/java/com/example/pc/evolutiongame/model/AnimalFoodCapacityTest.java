@@ -8,10 +8,10 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class AnimalFoodCapacitiTest {
+public class AnimalFoodCapacityTest {
     @Test
     public void animalFoodCapacityTest() {
-        List<Card> deck = DeckShufler.deckShuffle();
+        List<Card> deck = DeckShufler.deckShuffleForFoodTest();
         Room room = new Room(deck);
 
         Assert.assertNotNull(room.getDeck());
@@ -50,7 +50,7 @@ public class AnimalFoodCapacitiTest {
             }
             room.setNextPlayer();
         }
-        while (room.allPlayersPass());
+        while (!room.allPlayersPass());
 
 
         cardsForPlayers = CardGiver.getCardsForPlayers(room.countPlayers(), room.getDeck());
@@ -80,7 +80,13 @@ public class AnimalFoodCapacitiTest {
             }
             room.setNextPlayer();
         }
-        while (room.allPlayersPass());
+        while (!room.allPlayersPass());
+
+
+        Assert.assertTrue(room.getField().getAnimals().get(0).got(LowLevelAnimalProperty.CARNIVOROUS));
+        Assert.assertFalse(room.getField().getAnimals().get(0).got(LowLevelAnimalProperty.POISONOUS));
+        Assert.assertTrue(room.getField().canKill(room.getField().getAnimals().get(0), room.getField().getAnimals().get(0)));
+        Assert.assertTrue(room.getField().canKill(room.getField().getAnimals().get(0), room.getField().getAnimals().get(1)));
 
 
         room.setAllNotPass();
@@ -92,6 +98,6 @@ public class AnimalFoodCapacitiTest {
             }
             room.setAllPass();
         }
-        while (room.allPlayersPass());
+        while (!room.allPlayersPass());
     }
 }

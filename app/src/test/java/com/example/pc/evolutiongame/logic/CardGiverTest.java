@@ -1,7 +1,6 @@
 package com.example.pc.evolutiongame.logic;
 
 import com.example.pc.evolutiongame.model.Card;
-import com.example.pc.evolutiongame.model.Player;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +16,7 @@ public class CardGiverTest {
 
         CardGiver cardGiver = new CardGiver();
 
-        List<Card> cardsForPlayer = cardGiver.getCardsForPlayer(deck);
+        List<Card> cardsForPlayer = cardGiver.getCardsForPlayer(deck, 6);
 
         Assert.assertNotNull(cardsForPlayer);
         Assert.assertNotEquals(0 ,cardsForPlayer.size());
