@@ -3,6 +3,8 @@ package com.example.pc.evolutiongame.logic;
 import com.example.pc.evolutiongame.model.Card;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Room;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,12 +18,11 @@ public class GameTest {
         Room room = new Room(deck);
 
         Assert.assertNotNull(room.getDeck());
-        Assert.assertEquals(84,room.getDeck().size());
+        Assert.assertEquals(84, room.getDeck().size());
 
         for (int i = 0; i < 2; i++) {
             room.addPlayer(new Player());
         }
-
         Assert.assertTrue(room.canStartGame());
 
         List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.countPlayers(), room.getDeck());
@@ -30,7 +31,7 @@ public class GameTest {
         for (int i = 0; i < room.countPlayers(); i++) {
             room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
         }
-        Assert.assertNotEquals(0,cardsForPlayers.get(0).size());
+        Assert.assertNotEquals(0, cardsForPlayers.get(0).size());
 
         room.setAllNotPass();
 
@@ -39,14 +40,14 @@ public class GameTest {
             Player currentPlayer = room.getCurrentPlayer();
             Assert.assertNotNull(currentPlayer);
 
-            int localRandomCardNumber = (int)(Math.random()* room.getCurrentPlayer().getCardsCount());
+            int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
 
             Card currentCard = currentPlayer.getCard(localRandomCardNumber);
             Assert.assertNotNull(currentCard);
 
             room.getCurrentPlayer().playAnimal(room.getField(), localRandomCardNumber);
 
-            if(room.getCurrentPlayer().getCardsCount() == 0){
+            if (room.getCurrentPlayer().getCardsCount() == 0) {
                 room.getCurrentPlayer().setPass(true);
             }
             room.setNextPlayer();
@@ -145,7 +146,7 @@ public class GameTest {
         for (int i = 0; i < room.countPlayers(); i++) {
             room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
         }
-        Assert.assertNotEquals(0,cardsForPlayers.get(0).size());
+        Assert.assertNotEquals(0, cardsForPlayers.get(0).size());
 
         room.setAllNotPass();
 
@@ -154,15 +155,15 @@ public class GameTest {
             Player currentPlayer = room.getCurrentPlayer();
             Assert.assertNotNull(currentPlayer);
 
-            int localRandomCardNumber = (int)(Math.random()* room.getCurrentPlayer().getCardsCount());
-            int localRandomAnimalNumber = (int)(Math.random()* room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
+            int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
+            int localRandomAnimalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
 
             Card currentCard = currentPlayer.getCard(localRandomCardNumber);
             Assert.assertNotNull(currentCard);
 
             room.getCurrentPlayer().playProperty(room.getField(), localRandomCardNumber, localRandomAnimalNumber, 0);
 
-            if(room.getCurrentPlayer().getCardsCount() == 0){
+            if (room.getCurrentPlayer().getCardsCount() == 0) {
                 room.getCurrentPlayer().setPass(true);
             }
             room.setNextPlayer();
@@ -201,6 +202,11 @@ public class GameTest {
         room.getField().killAll();
 
         room.getAnimalsList();
+
+        Gson gson = new GsonBuilder().create();
+        String roomAsJson = gson.toJson(room);
+
+        Assert.assertEquals(roomAsJson, "");
     }
 
     /*
