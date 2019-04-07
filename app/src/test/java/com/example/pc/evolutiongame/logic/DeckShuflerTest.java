@@ -2,14 +2,12 @@ package com.example.pc.evolutiongame.logic;
 
 import com.example.pc.evolutiongame.model.Card;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
-import static org.junit.Assert.*;
 
 public class DeckShuflerTest {
     @Test
@@ -26,8 +24,8 @@ public class DeckShuflerTest {
         final List<Card> shufledDeck = deckShufler.deckShuffle(deck);
 
         Assert.assertNotNull(shufledDeck);
-        Assert.assertNotEquals(0 ,shufledDeck.size());
-        Assert.assertEquals(84 ,shufledDeck.size());
+        Assert.assertNotEquals(0, shufledDeck.size());
+        Assert.assertEquals(84, shufledDeck.size());
 
         Queue<Card> expectedDeck = new LinkedList<>();
 
@@ -36,7 +34,7 @@ public class DeckShuflerTest {
             expectedDeck.add(card);
         }
 
-        Assert.assertNotEquals(expectedDeck,shufledDeck);
+        Assert.assertNotEquals(expectedDeck, shufledDeck);
     }
 
     @Test
@@ -46,8 +44,8 @@ public class DeckShuflerTest {
         final List<Card> shufledDeck = deckShufler.deckShuffle();
 
         Assert.assertNotNull(shufledDeck);
-        Assert.assertNotEquals(0 ,shufledDeck.size());
-        Assert.assertEquals(84 ,shufledDeck.size());
+        Assert.assertNotEquals(0, shufledDeck.size());
+        Assert.assertEquals(84, shufledDeck.size());
 
         Queue<Card> expectedDeck = new LinkedList<>();
 
@@ -56,6 +54,6 @@ public class DeckShuflerTest {
             expectedDeck.add(card);
         }
 
-        Assert.assertNotEquals(expectedDeck,shufledDeck);
+        Assert.assertNotEquals(expectedDeck, shufledDeck);
     }
 }

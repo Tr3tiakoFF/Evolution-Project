@@ -6,12 +6,13 @@ import com.example.pc.evolutiongame.model.Room;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class GameTest {
+
     @Test
     public void cardPlayTest() {
         List<Card> deck = DeckShufler.deckShuffle();

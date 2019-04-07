@@ -3,12 +3,12 @@ package com.example.pc.evolutiongame.logic;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Room;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class PlayersRoomJoiningTest {
     @Test
-    public void roomJoinedPlayers (){
+    public void roomJoinedPlayers() {
         Room room = new Room();
 
         for (int i = 0; i < 4; i++) {
@@ -21,7 +21,7 @@ public class PlayersRoomJoiningTest {
     }
 
     @Test
-    public void roomCanJoinedPlayersTest (){
+    public void roomCanJoinedPlayersTest() {
         Room room = new Room();
 
         room.addPlayer(new Player());

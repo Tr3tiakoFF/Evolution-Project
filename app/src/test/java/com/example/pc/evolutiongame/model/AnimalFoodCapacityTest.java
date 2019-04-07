@@ -3,8 +3,8 @@ package com.example.pc.evolutiongame.model;
 import com.example.pc.evolutiongame.logic.CardGiver;
 import com.example.pc.evolutiongame.logic.DeckShufler;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.util.List;
 
