@@ -10,10 +10,13 @@ import android.widget.EditText;
 import com.example.pc.evolutiongame.core.TcpClient;
 import com.example.pc.evolutiongame.core.TcpServer;
 
+import static com.example.pc.evolutiongame.core.TcpServer.SERVER_HOST;
+import static com.example.pc.evolutiongame.core.TcpServer.SERVER_PORT;
+
 public class MainActivity extends Activity {
 
-    TcpServer tcpServer = new TcpServer(null);
-    TcpClient tcpClient = new TcpClient();
+    TcpServer tcpServer = new TcpServer(null, null);
+    TcpClient tcpClient = new TcpClient(null);
 
     Button startServer;
     Button startClient;
@@ -37,9 +40,8 @@ public class MainActivity extends Activity {
         startServer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try
-                {
-                    tcpServer.start(6666);
+                try {
+                    tcpServer.start();
                     open();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -51,9 +53,8 @@ public class MainActivity extends Activity {
         startClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try
-                {
-                    tcpClient.createConnection("localhost", 6666);
+                try {
+                    tcpClient.createConnection(SERVER_HOST, SERVER_PORT);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
