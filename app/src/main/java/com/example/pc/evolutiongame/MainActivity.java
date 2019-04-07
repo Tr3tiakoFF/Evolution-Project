@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 try
                 {
-                    tcpClient.startConnection("localhost", 6666);
+                    tcpClient.createConnection("localhost", 6666);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

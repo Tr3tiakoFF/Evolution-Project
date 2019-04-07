@@ -3,6 +3,7 @@ package com.example.pc.evolutiongame.core;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -21,7 +22,8 @@ public class TcpServer {
             public void run() {
                 try {
                     System.out.println("Trying to start tcp server");
-                    ServerSocket serverSocket = new ServerSocket(port);
+                    ServerSocket serverSocket = new ServerSocket();
+                    serverSocket.bind(new InetSocketAddress(SERVER_HOST, SERVER_PORT));
                     while (!Thread.interrupted()) {
                         final Socket clientSocket = serverSocket.accept();
                         System.out.printf("Accepted new connection->%s%n", clientSocket.getRemoteSocketAddress());

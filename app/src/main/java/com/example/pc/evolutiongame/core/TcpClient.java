@@ -12,7 +12,7 @@ public class TcpClient {
     private Socket clientSocket;
     private PrintWriter out;
 
-    public void startConnection(final String ip, final int port) {
+    public void createConnection(final String ip, final int port) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -47,7 +47,7 @@ public class TcpClient {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         TcpClient client = new TcpClient();
-        client.startConnection(SERVER_HOST, SERVER_PORT);
+        client.createConnection(SERVER_HOST, SERVER_PORT);
 
         for (int i = 0; i < 10; i++) {
             client.sendMessage("Hi from all of us " + i);
