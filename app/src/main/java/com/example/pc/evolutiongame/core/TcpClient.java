@@ -31,7 +31,7 @@ public class TcpClient {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if (!clientSocket.isClosed()) {
+                if (clientSocket != null && !clientSocket.isClosed()) {
                     out.println(msg);
                     System.out.println("MsgSent " + msg);
                 }
@@ -41,18 +41,16 @@ public class TcpClient {
 
     public void stopConnection() throws IOException {
         System.out.println("ConnectionStopped");
-//        in.close();
-        out.close();
+        clientSocket.shutdownOutput();
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
         TcpClient client = new TcpClient();
         client.startConnection("localhost", 6666);
 
-        sleep(1000);
-        for (int i = 0; i < 3000; i++) {
+        for (int i = 0; i < 10; i++) {
             client.sendMessage("Hi from all of us " + i);
-            sleep(1000);
+            sleep(300);
         }
         client.stopConnection();
     }

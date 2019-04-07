@@ -31,9 +31,11 @@ public class TcpServer {
                                     BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                                     while (!Thread.interrupted()) {
                                         String msg = in.readLine();
-                                        if (msg != null) {
-                                            System.out.printf("Received msg%s from->%s%n", msg, clientSocket.getRemoteSocketAddress());
+                                        if (msg == null) {
+                                            System.out.printf("Client is disconnected->%s%n", clientSocket.getRemoteSocketAddress());
+                                            break;
                                         }
+                                        System.out.printf("Received msg%s from->%s%n", msg, clientSocket.getRemoteSocketAddress());
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
