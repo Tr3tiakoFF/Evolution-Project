@@ -14,6 +14,7 @@ import java.util.List;
 public class GameTest {
 
     private Room room;
+    private Player currentPlayer;
 
     @Test
     public void createRoomWhenServerIsRun() {
@@ -55,29 +56,77 @@ public class GameTest {
         }
     }
 
+    @Test(priority = 4)
+    public void selectPlayerWhoShouldPlay() {
+        currentPlayer = room.getCurrentPlayer();
+        Assert.assertNotNull(currentPlayer);
+    }
+
+    @Test(priority = 5)
+    public void checkWhetherCurrentPlayerCanPlay() {
+        Assert.assertTrue(currentPlayer.canPlay());
+
+//        if (currentPlayer.canPlay()) {
+//            currentPlayer.setPass(true);
+//        }
+    }
+
+    @Test(priority = 6)
+    public void firstPlayerSelectCardAndPlayIt() {
+        int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
+
+        currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
+    }
+
+    @Test(priority = 7)
+    public void selectNextPlayer() {
+        room.setNextPlayer();
+
+        currentPlayer = room.getCurrentPlayer();
+        Assert.assertNotNull(currentPlayer);
+    }
+
+    @Test(priority = 8)
+    public void checkWhetherSecondPlayerCanPlay() {
+        Assert.assertTrue(currentPlayer.canPlay());
+
+//        if (currentPlayer.canPlay()) {
+//            currentPlayer.setPass(true);
+//        }
+    }
+
+
+
+    @Test(priority = 7)
+    public void secondPlayerSelectCardAndPlayIt() {
+        int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
+
+        currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
+    }
+
     //TODO logic change
     @Test
     public void cardPlayTest() {
-        room.setAllNotPass();
-
+//        room.setAllNotPass();
 
         do {
-            Player currentPlayer = room.getCurrentPlayer();
-            Assert.assertNotNull(currentPlayer);
+//            Player currentPlayer = room.getCurrentPlayer();
+//            Assert.assertNotNull(currentPlayer);
 
-            int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
+//            int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
 
-            Card currentCard = currentPlayer.getCard(localRandomCardNumber);
-            Assert.assertNotNull(currentCard);
+//            Card currentCard = currentPlayer.getCard(localRandomCardNumber);
+//            Assert.assertNotNull(currentCard);
 
-            room.getCurrentPlayer().playAnimal(room.getField(), localRandomCardNumber);
+//            currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
 
-            if (room.getCurrentPlayer().getCardsCount() == 0) {
-                room.getCurrentPlayer().setPass(true);
-            }
+//            if (currentPlayer.getCardsCount() == 0) {
+//                currentPlayer.setPass(true);
+//            }
             room.setNextPlayer();
         }
         while (!room.allPlayersPass());
+
 
         for (int i = 0; i < room.getPlayers().size(); i++) {
             Assert.assertEquals(0, room.getPlayers().get(i).getCardsCount());

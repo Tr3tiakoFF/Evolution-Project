@@ -28,6 +28,10 @@ public class Player {
         return this.cards.size();
     }
 
+    public boolean canPlay() {
+        return !this.cards.isEmpty();
+    }
+
 
     public void playAnimal(Field field, int localRandomCardNumber) {
         field.addAnimal(this);

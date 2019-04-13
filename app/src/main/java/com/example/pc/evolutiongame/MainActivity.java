@@ -9,21 +9,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.pc.evolutiongame.core.AcceptableImpl;
-import com.example.pc.evolutiongame.core.ProcessableImpl;
 import com.example.pc.evolutiongame.core.TcpClient;
 import com.example.pc.evolutiongame.core.TcpServer;
 
+import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
+import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
+
 public class MainActivity extends Activity {
 
-    TcpServer tcpServer = new TcpServer(new ProcessableImpl(), new AcceptableImpl());
-    TcpClient tcpClient = new TcpClient(new ProcessableImpl());
+    private final TcpServer server;
+    TcpClient client;
 
     Button startServer;
     Button startClient;
     Button sendMassage;
     Button stopClient;
     Button stopServer;
+
+    public MainActivity() {
+        this.server = getServerConfiguration();
+        this.client = getClientConfiguration();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +52,10 @@ public class MainActivity extends Activity {
                 String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
                 try {
-                    tcpServer.start(6666);
+                    server.start(6666);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                ;
             }
         });
 
@@ -58,7 +63,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    tcpClient.createConnection("localhost", 6666);
+                    client.createConnection("localhost", 6666);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -72,7 +77,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    tcpServer.stop();
+                    server.stop();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -83,7 +88,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    tcpClient.stopConnection();
+                    client.stopConnection();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -95,7 +100,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String massage = editText.getText().toString();
                 try {
-                    tcpClient.sendMessage(massage);
+                    client.sendMessage(massage);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

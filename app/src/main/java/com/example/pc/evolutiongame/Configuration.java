@@ -1,0 +1,23 @@
+package com.example.pc.evolutiongame;
+
+import com.example.pc.evolutiongame.core.AcceptableImpl;
+import com.example.pc.evolutiongame.core.ClientReceiver;
+import com.example.pc.evolutiongame.core.ServerConnectingService;
+import com.example.pc.evolutiongame.core.ServerReceiver;
+import com.example.pc.evolutiongame.core.TcpClient;
+import com.example.pc.evolutiongame.core.TcpServer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+public class Configuration {
+
+    public static TcpServer getServerConfiguration() {
+        Gson gson = new GsonBuilder().create();
+        return new TcpServer(new ServerReceiver(), new AcceptableImpl(gson), new ServerConnectingService());
+    }
+
+    public static TcpClient getClientConfiguration() {
+        Gson gson = new GsonBuilder().create();
+        return new TcpClient(new ClientReceiver(gson));
+    }
+}

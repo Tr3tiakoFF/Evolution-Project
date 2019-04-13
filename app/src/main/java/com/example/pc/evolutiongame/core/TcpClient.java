@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
 import static com.example.pc.evolutiongame.core.TcpServer.SERVER_HOST;
 import static com.example.pc.evolutiongame.core.TcpServer.SERVER_PORT;
 import static java.lang.Thread.sleep;
@@ -29,7 +30,7 @@ public class TcpClient {
                     System.out.println("Trying to start tcp client");
                     InetAddress serverAddr = InetAddress.getByName(ip);
                     clientSocket = new Socket(serverAddr, port);
-                    System.out.printf("Client %s connected to->%s%n", clientSocket.getLocalSocketAddress(), clientSocket.getRemoteSocketAddress());
+                    System.out.printf("Client %s started to->%s%n", clientSocket.getLocalSocketAddress(), clientSocket.getRemoteSocketAddress());
                     out = new PrintWriter(clientSocket.getOutputStream(), true);
                     final BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
@@ -37,8 +38,9 @@ public class TcpClient {
                         @Override
                         public void run() {
                             try {
+                                String msg = in.readLine();
                                 System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
-                                processable.process(in.readLine());
+                                processable.process(msg);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -69,13 +71,13 @@ public class TcpClient {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        TcpClient client = new TcpClient(new ProcessableImpl());
+        TcpClient client = getClientConfiguration();
         client.createConnection(SERVER_HOST, SERVER_PORT);
 
-        for (int i = 0; i < 100; i++) {
-            client.sendMessage("Hi from all of us " + i);
-            sleep(300);
-        }
-        client.stopConnection();
+//        for (int i = 0; i < 100; i++) {
+//            client.sendMessage("Hi from all of us " + i);
+//            sleep(300);
+//        }
+//        client.stopConnection();
     }
 }

@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
+
 public class TcpServer {
     public static final String SERVER_HOST = "localhost";
     public static final int SERVER_PORT = 6666;
@@ -17,11 +19,16 @@ public class TcpServer {
     private final Set<Socket> clients;
     private final Processable processable;
     private final Acceptable acceptable;
+    private final Connectable connectable;
+    private final Context context;
 
-    public TcpServer(Processable processable, Acceptable acceptable) {
+    public TcpServer(Processable processable, Acceptable acceptable, Connectable connectable) {
         this.processable = processable;
         this.acceptable = acceptable;
+        this.connectable = connectable;
+
         this.clients = new HashSet<>();
+        this.context = new Context();
     }
 
     public void start(final String host, final int port) {
@@ -42,12 +49,13 @@ public class TcpServer {
                     System.out.printf("Server is trying to bind to -> %s%n", inetSocketAddress);
                     serverSocket.bind(inetSocketAddress);
                     System.out.printf("Server is binded to -> %s%n", inetSocketAddress);
+                    connectable.started(context);
+
                     while (!Thread.interrupted()) {
                         final Socket clientSocket = serverSocket.accept();
                         System.out.printf("Accepted new connection->%s%n", clientSocket.getRemoteSocketAddress());
                         clients.add(clientSocket);
-                        acceptable.accept(TcpServer.this, clientSocket);
-
+                        acceptable.accept(TcpServer.this, clientSocket, context);
                         new Thread(new Runnable() {
 
                             @Override
@@ -101,7 +109,7 @@ public class TcpServer {
     }
 
     public static void main(String[] args) {
-        TcpServer server = new TcpServer(new ProcessableImpl(), new AcceptableImpl());
+        TcpServer server = getServerConfiguration();
         server.start(SERVER_HOST, SERVER_PORT);
     }
 
