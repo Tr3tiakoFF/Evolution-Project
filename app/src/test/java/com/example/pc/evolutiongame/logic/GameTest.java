@@ -49,10 +49,13 @@ public class GameTest {
         for (int i = 0; i < room.numberPlayers(); i++) {
             room.addCardsToPlayer(i, cardsForPlayers.get(i));
         }
-        // TODO: 4/7/19 need to check all players cards
-        Assert.assertNotEquals(0, cardsForPlayers.get(0).size());
+
+        for (int i = 0; i < room.getPlayers().size(); i++) {
+            Assert.assertNotEquals(0, cardsForPlayers.get(i).size());
+        }
     }
 
+    //TODO logic change
     @Test
     public void cardPlayTest() {
         room.setAllNotPass();

@@ -78,7 +78,7 @@ public class Room {
         return field;
     }
 
-    public void getAnimalsList() {
+    public void outAnimalsList() {
         for (int i = 0; i < this.field.getAnimalsCount(); i++) {
             System.out.println(field.getAnimals().get(i).toString());
         }
@@ -122,5 +122,44 @@ public class Room {
 
     public void addCardsToPlayer(int i, List<Card> cards) {
         players.get(i).addCards(cards);
+    }
+
+    public String getWinner() {
+        int[] countArr = new int[this.players.size()];
+        for (int i = 0; i < this.players.size(); i++) {
+            countArr[i] = this.players.get(i).calculateEndgameCounter(this.field);
+        }
+        int winnerNum = this.getWiner(countArr);
+        switch (winnerNum) {
+            case 1:
+                return "Winner is player  number 1 CONGRATULATIONS!!!!";
+            case 2:
+                return "Winner is player  number 2 CONGRATULATIONS!!!!";
+            case 3:
+                return "Winner is player  number 3 CONGRATULATIONS!!!!";
+            case 4:
+                return "Winner is player  number 4 CONGRATULATIONS!!!!";
+            case 5:
+                return "Winner is player  number 5 CONGRATULATIONS!!!!";
+            case 6:
+                return "Winner is player  number 6 CONGRATULATIONS!!!!";
+        }
+        return "";
+    }
+
+    private int getWiner(int[] countArr) {
+        int max = 0;
+        int counter = 0;
+        for (int i = 0; i < countArr.length; i++) {
+            if (max < countArr[i]) {
+                max = countArr[i];
+                counter = i;
+            }
+        }
+        return counter;
+    }
+
+    public List<Animal> getAnimalsList() {
+        return this.field.getAnimals();
     }
 }

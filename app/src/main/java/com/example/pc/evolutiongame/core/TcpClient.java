@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 
 import static com.example.pc.evolutiongame.core.TcpServer.SERVER_HOST;
@@ -26,7 +27,8 @@ public class TcpClient {
             public void run() {
                 try {
                     System.out.println("Trying to start tcp client");
-                    clientSocket = new Socket(ip, port);
+                    InetAddress serverAddr = InetAddress.getByName(ip);
+                    clientSocket = new Socket(serverAddr, port);
                     System.out.printf("Client %s connected to->%s%n", clientSocket.getLocalSocketAddress(), clientSocket.getRemoteSocketAddress());
                     out = new PrintWriter(clientSocket.getOutputStream(), true);
                     final BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

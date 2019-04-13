@@ -161,4 +161,35 @@ public class Field {
         }
         return true;
     }
+
+    public int getAnimalsCount(Player player) {
+        int animalCount = 0;
+        for (int i = 0; i < this.getAnimalsCount(); i++) {
+            if (this.getAnimals().get(i).playerConnect == player) {
+                animalCount++;
+            }
+        }
+        return animalCount;
+    }
+
+    public int getAnimalsPropertyCount(Player player) {
+        int animalPropertyCount = 0;
+        for (int i = 0; i < this.getAnimalsCount(); i++) {
+            if (this.getAnimals().get(i).playerConnect == player) {
+                animalPropertyCount += this.getAnimals().get(i).getPropertyCount();
+            }
+        }
+        return animalPropertyCount;
+    }
+
+    public int getAnimalsFoodCapacityCount(Player player) {
+        int animalFoodCapacityCount = 0;
+        for (int i = 0; i < this.getAnimalsCount(); i++) {
+            if (this.getAnimals().get(i).playerConnect == player) {
+                this.getAnimals().get(i).calculateFoodCapacity();
+                animalFoodCapacityCount += this.getAnimals().get(i).capacityFood;
+            }
+        }
+        return animalFoodCapacityCount;
+    }
 }

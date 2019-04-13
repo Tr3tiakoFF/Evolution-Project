@@ -56,4 +56,9 @@ public class Player {
             room.loseFood();
         } else setPass(true);
     }
+
+    public int calculateEndgameCounter(Field field) {
+        int winnerCount = 0;
+        return field.getAnimalsCount(this) + field.getAnimalsPropertyCount(this) + field.getAnimalsFoodCapacityCount(this);
+    }
 }

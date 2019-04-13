@@ -24,14 +24,24 @@ public class TcpServer {
         this.clients = new HashSet<>();
     }
 
-    public void start() {
+    public void start(final String host, final int port) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     System.out.println("Trying to start tcp server");
                     ServerSocket serverSocket = new ServerSocket();
-                    serverSocket.bind(new InetSocketAddress(SERVER_HOST, SERVER_PORT));
+                    InetSocketAddress inetSocketAddress;
+                    if (host == null) {
+                        inetSocketAddress = new InetSocketAddress(port);
+                    } else {
+                        inetSocketAddress = new InetSocketAddress(host, port);
+
+                    }
+
+                    System.out.printf("Server is trying to bind to -> %s%n", inetSocketAddress);
+                    serverSocket.bind(inetSocketAddress);
+                    System.out.printf("Server is binded to -> %s%n", inetSocketAddress);
                     while (!Thread.interrupted()) {
                         final Socket clientSocket = serverSocket.accept();
                         System.out.printf("Accepted new connection->%s%n", clientSocket.getRemoteSocketAddress());
@@ -92,6 +102,10 @@ public class TcpServer {
 
     public static void main(String[] args) {
         TcpServer server = new TcpServer(new ProcessableImpl(), new AcceptableImpl());
-        server.start();
+        server.start(SERVER_HOST, SERVER_PORT);
+    }
+
+    public void start(int port) {
+        this.start(null, port);
     }
 }

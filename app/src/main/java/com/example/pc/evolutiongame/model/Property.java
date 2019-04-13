@@ -6,4 +6,8 @@ public class Property {
     public Property(LowLevelAnimalProperty value_) {
         this.value = value_;
     }
+
+    public LowLevelAnimalProperty getValue() {
+        return value;
+    }
 }

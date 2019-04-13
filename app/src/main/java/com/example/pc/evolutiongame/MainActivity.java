@@ -2,21 +2,22 @@ package com.example.pc.evolutiongame;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.pc.evolutiongame.core.AcceptableImpl;
+import com.example.pc.evolutiongame.core.ProcessableImpl;
 import com.example.pc.evolutiongame.core.TcpClient;
 import com.example.pc.evolutiongame.core.TcpServer;
 
-import static com.example.pc.evolutiongame.core.TcpServer.SERVER_HOST;
-import static com.example.pc.evolutiongame.core.TcpServer.SERVER_PORT;
-
 public class MainActivity extends Activity {
 
-    TcpServer tcpServer = new TcpServer(null, null);
-    TcpClient tcpClient = new TcpClient(null);
+    TcpServer tcpServer = new TcpServer(new ProcessableImpl(), new AcceptableImpl());
+    TcpClient tcpClient = new TcpClient(new ProcessableImpl());
 
     Button startServer;
     Button startClient;
@@ -40,9 +41,12 @@ public class MainActivity extends Activity {
         startServer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+                String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+
                 try {
-                    tcpServer.start();
-                    open();
+                    tcpServer.start(6666);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -54,11 +58,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    tcpClient.createConnection(SERVER_HOST, SERVER_PORT);
+                    tcpClient.createConnection("localhost", 6666);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                ;
+//                WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+//                String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+//                Toast.makeText(getApplicationContext(),ip,Toast.LENGTH_LONG).show();
             }
         });
 
@@ -98,7 +104,7 @@ public class MainActivity extends Activity {
     }
 
     public void open() {
-        Intent intent = new Intent(this, Activity2.class);
+        Intent intent = new Intent(this, MainBoardActivity.class);
         startActivity(intent);
     }
 }

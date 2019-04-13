@@ -3,7 +3,7 @@ package com.example.pc.evolutiongame.model;
 import java.util.ArrayList;
 import java.util.List;
 
-class Animal {
+public class Animal {
     int capacityFood = 0;
 
     boolean mustDie = false;
@@ -67,5 +67,17 @@ class Animal {
                 properties.remove(i);
             }
         }
+    }
+
+    public int getPropertyCount() {
+        return this.properties.size();
+    }
+
+    public Player getPlayerConnect() {
+        return playerConnect;
+    }
+
+    public List<Property> getProperty() {
+        return this.properties;
     }
 }

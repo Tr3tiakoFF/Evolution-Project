@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity2">
+    tools:context=".MainBoardActivity">
 
     <TableLayout
         android:id="@+id/enemyPropertyTable1"
@@ -1561,9 +1561,10 @@
         android:layout_height="116dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:text="Button" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
     <Button
         android:id="@+id/enemyMinion2"
@@ -1571,9 +1572,10 @@
         android:layout_height="116dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/enemyMinion1"
-        android:text="Button" />
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
     <Button
         android:id="@+id/enemyMinion3"
@@ -1581,9 +1583,10 @@
         android:layout_height="116dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/enemyMinion2"
-        android:text="Button" />
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
     <Button
         android:id="@+id/enemyMinion4"
@@ -1591,9 +1594,10 @@
         android:layout_height="116dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/enemyMinion3"
-        android:text="Button" />
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
     <Button
         android:id="@+id/enemyMinion5"
@@ -1601,9 +1605,10 @@
         android:layout_height="116dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/enemyMinion4"
-        android:text="Button" />
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
     <Button
         android:id="@+id/enemyMinion6"
@@ -1611,9 +1616,10 @@
         android:layout_height="116dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/enemyMinion5"
-        android:text="Button" />
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
 
     <Button
@@ -1621,71 +1627,77 @@
         android:layout_width="78dp"
         android:layout_height="116dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="194dp"
-        android:layout_marginEnd="0dp"
-        android:text="Button" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
     <Button
         android:id="@+id/playerMinion2"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="194dp"
+        android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/playerMinion1"
-        android:text="Button" />
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
     <Button
         android:id="@+id/playerMinion3"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="194dp"
+        android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/playerMinion2"
-        android:text="Button" />
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
     <Button
         android:id="@+id/playerMinion4"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="194dp"
+        android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/playerMinion3"
-        android:text="Button" />
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
     <Button
         android:id="@+id/playerMinion5"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="194dp"
+        android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/playerMinion4"
-        android:text="Button" />
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
 
     <Button
         android:id="@+id/playerMinion6"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="194dp"
+        android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/playerMinion5"
-        android:text="Button" />
+        android:background="@drawable/animal_174x118"
+        android:text="Animal" />
+
 
     <Button
         android:id="@+id/passButton"
-        android:layout_width="92dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="500dp"
-        android:text="Button" />
+        android:layout_marginStart="442dp"
+        android:text="PASS" />
 
     <Button
         android:id="@+id/showDeckButton"
@@ -1695,7 +1707,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="22dp"
         android:layout_marginEnd="0dp"
-        android:text="Button" />
+        android:text="HAND" />
 
     <Button
         android:id="@+id/foodCapacityButton"
