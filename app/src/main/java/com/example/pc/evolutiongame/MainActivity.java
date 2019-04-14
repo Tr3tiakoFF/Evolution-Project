@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 
     public MainActivity() {
         this.server = getServerConfiguration();
-        this.client = getClientConfiguration();
+        this.client = getClientConfiguration(null);
     }
 
     @Override

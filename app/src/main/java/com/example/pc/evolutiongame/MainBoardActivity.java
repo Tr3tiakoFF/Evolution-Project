@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 
+import com.example.pc.evolutiongame.core.UiRenderer;
 import com.example.pc.evolutiongame.model.Animal;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Property;
@@ -15,9 +16,7 @@ import com.example.pc.evolutiongame.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainBoardActivity extends Activity {
-
-    Room room = new Room(2);
+public class MainBoardActivity extends Activity implements UiRenderer {
 
     Boolean isServer = true;
 
@@ -171,22 +170,11 @@ public class MainBoardActivity extends Activity {
         enemyAnimal4 = (Button) findViewById(R.id.enemyMinion4);
         enemyAnimal5 = (Button) findViewById(R.id.enemyMinion5);
         enemyAnimal6 = (Button) findViewById(R.id.enemyMinion6);
-
-        room.addPlayer(new Player());
-        room.addPlayer(new Player());
-
-        refresh();
-
     }
 
-    public void refresh() {
-        refreshAnimalsPropertes();
-        refreshAnimals();
-    }
+    private void refreshAnimals(Room room) {
 
-    private void refreshAnimals() {
-
-        refreshAnimalsPropertes();
+        refreshAnimalsPropertes(room);
 
         List<Animal> animalList = room.getAnimalsList();
         int[] playerAnimlCount = new int[room.numberPlayers()];
@@ -402,7 +390,7 @@ public class MainBoardActivity extends Activity {
         }
     }
 
-    private void refreshAnimalsPropertes() {
+    private void refreshAnimalsPropertes(Room room) {
         List<Animal> animalList = room.getAnimalsList();
 
         List<Animal> playerAnimals = new ArrayList<>();
@@ -573,5 +561,11 @@ public class MainBoardActivity extends Activity {
                 break;
             }
         }
+    }
+
+    @Override
+    public void render(Room room) {
+        refreshAnimalsPropertes(room);
+        refreshAnimals(room);
     }
 }

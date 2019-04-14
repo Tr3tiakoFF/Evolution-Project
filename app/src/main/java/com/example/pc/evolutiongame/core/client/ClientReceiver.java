@@ -2,6 +2,7 @@ package com.example.pc.evolutiongame.core.client;
 
 import com.example.pc.evolutiongame.core.Context;
 import com.example.pc.evolutiongame.core.Processable;
+import com.example.pc.evolutiongame.core.UiRenderer;
 import com.example.pc.evolutiongame.core.control.Action;
 import com.example.pc.evolutiongame.core.control.Game;
 import com.example.pc.evolutiongame.model.Player;
@@ -15,9 +16,11 @@ import static com.example.pc.evolutiongame.core.control.Phase.POWER;
 
 public class ClientReceiver implements Processable {
 
+    private final UiRenderer renderer;
     private final Gson gson;
 
-    public ClientReceiver(Gson gson) {
+    public ClientReceiver(UiRenderer renderer, Gson gson) {
+        this.renderer = renderer;
         this.gson = gson;
     }
 
@@ -37,6 +40,10 @@ public class ClientReceiver implements Processable {
 
         if (REFRESH_STATE == game.getAction()) {
             Room room = game.getRoom();
+            if (renderer != null) {
+                renderer.render(room);
+            }
+
             Player currentPlayer = room.getCurrentPlayer();
 
             if (EVOLUTION == game.getPhase()) {
