@@ -1,5 +1,6 @@
 package com.example.pc.evolutiongame.core.client;
 
+import com.example.pc.evolutiongame.core.Context;
 import com.example.pc.evolutiongame.core.Processable;
 
 import java.io.BufferedReader;
@@ -17,9 +18,11 @@ import static java.lang.Thread.sleep;
 public class TcpClient {
     private Socket clientSocket;
     private PrintWriter out;
+    private Context context;
     private final Processable processable;
 
-    public TcpClient(Processable processable) {
+    public TcpClient(Context context, Processable processable) {
+        this.context = context;
         this.processable = processable;
     }
 
@@ -43,7 +46,7 @@ public class TcpClient {
                                 try {
                                     String msg = in.readLine();
                                     System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
-                                    processable.process(msg);
+                                    processable.process(context, msg);
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }

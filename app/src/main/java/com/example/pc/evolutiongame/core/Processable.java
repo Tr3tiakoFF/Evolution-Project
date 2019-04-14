@@ -1,5 +1,5 @@
 package com.example.pc.evolutiongame.core;
 
 public interface Processable {
-    void process(String msg);
+    void process(Context context, String msg);
 }

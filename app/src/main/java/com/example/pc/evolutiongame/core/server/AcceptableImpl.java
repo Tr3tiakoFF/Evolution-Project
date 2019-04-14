@@ -2,6 +2,8 @@ package com.example.pc.evolutiongame.core.server;
 
 import com.example.pc.evolutiongame.core.Acceptable;
 import com.example.pc.evolutiongame.core.Context;
+import com.example.pc.evolutiongame.core.control.Action;
+import com.example.pc.evolutiongame.core.control.Game;
 import com.example.pc.evolutiongame.logic.CardGiver;
 import com.example.pc.evolutiongame.logic.DeckShufler;
 import com.example.pc.evolutiongame.model.Card;
@@ -30,7 +32,7 @@ public class AcceptableImpl implements Acceptable {
         Player player = new Player(getNewId());
         room.addPlayer(player);
 
-        server.sendMsg(clientSocket, gson.toJson(player));
+        server.sendMsg(clientSocket, gson.toJson(new Game(Action.SET_ID, player)));
 
         if (!room.canStartGame()) {
             System.out.printf("There are number of players->%d. Waiting more players%n", room.numberPlayers());

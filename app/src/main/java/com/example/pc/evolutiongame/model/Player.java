@@ -75,4 +75,8 @@ public class Player {
         int winnerCount = 0;
         return field.getAnimalsCount(this) + field.getAnimalsPropertyCount(this) + field.getAnimalsFoodCapacityCount(this);
     }
+
+    public String getId() {
+        return id;
+    }
 }

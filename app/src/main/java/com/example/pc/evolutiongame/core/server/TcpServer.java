@@ -27,13 +27,13 @@ public class TcpServer {
     private final Connectable connectable;
     private final Context context;
 
-    public TcpServer(Processable processable, Acceptable acceptable, Connectable connectable) {
+    public TcpServer(Context context, Processable processable, Acceptable acceptable, Connectable connectable) {
         this.processable = processable;
         this.acceptable = acceptable;
         this.connectable = connectable;
 
         this.clients = new HashSet<>();
-        this.context = new Context();
+        this.context = context;
     }
 
     public void start(final String host, final int port) {
@@ -74,7 +74,7 @@ public class TcpServer {
                                             break;
                                         }
                                         System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
-                                        processable.process(msg);
+                                        processable.process(context, msg);
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();

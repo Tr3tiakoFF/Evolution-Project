@@ -1,8 +1,11 @@
 package com.example.pc.evolutiongame.core.client;
 
+import com.example.pc.evolutiongame.core.Context;
 import com.example.pc.evolutiongame.core.Processable;
-import com.example.pc.evolutiongame.model.Room;
+import com.example.pc.evolutiongame.core.control.Game;
 import com.google.gson.Gson;
+
+import static com.example.pc.evolutiongame.core.control.Action.SET_ID;
 
 public class ClientReceiver implements Processable {
 
@@ -13,9 +16,15 @@ public class ClientReceiver implements Processable {
     }
 
     @Override
-    public void process(String msg) {
-        System.out.printf("Received msg->%s%n", msg);
+    public void process(Context context, String msg) {
+        System.out.printf("Received msg->%n%s%n", msg);
 
-        Room room = gson.fromJson(msg, Room.class);
+        Game game = gson.fromJson(msg, Game.class);
+
+        if (SET_ID == game.getAction()) {
+            String id = game.getPlayer().getId();
+            System.out.printf("Set id for client->%s%n", id);
+            context.setId(id);
+        }
     }
 }
