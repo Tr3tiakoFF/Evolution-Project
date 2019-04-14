@@ -41,7 +41,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return (player.toString());
+        return player.toString();
     }
 
     public boolean got(LowLevelAnimalProperty animalProperty) {

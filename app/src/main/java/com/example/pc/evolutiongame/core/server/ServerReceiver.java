@@ -29,6 +29,7 @@ public class ServerReceiver implements Processable {
             Room room = game.getRoom();
             if (room.allPlayersPass()) {
                 System.out.println("All players pass");
+                System.out.printf("All animals->%s%n", room.getAnimalsList());
                 return;
             }
 
