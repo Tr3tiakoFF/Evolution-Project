@@ -6,11 +6,16 @@ import com.example.pc.evolutiongame.model.Room;
 public class Game {
     private Action action;
     private Player player;
-    private Room data;
+    private Room room;
 
     public Game(Action action, Player player) {
         this.action = action;
         this.player = player;
+    }
+
+    public Game(Action action, Room room) {
+        this.action = action;
+        this.room = room;
     }
 
     public Action getAction() {
@@ -21,11 +26,7 @@ public class Game {
         return player;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public void setData(Room data) {
-        this.data = data;
+    public Room getRoom() {
+        return room;
     }
 }

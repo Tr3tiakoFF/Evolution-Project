@@ -47,9 +47,9 @@ public class AcceptableImpl implements Acceptable {
             room.addCardsToPlayer(i, cardsForPlayers.get(i));
         }
 
-        String roomAsJson = gson.toJson(room);
-        System.out.printf("Room to send to clients->%s%n", roomAsJson);
+        String game = gson.toJson(new Game(Action.REFRESH_STATE, room));
+        System.out.printf("Data to send to clients->%s%n", game);
 
-        server.sendMsg(roomAsJson);
+        server.sendMsg(game);
     }
 }
