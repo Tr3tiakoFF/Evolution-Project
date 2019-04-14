@@ -37,6 +37,10 @@ public class TcpServer implements Sendable {
         this.context = context;
     }
 
+    public void start(int port) {
+        this.start(null, port);
+    }
+
     public void start(final String host, final int port) {
         new Thread(new Runnable() {
             @Override
@@ -120,9 +124,5 @@ public class TcpServer implements Sendable {
     public static void main(String[] args) {
         TcpServer server = getServerConfiguration();
         server.start(SERVER_HOST, SERVER_PORT);
-    }
-
-    public void start(int port) {
-        this.start(null, port);
     }
 }

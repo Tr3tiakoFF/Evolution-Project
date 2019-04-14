@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
                 String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
                 try {
-                    server.start(6666);
+                    server.start(ip, 6666);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -63,7 +63,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    client.createConnection("localhost", 6666);
+                    String ipAddr = editText.getText().toString();
+                    client.createConnection(ipAddr, 6666);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
