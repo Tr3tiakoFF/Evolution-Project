@@ -2,6 +2,7 @@ package com.example.pc.evolutiongame.core.client;
 
 import com.example.pc.evolutiongame.core.Context;
 import com.example.pc.evolutiongame.core.Processable;
+import com.example.pc.evolutiongame.core.control.Action;
 import com.example.pc.evolutiongame.core.control.Game;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Room;
@@ -34,8 +35,13 @@ public class ClientReceiver implements Processable {
             Room room = game.getRoom();
             Player currentPlayer = room.getCurrentPlayer();
 
-            if (context.getId().equals(currentPlayer.getId())) {
+            if (context.getId().equals(currentPlayer.getId()) && currentPlayer.canPlay()) {
                 System.out.println("Player should move");
+
+                int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
+                currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
+
+                context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room)));
             }
         }
     }

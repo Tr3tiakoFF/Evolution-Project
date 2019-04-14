@@ -2,6 +2,7 @@ package com.example.pc.evolutiongame.core.client;
 
 import com.example.pc.evolutiongame.core.Context;
 import com.example.pc.evolutiongame.core.Processable;
+import com.example.pc.evolutiongame.core.Sendable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_HOST;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 import static java.lang.Thread.sleep;
 
-public class TcpClient {
+public class TcpClient implements Sendable {
     private Socket clientSocket;
     private PrintWriter out;
     private Context context;
@@ -39,6 +40,8 @@ public class TcpClient {
                     out = new PrintWriter(clientSocket.getOutputStream(), true);
                     final BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
+                    context.setSender(TcpClient.this);
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -60,6 +63,7 @@ public class TcpClient {
         }).start();
     }
 
+    @Override
     public void sendMessage(final String msg) {
         new Thread(new Runnable() {
             @Override

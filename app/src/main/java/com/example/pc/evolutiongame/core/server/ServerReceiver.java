@@ -7,6 +7,6 @@ public class ServerReceiver implements Processable {
 
     @Override
     public void process(Context context, String msg) {
-        System.out.printf("Received msg %s%n", msg);
+        System.out.printf("Received msg->%n%s%n", msg);
     }
 }

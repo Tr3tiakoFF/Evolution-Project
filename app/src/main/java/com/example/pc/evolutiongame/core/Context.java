@@ -5,6 +5,7 @@ import com.example.pc.evolutiongame.model.Room;
 public class Context {
     private String id;
     private Room room;
+    private Sendable sender;
 
     public String getId() {
         return id;
@@ -20,5 +21,13 @@ public class Context {
 
     public Room getRoom() {
         return this.room;
+    }
+
+    public Sendable getSender() {
+        return sender;
+    }
+
+    public void setSender(Sendable sender) {
+        this.sender = sender;
     }
 }

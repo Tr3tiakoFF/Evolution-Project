@@ -4,6 +4,7 @@ import com.example.pc.evolutiongame.core.Acceptable;
 import com.example.pc.evolutiongame.core.Connectable;
 import com.example.pc.evolutiongame.core.Context;
 import com.example.pc.evolutiongame.core.Processable;
+import com.example.pc.evolutiongame.core.Sendable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import java.util.Set;
 
 import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
 
-public class TcpServer {
+public class TcpServer implements Sendable {
     public static final String SERVER_HOST = "localhost";
     public static final int SERVER_PORT = 6666;
 
@@ -54,13 +55,15 @@ public class TcpServer {
                     System.out.printf("Server is trying to bind to -> %s%n", inetSocketAddress);
                     serverSocket.bind(inetSocketAddress);
                     System.out.printf("Server is binded to -> %s%n", inetSocketAddress);
+
+                    context.setSender(TcpServer.this);
                     connectable.started(context);
 
                     while (!Thread.interrupted()) {
                         final Socket clientSocket = serverSocket.accept();
                         System.out.printf("Accepted new connection->%s%n", clientSocket.getRemoteSocketAddress());
                         clients.add(clientSocket);
-                        acceptable.accept(TcpServer.this, clientSocket, context);
+                        acceptable.accept(clientSocket, context);
                         new Thread(new Runnable() {
 
                             @Override
@@ -89,11 +92,11 @@ public class TcpServer {
         }).start();
     }
 
-    public void stop() throws IOException {
+    public void stop() {
         System.out.println("GreetServerStoped");
     }
 
-    public void sendMsg(Socket clientSocket, String msg) {
+    public void sendMessage(Socket clientSocket, String msg) {
         if (msg == null) {
             System.out.println("Message is null. Nothing to send.");
             return;
@@ -107,9 +110,10 @@ public class TcpServer {
         }
     }
 
-    public void sendMsg(String msg) {
+    @Override
+    public void sendMessage(String msg) {
         for (Socket clientSocket : clients) {
-            sendMsg(clientSocket, msg);
+            sendMessage(clientSocket, msg);
         }
     }
 

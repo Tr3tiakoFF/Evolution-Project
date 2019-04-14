@@ -2,6 +2,7 @@ package com.example.pc.evolutiongame.core.server;
 
 import com.example.pc.evolutiongame.core.Acceptable;
 import com.example.pc.evolutiongame.core.Context;
+import com.example.pc.evolutiongame.core.Sendable;
 import com.example.pc.evolutiongame.core.control.Action;
 import com.example.pc.evolutiongame.core.control.Game;
 import com.example.pc.evolutiongame.logic.CardGiver;
@@ -25,14 +26,15 @@ public class AcceptableImpl implements Acceptable {
     }
 
     @Override
-    public void accept(TcpServer server, Socket clientSocket, Context context) {
+    public void accept(Socket clientSocket, Context context) {
         System.out.printf("Client ->%s connected to server%n", clientSocket.getRemoteSocketAddress());
+        Sendable sender = context.getSender();
 
         Room room = context.getRoom();
         Player player = new Player(getNewId());
         room.addPlayer(player);
 
-        server.sendMsg(clientSocket, gson.toJson(new Game(Action.SET_ID, player)));
+        ((TcpServer)sender).sendMessage(clientSocket, gson.toJson(new Game(Action.SET_ID, player)));
 
         if (!room.canStartGame()) {
             System.out.printf("There are number of players->%d. Waiting more players%n", room.numberPlayers());
@@ -47,9 +49,6 @@ public class AcceptableImpl implements Acceptable {
             room.addCardsToPlayer(i, cardsForPlayers.get(i));
         }
 
-        String game = gson.toJson(new Game(Action.REFRESH_STATE, room));
-        System.out.printf("Data to send to clients->%s%n", game);
-
-        server.sendMsg(game);
+        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room)));
     }
 }
