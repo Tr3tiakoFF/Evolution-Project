@@ -5,8 +5,18 @@ import java.util.List;
 
 public class Player {
     private boolean isPass;
+    private List<Card> cards;
+    private String id;
 
-    List<Card> cards = new ArrayList<Card>();
+    public Player() {
+        this.cards = new ArrayList<>();
+    }
+
+    public Player(String id) {
+        this();
+
+        this.id = id;
+    }
 
     public void addCards(List<Card> cards) {
         this.cards.addAll(cards);

@@ -39,12 +39,14 @@ public class TcpClient {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            try {
-                                String msg = in.readLine();
-                                System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
-                                processable.process(msg);
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            while (!Thread.interrupted()) {
+                                try {
+                                    String msg = in.readLine();
+                                    System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
+                                    processable.process(msg);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }).start();

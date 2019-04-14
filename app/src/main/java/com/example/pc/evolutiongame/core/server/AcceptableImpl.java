@@ -12,6 +12,8 @@ import com.google.gson.Gson;
 import java.net.Socket;
 import java.util.List;
 
+import static com.example.pc.evolutiongame.Utils.getNewId;
+
 public class AcceptableImpl implements Acceptable {
 
     private Gson gson;
@@ -25,7 +27,10 @@ public class AcceptableImpl implements Acceptable {
         System.out.printf("Client ->%s connected to server%n", clientSocket.getRemoteSocketAddress());
 
         Room room = context.getRoom();
-        room.addPlayer(new Player());
+        Player player = new Player(getNewId());
+        room.addPlayer(player);
+
+        server.sendMsg(clientSocket, gson.toJson(player));
 
         if (!room.canStartGame()) {
             System.out.printf("There are number of players->%d. Waiting more players%n", room.numberPlayers());
