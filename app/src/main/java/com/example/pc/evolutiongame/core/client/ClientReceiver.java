@@ -10,6 +10,8 @@ import com.google.gson.Gson;
 
 import static com.example.pc.evolutiongame.core.control.Action.REFRESH_STATE;
 import static com.example.pc.evolutiongame.core.control.Action.SET_ID;
+import static com.example.pc.evolutiongame.core.control.Phase.EVOLUTION;
+import static com.example.pc.evolutiongame.core.control.Phase.POWER;
 
 public class ClientReceiver implements Processable {
 
@@ -37,19 +39,39 @@ public class ClientReceiver implements Processable {
             Room room = game.getRoom();
             Player currentPlayer = room.getCurrentPlayer();
 
-            if (context.getId().equals(currentPlayer.getId()) && currentPlayer.canPlay()) {
-                System.out.println("Player should turn");
+            if (EVOLUTION == game.getPhase()) {
+                System.out.println("Process evolution phase");
+                if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass()) {
+                    System.out.println("Player should turn");
 
-                int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
-                currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
+                    int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
+                    currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
 
-                if (!currentPlayer.canPlay()) {
-                    currentPlayer.setPass(true);
+                    if (!currentPlayer.canPlay()) {
+                        currentPlayer.setPass(true);
+                    }
+
+                    context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
+                } else {
+                    System.out.println("Player skip message and waiting turn");
                 }
+            }
 
-                context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room)));
-            } else {
-                System.out.println("Player skip message and waiting turn");
+            if (POWER == game.getPhase()) {
+                System.out.println("Process power phase");
+                if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass()) {
+                    System.out.println("Player should turn");
+
+                    room.getCurrentPlayer().giveFood(room, 0);
+
+                    if (room.getCapacityFood() == 0) {
+                        room.getCurrentPlayer().setPass(true);
+                    }
+
+                    context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, POWER, room)));
+                } else {
+                    System.out.println("Player skip message and waiting turn");
+                }
             }
         }
     }

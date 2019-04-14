@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MainBoardActivity extends Activity {
 
-    Room room = new Room();
+    Room room = new Room(2);
 
     Boolean isServer = true;
 
@@ -39,7 +39,6 @@ public class MainBoardActivity extends Activity {
     ImageView enemyImageView_4_1, enemyImageView_4_2, enemyImageView_4_3, enemyImageView_4_4, enemyImageView_4_5, enemyImageView_4_6;
     ImageView enemyImageView_5_1, enemyImageView_5_2, enemyImageView_5_3, enemyImageView_5_4, enemyImageView_5_5, enemyImageView_5_6;
     ImageView enemyImageView_6_1, enemyImageView_6_2, enemyImageView_6_3, enemyImageView_6_4, enemyImageView_6_5, enemyImageView_6_6;
-
 
 
     @Override

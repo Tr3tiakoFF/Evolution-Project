@@ -5,10 +5,13 @@ import com.example.pc.evolutiongame.core.Context;
 import com.example.pc.evolutiongame.model.Room;
 
 public class ServerConnector implements Connectable {
+
+    private static final int NUMBER_PLAYER = 2;
+
     @Override
     public void started(Context context) {
         System.out.println("Server is started");
 
-        context.setRoom(new Room());
+        context.setRoom(new Room(NUMBER_PLAYER));
     }
 }

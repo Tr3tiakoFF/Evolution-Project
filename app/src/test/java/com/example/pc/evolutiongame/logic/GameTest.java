@@ -15,10 +15,11 @@ public class GameTest {
 
     private Room room;
     private Player currentPlayer;
+    private int numberPlayers = 2;
 
     @Test
     public void createRoomWhenServerIsRun() {
-        room = new Room();
+        room = new Room(numberPlayers);
     }
 
     @Test(priority = 1)
@@ -94,7 +95,6 @@ public class GameTest {
 //            currentPlayer.setPass(true);
 //        }
     }
-
 
 
     @Test(priority = 7)
@@ -176,7 +176,7 @@ public class GameTest {
     @Test
     public void foodTest() {
         List<Card> deck = DeckShufler.deckShuffleForFoodTest();
-        Room room = new Room();
+        Room room = new Room(numberPlayers);
 
         Assert.assertNotNull(room.getDeck());
         Assert.assertEquals(84, room.getDeck().size());

@@ -9,10 +9,12 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class AnimalFoodCapacityTest {
+    private int numberPlayers = 2;
+
     @Test
     public void animalFoodCapacityTest() {
         List<Card> deck = DeckShufler.deckShuffleForFoodTest();
-        Room room = new Room();
+        Room room = new Room(numberPlayers);
 
         Assert.assertNotNull(room.getDeck());
         Assert.assertEquals(84, room.getDeck().size());

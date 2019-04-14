@@ -1,4 +1,7 @@
 package com.example.pc.evolutiongame.core.control;
 
-enum Phase {
+public enum Phase {
+    EVOLUTION,
+    POWER,
+    EXTINCTION
 }

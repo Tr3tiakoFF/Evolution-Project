@@ -11,13 +11,20 @@ public class Room {
     private List<Card> deck;
     private int capacityFood;
     private int playerControlCount;
+    private int numberPlayers;
 
     public Room() {
+        this.numberPlayers = 2;
         this.field = new Field();
         this.players = new ArrayList<>();
         this.deck = new ArrayList<>();
         this.capacityFood = 0;
         this.playerControlCount = 0;
+    }
+
+    public Room(int numberPlayers) {
+        this();
+        this.numberPlayers = numberPlayers;
     }
 
     public List<Player> getPlayers() {
@@ -41,7 +48,7 @@ public class Room {
     }
 
     public boolean canStartGame() {
-        return this.players.size() >= 2;
+        return this.players.size() >= numberPlayers;
     }
 
     public int numberPlayers() {
@@ -141,7 +148,7 @@ public class Room {
             case 6:
                 return "Winner is player  number 6 CONGRATULATIONS!!!!";
         }
-        return "";
+        return "There are no winners";
     }
 
     private int getWiner(int[] countArr) {

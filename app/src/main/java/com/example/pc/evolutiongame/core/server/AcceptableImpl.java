@@ -5,6 +5,7 @@ import com.example.pc.evolutiongame.core.Context;
 import com.example.pc.evolutiongame.core.Sendable;
 import com.example.pc.evolutiongame.core.control.Action;
 import com.example.pc.evolutiongame.core.control.Game;
+import com.example.pc.evolutiongame.core.control.Phase;
 import com.example.pc.evolutiongame.logic.CardGiver;
 import com.example.pc.evolutiongame.logic.DeckShufler;
 import com.example.pc.evolutiongame.model.Card;
@@ -34,7 +35,7 @@ public class AcceptableImpl implements Acceptable {
         Player player = new Player(getNewId());
         room.addPlayer(player);
 
-        ((TcpServer)sender).sendMessage(clientSocket, gson.toJson(new Game(Action.SET_ID, player)));
+        ((TcpServer) sender).sendMessage(clientSocket, gson.toJson(new Game(Action.SET_ID, player)));
 
         if (!room.canStartGame()) {
             System.out.printf("There are number of players->%d. Waiting more players%n", room.numberPlayers());
@@ -49,6 +50,6 @@ public class AcceptableImpl implements Acceptable {
             room.addCardsToPlayer(i, cardsForPlayers.get(i));
         }
 
-        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room)));
+        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, Phase.EVOLUTION, room)));
     }
 }

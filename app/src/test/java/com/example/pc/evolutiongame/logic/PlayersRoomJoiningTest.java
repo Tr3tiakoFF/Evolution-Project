@@ -7,9 +7,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PlayersRoomJoiningTest {
+    private int numberPlayers=2;
+
     @Test
     public void roomJoinedPlayers() {
-        Room room = new Room();
+        Room room = new Room(numberPlayers);
 
         for (int i = 0; i < 4; i++) {
             room.addPlayer(new Player());
@@ -22,7 +24,7 @@ public class PlayersRoomJoiningTest {
 
     @Test
     public void roomCanJoinedPlayersTest() {
-        Room room = new Room();
+        Room room = new Room(numberPlayers);
 
         room.addPlayer(new Player());
         room.addPlayer(new Player());

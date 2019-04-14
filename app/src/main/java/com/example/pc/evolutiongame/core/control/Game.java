@@ -5,6 +5,7 @@ import com.example.pc.evolutiongame.model.Room;
 
 public class Game {
     private Action action;
+    private Phase phase;
     private Player player;
     private Room room;
 
@@ -13,8 +14,9 @@ public class Game {
         this.player = player;
     }
 
-    public Game(Action action, Room room) {
+    public Game(Action action, Phase phase, Room room) {
         this.action = action;
+        this.phase = phase;
         this.room = room;
     }
 
@@ -28,5 +30,9 @@ public class Game {
 
     public Room getRoom() {
         return room;
+    }
+
+    public Phase getPhase() {
+        return phase;
     }
 }
