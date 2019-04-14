@@ -123,7 +123,7 @@ public class GameTest {
 //            if (currentPlayer.getCardsCount() == 0) {
 //                currentPlayer.setPass(true);
 //            }
-            room.setNextPlayer();
+//            room.setNextPlayer();
         }
         while (!room.allPlayersPass());
 

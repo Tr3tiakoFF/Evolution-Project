@@ -55,13 +55,10 @@ public class Room {
     public boolean allPlayersPass() {
         int localeNum = 0;
         for (int i = 0; i < this.players.size(); i++) {
-            if (this.getPlayers().get(i).isPass() == false)
+            if (!this.getPlayers().get(i).isPass())
                 localeNum++;
         }
-        if (localeNum == 0)
-            return true;
-        else
-            return false;
+        return localeNum == 0;
     }
 
     public void setAllNotPass() {

@@ -16,7 +16,7 @@ public class Configuration {
         Gson gson = new GsonBuilder().create();
         Context context = new Context();
 
-        return new TcpServer(context, new ServerReceiver(), new AcceptableImpl(gson), new ServerConnectingService());
+        return new TcpServer(context, new ServerReceiver(gson), new AcceptableImpl(gson), new ServerConnectingService());
     }
 
     public static TcpClient getClientConfiguration() {

@@ -48,6 +48,10 @@ public class TcpClient implements Sendable {
                             while (!Thread.interrupted()) {
                                 try {
                                     String msg = in.readLine();
+                                    if (msg == null) {
+                                        System.out.printf("Server is disconnected->%s%n", clientSocket.getRemoteSocketAddress());
+                                        break;
+                                    }
                                     System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
                                     processable.process(context, msg);
                                 } catch (IOException e) {

@@ -13,7 +13,7 @@ import static com.example.pc.evolutiongame.core.control.Action.SET_ID;
 
 public class ClientReceiver implements Processable {
 
-    private Gson gson;
+    private final Gson gson;
 
     public ClientReceiver(Gson gson) {
         this.gson = gson;
@@ -21,8 +21,10 @@ public class ClientReceiver implements Processable {
 
     @Override
     public void process(Context context, String msg) {
-        System.out.printf("Received msg->%n%s%n", msg);
-
+        System.out.printf("Received msg->%s%n", msg);
+        if (msg == null) {
+            return;
+        }
         Game game = gson.fromJson(msg, Game.class);
 
         if (SET_ID == game.getAction()) {
