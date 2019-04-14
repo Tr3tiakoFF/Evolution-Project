@@ -1,11 +1,11 @@
 package com.example.pc.evolutiongame;
 
-import com.example.pc.evolutiongame.core.AcceptableImpl;
-import com.example.pc.evolutiongame.core.ClientReceiver;
-import com.example.pc.evolutiongame.core.ServerConnectingService;
-import com.example.pc.evolutiongame.core.ServerReceiver;
-import com.example.pc.evolutiongame.core.TcpClient;
-import com.example.pc.evolutiongame.core.TcpServer;
+import com.example.pc.evolutiongame.core.server.AcceptableImpl;
+import com.example.pc.evolutiongame.core.client.ClientReceiver;
+import com.example.pc.evolutiongame.core.server.ServerConnectingService;
+import com.example.pc.evolutiongame.core.server.ServerReceiver;
+import com.example.pc.evolutiongame.core.client.TcpClient;
+import com.example.pc.evolutiongame.core.server.TcpServer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

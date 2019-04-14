@@ -1,4 +1,6 @@
-package com.example.pc.evolutiongame.core;
+package com.example.pc.evolutiongame.core.client;
+
+import com.example.pc.evolutiongame.core.Processable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,8 +10,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
-import static com.example.pc.evolutiongame.core.TcpServer.SERVER_HOST;
-import static com.example.pc.evolutiongame.core.TcpServer.SERVER_PORT;
+import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_HOST;
+import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 import static java.lang.Thread.sleep;
 
 public class TcpClient {
@@ -70,7 +72,7 @@ public class TcpClient {
         clientSocket.shutdownOutput();
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         TcpClient client = getClientConfiguration();
         client.createConnection(SERVER_HOST, SERVER_PORT);
 

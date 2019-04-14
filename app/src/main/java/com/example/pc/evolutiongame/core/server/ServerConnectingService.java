@@ -1,5 +1,7 @@
-package com.example.pc.evolutiongame.core;
+package com.example.pc.evolutiongame.core.server;
 
+import com.example.pc.evolutiongame.core.Connectable;
+import com.example.pc.evolutiongame.core.Context;
 import com.example.pc.evolutiongame.model.Room;
 
 public class ServerConnectingService implements Connectable {

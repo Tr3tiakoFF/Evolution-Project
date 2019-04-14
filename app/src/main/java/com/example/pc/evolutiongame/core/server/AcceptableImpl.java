@@ -1,5 +1,7 @@
-package com.example.pc.evolutiongame.core;
+package com.example.pc.evolutiongame.core.server;
 
+import com.example.pc.evolutiongame.core.Acceptable;
+import com.example.pc.evolutiongame.core.Context;
 import com.example.pc.evolutiongame.logic.CardGiver;
 import com.example.pc.evolutiongame.logic.DeckShufler;
 import com.example.pc.evolutiongame.model.Card;

@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.pc.evolutiongame.core.TcpClient;
-import com.example.pc.evolutiongame.core.TcpServer;
+import com.example.pc.evolutiongame.core.client.TcpClient;
+import com.example.pc.evolutiongame.core.server.TcpServer;
 
 import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
 import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;

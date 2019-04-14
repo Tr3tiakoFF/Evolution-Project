@@ -1,4 +1,9 @@
-package com.example.pc.evolutiongame.core;
+package com.example.pc.evolutiongame.core.server;
+
+import com.example.pc.evolutiongame.core.Acceptable;
+import com.example.pc.evolutiongame.core.Connectable;
+import com.example.pc.evolutiongame.core.Context;
+import com.example.pc.evolutiongame.core.Processable;
 
 import java.io.BufferedReader;
 import java.io.IOException;

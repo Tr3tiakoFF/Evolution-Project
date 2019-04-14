@@ -1,6 +1,6 @@
-package com.example.pc.evolutiongame.core;
+package com.example.pc.evolutiongame.core.server;
 
-import com.google.gson.Gson;
+import com.example.pc.evolutiongame.core.Processable;
 
 public class ServerReceiver implements Processable {
 

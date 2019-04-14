@@ -1,5 +1,6 @@
-package com.example.pc.evolutiongame.core;
+package com.example.pc.evolutiongame.core.client;
 
+import com.example.pc.evolutiongame.core.Processable;
 import com.example.pc.evolutiongame.model.Room;
 import com.google.gson.Gson;
 
