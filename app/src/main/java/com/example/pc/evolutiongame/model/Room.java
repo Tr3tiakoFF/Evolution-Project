@@ -84,7 +84,7 @@ public class Room {
     public int getCurrentPlayerAnimalsCount(Player player) {
         int animalCount = 0;
         for (int i = 0; i < this.field.getAnimalsCount(); i++) {
-            if (field.getAnimals().get(i).playerConnect == player) {
+            if (field.getAnimals().get(i).player == player) {
                 animalCount++;
             }
         }

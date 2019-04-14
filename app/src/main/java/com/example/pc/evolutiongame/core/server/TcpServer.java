@@ -103,7 +103,7 @@ public class TcpServer implements Sendable {
         }
         try {
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            System.out.printf("Msg->%s will send to client->%s%n", msg, clientSocket.getRemoteSocketAddress());
+            System.out.printf("Message->%s will send to client->%s%n", msg, clientSocket.getRemoteSocketAddress());
             out.println(msg);
         } catch (IOException e) {
             e.printStackTrace();

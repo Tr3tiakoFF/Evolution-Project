@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+    private String id;
     private boolean isPass;
     private List<Card> cards;
-    private String id;
 
     public Player() {
         this.cards = new ArrayList<>();

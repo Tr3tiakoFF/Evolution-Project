@@ -52,9 +52,9 @@ public class TcpClient implements Sendable {
                                         System.out.printf("Server is disconnected->%s%n", clientSocket.getRemoteSocketAddress());
                                         break;
                                     }
-                                    System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
+                                    System.out.printf("Received message from->%s%n", clientSocket.getRemoteSocketAddress());
                                     processable.process(context, msg);
-                                } catch (IOException e) {
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
@@ -73,8 +73,8 @@ public class TcpClient implements Sendable {
             @Override
             public void run() {
                 if (clientSocket != null && !clientSocket.isClosed()) {
+                    System.out.printf("Message will send to server->%s%n", msg);
                     out.println(msg);
-                    System.out.println("MsgSent " + msg);
                 }
             }
         }).start();

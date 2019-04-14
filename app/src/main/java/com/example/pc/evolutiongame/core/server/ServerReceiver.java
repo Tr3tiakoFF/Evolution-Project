@@ -23,7 +23,6 @@ public class ServerReceiver implements Processable {
         if (msg == null) {
             return;
         }
-
         Game game = gson.fromJson(msg, Game.class);
 
         if (REFRESH_STATE == game.getAction()) {
@@ -35,6 +34,7 @@ public class ServerReceiver implements Processable {
 
             room.setNextPlayer();
 
+            context.setRoom(room);
             context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room)));
         }
 

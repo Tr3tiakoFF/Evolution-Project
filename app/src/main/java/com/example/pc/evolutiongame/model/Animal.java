@@ -8,13 +8,11 @@ public class Animal {
 
     boolean mustDie = false;
 
-    Animal() {
-    }
-    Animal(Player player){
-        this.playerConnect = player;
+    Animal(Player player) {
+        this.player = player;
     }
 
-    Player playerConnect;
+    Player player;
 
     List<Property> properties = new ArrayList<Property>();
 
@@ -43,7 +41,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return (playerConnect.toString());
+        return (player.toString());
     }
 
     public boolean got(LowLevelAnimalProperty animalProperty) {
@@ -73,8 +71,8 @@ public class Animal {
         return this.properties.size();
     }
 
-    public Player getPlayerConnect() {
-        return playerConnect;
+    public Player getPlayer() {
+        return player;
     }
 
     public List<Property> getProperty() {

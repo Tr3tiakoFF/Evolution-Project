@@ -193,7 +193,7 @@ public class MainBoardActivity extends Activity {
         int[] playerAnimlCount = new int[room.numberPlayers()];
         for (int i = 0; i < room.getAnimalsList().size(); i++) {
             for (int j = 0; j < room.numberPlayers(); j++) {
-                if (animalList.get(i).getPlayerConnect() == room.getPlayers().get(j)) {
+                if (animalList.get(i).getPlayer() == room.getPlayers().get(j)) {
                     playerAnimlCount[j]++;
                 }
             }
@@ -411,13 +411,13 @@ public class MainBoardActivity extends Activity {
 
         for (int i = 0; i < room.getAnimalsList().size(); i++) {
             if (isServer) {
-                if (room.getAnimalsList().get(i).getPlayerConnect() == room.getPlayers().get(0)) {
+                if (room.getAnimalsList().get(i).getPlayer() == room.getPlayers().get(0)) {
                     playerAnimals.add(room.getAnimalsList().get(i));
                 } else {
                     enemyAnimals.add(room.getAnimalsList().get(i));
                 }
             } else {
-                if (room.getAnimalsList().get(i).getPlayerConnect() == room.getPlayers().get(0)) {
+                if (room.getAnimalsList().get(i).getPlayer() == room.getPlayers().get(0)) {
                     enemyAnimals.add(room.getAnimalsList().get(i));
                 } else {
                     playerAnimals.add(room.getAnimalsList().get(i));

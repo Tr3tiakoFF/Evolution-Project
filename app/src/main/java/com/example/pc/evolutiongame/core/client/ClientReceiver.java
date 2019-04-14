@@ -21,7 +21,7 @@ public class ClientReceiver implements Processable {
 
     @Override
     public void process(Context context, String msg) {
-        System.out.printf("Received msg->%s%n", msg);
+        System.out.printf("Received message->%s%n", msg);
         if (msg == null) {
             return;
         }
@@ -38,12 +38,18 @@ public class ClientReceiver implements Processable {
             Player currentPlayer = room.getCurrentPlayer();
 
             if (context.getId().equals(currentPlayer.getId()) && currentPlayer.canPlay()) {
-                System.out.println("Player should move");
+                System.out.println("Player should turn");
 
                 int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
                 currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
 
+                if (!currentPlayer.canPlay()) {
+                    currentPlayer.setPass(true);
+                }
+
                 context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room)));
+            } else {
+                System.out.println("Player skip message and waiting turn");
             }
         }
     }
