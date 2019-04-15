@@ -48,7 +48,7 @@ public class ClientReceiver implements Processable {
 
             if (EVOLUTION == game.getPhase()) {
                 System.out.println("Process evolution phase");
-                if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass()) {
+                if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass() && currentPlayer.canPlay()) {
                     System.out.println("Player should turn");
 
                     int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
@@ -60,6 +60,12 @@ public class ClientReceiver implements Processable {
 
                     context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
                 } else {
+
+                    if (!currentPlayer.canPlay()) {
+                        currentPlayer.setPass(true);
+                        context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
+                    }
+
                     System.out.println("Player skip message and waiting turn");
                 }
             }

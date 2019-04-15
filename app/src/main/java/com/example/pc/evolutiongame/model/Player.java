@@ -86,4 +86,8 @@ public class Player {
                 "id='" + id + '\'' +
                 '}';
     }
+
+    public int getAnimalsCount(Field field) {
+        return field.getAnimalsCount(this);
+    }
 }

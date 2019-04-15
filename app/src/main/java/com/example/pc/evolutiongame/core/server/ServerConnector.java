@@ -6,7 +6,7 @@ import com.example.pc.evolutiongame.model.Room;
 
 public class ServerConnector implements Connectable {
 
-    private static final int NUMBER_PLAYER = 2;
+    private static final int NUMBER_PLAYER = 5;
 
     @Override
     public void started(Context context) {

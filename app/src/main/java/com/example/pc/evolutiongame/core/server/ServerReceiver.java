@@ -75,8 +75,9 @@ public class ServerReceiver implements Processable {
                     }
 
                     System.out.println("Start evolution phase");
+
                     room.setAllNotPass();
-                    List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
+                    List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayersForUnits(room.numberPlayers(), room.getDeck(), room);
                     for (int i = 0; i < room.numberPlayers(); i++) {
                         room.addCardsToPlayer(i, cardsForPlayers.get(i));
                     }

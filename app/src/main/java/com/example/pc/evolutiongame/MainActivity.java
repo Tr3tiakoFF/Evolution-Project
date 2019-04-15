@@ -8,6 +8,7 @@ import android.text.format.Formatter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.pc.evolutiongame.core.client.TcpClient;
 import com.example.pc.evolutiongame.core.server.TcpServer;
@@ -42,6 +43,8 @@ public class MainActivity extends Activity {
         stopClient = (Button) findViewById(R.id.button_4);
         stopServer = (Button) findViewById(R.id.button_5);
 
+        client.createConnection("0.0.0.0", 6666);
+
         final EditText editText = (EditText) findViewById(R.id.editText);
 
         startServer.setOnClickListener(new View.OnClickListener() {
@@ -62,15 +65,16 @@ public class MainActivity extends Activity {
         startClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    String ipAddr = editText.getText().toString();
-                    client.createConnection(ipAddr, 6666);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-//                WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-//                String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-//                Toast.makeText(getApplicationContext(),ip,Toast.LENGTH_LONG).show();
+//                try {
+//                    String ipAddr = editText.getText().toString();
+//                    client.createConnection(ipAddr, 6666);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                100.120.184.236
+                WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+                String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+                Toast.makeText(getApplicationContext(), ip, Toast.LENGTH_LONG).show();
             }
         });
 
