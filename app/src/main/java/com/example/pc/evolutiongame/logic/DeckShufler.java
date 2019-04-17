@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.example.pc.evolutiongame.model.LowLevelAnimalProperty.BURROWING;
-import static com.example.pc.evolutiongame.model.LowLevelAnimalProperty.CAMOUFLAGE;
 import static com.example.pc.evolutiongame.model.LowLevelAnimalProperty.CARNIVOROUS;
+import static com.example.pc.evolutiongame.model.LowLevelAnimalProperty.COMMOUFLAGE;
 import static com.example.pc.evolutiongame.model.LowLevelAnimalProperty.COMMUNICATION;
 import static com.example.pc.evolutiongame.model.LowLevelAnimalProperty.COOPERATION;
 import static com.example.pc.evolutiongame.model.LowLevelAnimalProperty.FAT_TISSUE;
@@ -59,7 +59,7 @@ public class DeckShufler {
     private static List<Card> fill (){
         List<Card> deck = new ArrayList<Card>();
         try {
-            deck = put(deck, 4, Arrays.asList(new Property(CAMOUFLAGE), new Property(FAT_TISSUE)));
+            deck = put(deck, 4, Arrays.asList(new Property(COMMOUFLAGE), new Property(FAT_TISSUE)));
             deck = put(deck, 4, Arrays.asList(new Property(BURROWING), new Property(FAT_TISSUE)));
             deck = put(deck, 4, Arrays.asList(new Property(SHARP_VISION), new Property(FAT_TISSUE)));
             deck = put(deck, 4, Arrays.asList(new Property(SYMBIOSYS)));

@@ -81,7 +81,7 @@ public class Field {
                 return false;
             }
         }
-        if (pray.got(LowLevelAnimalProperty.CAMOUFLAGE)) {
+        if (pray.got(LowLevelAnimalProperty.COMMOUFLAGE)) {
             if (killer.got(LowLevelAnimalProperty.SHARP_VISION)) {
             } else {
                 return false;
@@ -129,7 +129,7 @@ public class Field {
                 return false;
             }
         }
-        if (animal1.got(LowLevelAnimalProperty.CAMOUFLAGE)) {
+        if (animal1.got(LowLevelAnimalProperty.COMMOUFLAGE)) {
             if (animal.got(LowLevelAnimalProperty.SHARP_VISION)) {
             } else {
                 return false;
@@ -191,5 +191,15 @@ public class Field {
             }
         }
         return animalFoodCapacityCount;
+    }
+
+    public List<Animal> getAnimals(Player player) {
+        List<Animal> animals = new ArrayList<>();
+        for (int i = 0; i < getAnimalsCount(); i++) {
+            if (this.getAnimals().get(i).player == player) {
+                animals.add(this.getAnimals().get(i));
+            }
+        }
+        return animals;
     }
 }

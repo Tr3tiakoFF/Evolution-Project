@@ -14,7 +14,6 @@ public class Player {
 
     public Player(String id) {
         this();
-
         this.id = id;
     }
 
@@ -89,5 +88,9 @@ public class Player {
 
     public int getAnimalsCount(Field field) {
         return field.getAnimalsCount(this);
+    }
+
+    public List<Card> getCards() {
+        return cards;
     }
 }

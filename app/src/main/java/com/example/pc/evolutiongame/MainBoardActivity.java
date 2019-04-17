@@ -8,7 +8,10 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 
 import com.example.pc.evolutiongame.core.UiRenderer;
+import com.example.pc.evolutiongame.logic.CardGiver;
+import com.example.pc.evolutiongame.logic.DeckShufler;
 import com.example.pc.evolutiongame.model.Animal;
+import com.example.pc.evolutiongame.model.Card;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Property;
 import com.example.pc.evolutiongame.model.Room;
@@ -16,9 +19,11 @@ import com.example.pc.evolutiongame.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.pc.evolutiongame.Utils.getNewId;
+
 public class MainBoardActivity extends Activity implements UiRenderer {
 
-    Boolean isServer = true;
+    Player player;
 
     Button playerAnimal1, playerAnimal2, playerAnimal3, playerAnimal4, playerAnimal5, playerAnimal6;
     Button enemyAnimal1, enemyAnimal2, enemyAnimal3, enemyAnimal4, enemyAnimal5, enemyAnimal6;
@@ -47,113 +52,113 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 
         playerTable1 = (TableLayout) findViewById(R.id.playerPropertyTable1);
         {
-            playerImageView_1_1 = (ImageView) findViewById(R.id.imageView1_1_1);
-            playerImageView_1_2 = (ImageView) findViewById(R.id.imageView1_1_2);
-            playerImageView_1_3 = (ImageView) findViewById(R.id.imageView1_2_1);
-            playerImageView_1_4 = (ImageView) findViewById(R.id.imageView1_2_2);
-            playerImageView_1_5 = (ImageView) findViewById(R.id.imageView1_3_1);
-            playerImageView_1_6 = (ImageView) findViewById(R.id.imageView1_3_2);
+            playerImageView_1_1 = (ImageView) findViewById(R.id.imageView7_1_1);
+            playerImageView_1_2 = (ImageView) findViewById(R.id.imageView7_1_2);
+            playerImageView_1_3 = (ImageView) findViewById(R.id.imageView7_2_1);
+            playerImageView_1_4 = (ImageView) findViewById(R.id.imageView7_2_2);
+            playerImageView_1_5 = (ImageView) findViewById(R.id.imageView7_3_1);
+            playerImageView_1_6 = (ImageView) findViewById(R.id.imageView7_3_2);
         }
         playerTable2 = (TableLayout) findViewById(R.id.playerPropertyTable2);
         {
-            playerImageView_2_1 = (ImageView) findViewById(R.id.imageView2_1_1);
-            playerImageView_2_2 = (ImageView) findViewById(R.id.imageView2_1_2);
-            playerImageView_2_3 = (ImageView) findViewById(R.id.imageView2_2_1);
-            playerImageView_2_4 = (ImageView) findViewById(R.id.imageView2_2_2);
-            playerImageView_2_5 = (ImageView) findViewById(R.id.imageView2_3_1);
-            playerImageView_2_6 = (ImageView) findViewById(R.id.imageView2_3_2);
+            playerImageView_2_1 = (ImageView) findViewById(R.id.imageView8_1_1);
+            playerImageView_2_2 = (ImageView) findViewById(R.id.imageView8_1_2);
+            playerImageView_2_3 = (ImageView) findViewById(R.id.imageView8_2_1);
+            playerImageView_2_4 = (ImageView) findViewById(R.id.imageView8_2_2);
+            playerImageView_2_5 = (ImageView) findViewById(R.id.imageView8_3_1);
+            playerImageView_2_6 = (ImageView) findViewById(R.id.imageView8_3_2);
         }
         playerTable3 = (TableLayout) findViewById(R.id.playerPropertyTable3);
         {
-            playerImageView_3_1 = (ImageView) findViewById(R.id.imageView3_1_1);
-            playerImageView_3_2 = (ImageView) findViewById(R.id.imageView3_1_2);
-            playerImageView_3_3 = (ImageView) findViewById(R.id.imageView3_2_1);
-            playerImageView_3_4 = (ImageView) findViewById(R.id.imageView3_2_2);
-            playerImageView_3_5 = (ImageView) findViewById(R.id.imageView3_3_1);
-            playerImageView_3_6 = (ImageView) findViewById(R.id.imageView3_3_2);
+            playerImageView_3_1 = (ImageView) findViewById(R.id.imageView9_1_1);
+            playerImageView_3_2 = (ImageView) findViewById(R.id.imageView9_1_2);
+            playerImageView_3_3 = (ImageView) findViewById(R.id.imageView9_2_1);
+            playerImageView_3_4 = (ImageView) findViewById(R.id.imageView9_2_2);
+            playerImageView_3_5 = (ImageView) findViewById(R.id.imageView9_3_1);
+            playerImageView_3_6 = (ImageView) findViewById(R.id.imageView9_3_2);
         }
         playerTable4 = (TableLayout) findViewById(R.id.playerPropertyTable4);
         {
-            playerImageView_4_1 = (ImageView) findViewById(R.id.imageView4_1_1);
-            playerImageView_4_2 = (ImageView) findViewById(R.id.imageView4_1_2);
-            playerImageView_4_3 = (ImageView) findViewById(R.id.imageView4_2_1);
-            playerImageView_4_4 = (ImageView) findViewById(R.id.imageView4_2_2);
-            playerImageView_4_5 = (ImageView) findViewById(R.id.imageView4_3_1);
-            playerImageView_4_6 = (ImageView) findViewById(R.id.imageView4_3_2);
+            playerImageView_4_1 = (ImageView) findViewById(R.id.imageView10_1_1);
+            playerImageView_4_2 = (ImageView) findViewById(R.id.imageView10_1_2);
+            playerImageView_4_3 = (ImageView) findViewById(R.id.imageView10_2_1);
+            playerImageView_4_4 = (ImageView) findViewById(R.id.imageView10_2_2);
+            playerImageView_4_5 = (ImageView) findViewById(R.id.imageView10_3_1);
+            playerImageView_4_6 = (ImageView) findViewById(R.id.imageView10_3_2);
         }
         playerTable5 = (TableLayout) findViewById(R.id.playerPropertyTable5);
         {
-            playerImageView_5_1 = (ImageView) findViewById(R.id.imageView5_1_1);
-            playerImageView_5_2 = (ImageView) findViewById(R.id.imageView5_1_2);
-            playerImageView_5_3 = (ImageView) findViewById(R.id.imageView5_2_1);
-            playerImageView_5_4 = (ImageView) findViewById(R.id.imageView5_2_2);
-            playerImageView_5_5 = (ImageView) findViewById(R.id.imageView5_3_1);
-            playerImageView_5_6 = (ImageView) findViewById(R.id.imageView5_3_2);
+            playerImageView_5_1 = (ImageView) findViewById(R.id.imageView11_1_1);
+            playerImageView_5_2 = (ImageView) findViewById(R.id.imageView11_1_2);
+            playerImageView_5_3 = (ImageView) findViewById(R.id.imageView11_2_1);
+            playerImageView_5_4 = (ImageView) findViewById(R.id.imageView11_2_2);
+            playerImageView_5_5 = (ImageView) findViewById(R.id.imageView11_3_1);
+            playerImageView_5_6 = (ImageView) findViewById(R.id.imageView11_3_2);
         }
         playerTable6 = (TableLayout) findViewById(R.id.playerPropertyTable6);
         {
-            playerImageView_6_1 = (ImageView) findViewById(R.id.imageView6_1_1);
-            playerImageView_6_2 = (ImageView) findViewById(R.id.imageView6_1_2);
-            playerImageView_6_3 = (ImageView) findViewById(R.id.imageView6_2_1);
-            playerImageView_6_4 = (ImageView) findViewById(R.id.imageView6_2_2);
-            playerImageView_6_5 = (ImageView) findViewById(R.id.imageView6_3_1);
-            playerImageView_6_6 = (ImageView) findViewById(R.id.imageView6_3_2);
+            playerImageView_6_1 = (ImageView) findViewById(R.id.imageView12_1_1);
+            playerImageView_6_2 = (ImageView) findViewById(R.id.imageView12_1_2);
+            playerImageView_6_3 = (ImageView) findViewById(R.id.imageView12_2_1);
+            playerImageView_6_4 = (ImageView) findViewById(R.id.imageView12_2_2);
+            playerImageView_6_5 = (ImageView) findViewById(R.id.imageView12_3_1);
+            playerImageView_6_6 = (ImageView) findViewById(R.id.imageView12_3_2);
         }
 
 
         enemyTable1 = (TableLayout) findViewById(R.id.enemyPropertyTable1);
         {
-            enemyImageView_1_1 = (ImageView) findViewById(R.id.imageView7_1_1);
-            enemyImageView_1_2 = (ImageView) findViewById(R.id.imageView7_1_2);
-            enemyImageView_1_3 = (ImageView) findViewById(R.id.imageView7_2_1);
-            enemyImageView_1_4 = (ImageView) findViewById(R.id.imageView7_2_2);
-            enemyImageView_1_5 = (ImageView) findViewById(R.id.imageView7_3_1);
-            enemyImageView_1_6 = (ImageView) findViewById(R.id.imageView7_3_2);
+            enemyImageView_1_1 = (ImageView) findViewById(R.id.imageView1_1_1);
+            enemyImageView_1_2 = (ImageView) findViewById(R.id.imageView1_1_2);
+            enemyImageView_1_3 = (ImageView) findViewById(R.id.imageView1_2_1);
+            enemyImageView_1_4 = (ImageView) findViewById(R.id.imageView1_2_2);
+            enemyImageView_1_5 = (ImageView) findViewById(R.id.imageView1_3_1);
+            enemyImageView_1_6 = (ImageView) findViewById(R.id.imageView1_3_2);
         }
         enemyTable2 = (TableLayout) findViewById(R.id.enemyPropertyTable2);
         {
-            enemyImageView_2_1 = (ImageView) findViewById(R.id.imageView8_1_1);
-            enemyImageView_2_2 = (ImageView) findViewById(R.id.imageView8_1_2);
-            enemyImageView_2_3 = (ImageView) findViewById(R.id.imageView8_2_1);
-            enemyImageView_2_4 = (ImageView) findViewById(R.id.imageView8_2_2);
-            enemyImageView_2_5 = (ImageView) findViewById(R.id.imageView8_3_1);
-            enemyImageView_2_6 = (ImageView) findViewById(R.id.imageView8_3_2);
+            enemyImageView_2_1 = (ImageView) findViewById(R.id.imageView2_1_1);
+            enemyImageView_2_2 = (ImageView) findViewById(R.id.imageView2_1_2);
+            enemyImageView_2_3 = (ImageView) findViewById(R.id.imageView2_2_1);
+            enemyImageView_2_4 = (ImageView) findViewById(R.id.imageView2_2_2);
+            enemyImageView_2_5 = (ImageView) findViewById(R.id.imageView2_3_1);
+            enemyImageView_2_6 = (ImageView) findViewById(R.id.imageView2_3_2);
         }
         enemyTable3 = (TableLayout) findViewById(R.id.enemyPropertyTable3);
         {
-            enemyImageView_3_1 = (ImageView) findViewById(R.id.imageView9_1_1);
-            enemyImageView_3_2 = (ImageView) findViewById(R.id.imageView9_1_2);
-            enemyImageView_3_3 = (ImageView) findViewById(R.id.imageView9_2_1);
-            enemyImageView_3_4 = (ImageView) findViewById(R.id.imageView9_2_2);
-            enemyImageView_3_5 = (ImageView) findViewById(R.id.imageView9_3_1);
-            enemyImageView_3_6 = (ImageView) findViewById(R.id.imageView9_3_2);
+            enemyImageView_3_1 = (ImageView) findViewById(R.id.imageView3_1_1);
+            enemyImageView_3_2 = (ImageView) findViewById(R.id.imageView3_1_2);
+            enemyImageView_3_3 = (ImageView) findViewById(R.id.imageView3_2_1);
+            enemyImageView_3_4 = (ImageView) findViewById(R.id.imageView3_2_2);
+            enemyImageView_3_5 = (ImageView) findViewById(R.id.imageView3_3_1);
+            enemyImageView_3_6 = (ImageView) findViewById(R.id.imageView3_3_2);
         }
         enemyTable4 = (TableLayout) findViewById(R.id.enemyPropertyTable4);
         {
-            enemyImageView_4_1 = (ImageView) findViewById(R.id.imageView10_1_1);
-            enemyImageView_4_2 = (ImageView) findViewById(R.id.imageView10_1_2);
-            enemyImageView_4_3 = (ImageView) findViewById(R.id.imageView10_2_1);
-            enemyImageView_4_4 = (ImageView) findViewById(R.id.imageView10_2_2);
-            enemyImageView_4_5 = (ImageView) findViewById(R.id.imageView10_3_1);
-            enemyImageView_4_6 = (ImageView) findViewById(R.id.imageView10_3_2);
+            enemyImageView_4_1 = (ImageView) findViewById(R.id.imageView4_1_1);
+            enemyImageView_4_2 = (ImageView) findViewById(R.id.imageView4_1_2);
+            enemyImageView_4_3 = (ImageView) findViewById(R.id.imageView4_2_1);
+            enemyImageView_4_4 = (ImageView) findViewById(R.id.imageView4_2_2);
+            enemyImageView_4_5 = (ImageView) findViewById(R.id.imageView4_3_1);
+            enemyImageView_4_6 = (ImageView) findViewById(R.id.imageView4_3_2);
         }
         enemyTable5 = (TableLayout) findViewById(R.id.enemyPropertyTable5);
         {
-            enemyImageView_5_1 = (ImageView) findViewById(R.id.imageView11_1_1);
-            enemyImageView_5_2 = (ImageView) findViewById(R.id.imageView11_1_2);
-            enemyImageView_5_3 = (ImageView) findViewById(R.id.imageView11_2_1);
-            enemyImageView_5_4 = (ImageView) findViewById(R.id.imageView11_2_2);
-            enemyImageView_5_5 = (ImageView) findViewById(R.id.imageView11_3_1);
-            enemyImageView_5_6 = (ImageView) findViewById(R.id.imageView11_3_2);
+            enemyImageView_5_1 = (ImageView) findViewById(R.id.imageView5_1_1);
+            enemyImageView_5_2 = (ImageView) findViewById(R.id.imageView5_1_2);
+            enemyImageView_5_3 = (ImageView) findViewById(R.id.imageView5_2_1);
+            enemyImageView_5_4 = (ImageView) findViewById(R.id.imageView5_2_2);
+            enemyImageView_5_5 = (ImageView) findViewById(R.id.imageView5_3_1);
+            enemyImageView_5_6 = (ImageView) findViewById(R.id.imageView5_3_2);
         }
         enemyTable6 = (TableLayout) findViewById(R.id.enemyPropertyTable6);
         {
-            enemyImageView_6_1 = (ImageView) findViewById(R.id.imageView12_1_1);
-            enemyImageView_6_2 = (ImageView) findViewById(R.id.imageView12_1_2);
-            enemyImageView_6_3 = (ImageView) findViewById(R.id.imageView12_2_1);
-            enemyImageView_6_4 = (ImageView) findViewById(R.id.imageView12_2_2);
-            enemyImageView_6_5 = (ImageView) findViewById(R.id.imageView12_3_1);
-            enemyImageView_6_6 = (ImageView) findViewById(R.id.imageView12_3_2);
+            enemyImageView_6_1 = (ImageView) findViewById(R.id.imageView6_1_1);
+            enemyImageView_6_2 = (ImageView) findViewById(R.id.imageView6_1_2);
+            enemyImageView_6_3 = (ImageView) findViewById(R.id.imageView6_2_1);
+            enemyImageView_6_4 = (ImageView) findViewById(R.id.imageView6_2_2);
+            enemyImageView_6_5 = (ImageView) findViewById(R.id.imageView6_3_1);
+            enemyImageView_6_6 = (ImageView) findViewById(R.id.imageView6_3_2);
         }
 
 
@@ -170,23 +175,92 @@ public class MainBoardActivity extends Activity implements UiRenderer {
         enemyAnimal4 = (Button) findViewById(R.id.enemyMinion4);
         enemyAnimal5 = (Button) findViewById(R.id.enemyMinion5);
         enemyAnimal6 = (Button) findViewById(R.id.enemyMinion6);
+
+        Room room = new Room();
+
+        room.addPlayer(new Player(getNewId()));
+        room.addPlayer(new Player(getNewId()));
+        room.addDeck(DeckShufler.deckShuffle());
+
+        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
+
+        for (int i = 0; i < room.numberPlayers(); i++) {
+            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
+        }
+
+        room.setAllNotPass();
+
+        do {
+            Player currentPlayer = room.getCurrentPlayer();
+
+            int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
+
+            currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
+
+            if (currentPlayer.getCardsCount() == 0) {
+                currentPlayer.setPass(true);
+            }
+            room.setNextPlayer();
+        }
+        while (!room.allPlayersPass());
+
+        cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
+
+        for (int i = 0; i < room.numberPlayers(); i++) {
+            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
+        }
+
+        room.setAllNotPass();
+
+
+        do {
+            Player currentPlayer = room.getCurrentPlayer();
+
+            int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
+            int localRandomAnimalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
+
+            room.getCurrentPlayer().playProperty(room.getField(), localRandomCardNumber, localRandomAnimalNumber, 0);
+
+            if (room.getCurrentPlayer().getCardsCount() == 0) {
+                room.getCurrentPlayer().setPass(true);
+            }
+            room.setNextPlayer();
+        }
+        while (!room.allPlayersPass());
+
+        render(room);
+
+        playerAnimal1.setVisibility(View.INVISIBLE);
+        playerAnimal2.setVisibility(View.INVISIBLE);
+        playerAnimal3.setVisibility(View.INVISIBLE);
+        playerAnimal4.setVisibility(View.INVISIBLE);
+        playerAnimal5.setVisibility(View.INVISIBLE);
+        playerAnimal6.setVisibility(View.INVISIBLE);
+
+        enemyAnimal1.setVisibility(View.INVISIBLE);
+        enemyAnimal2.setVisibility(View.INVISIBLE);
+        enemyAnimal3.setVisibility(View.INVISIBLE);
+        enemyAnimal4.setVisibility(View.INVISIBLE);
+        enemyAnimal5.setVisibility(View.INVISIBLE);
+        enemyAnimal6.setVisibility(View.INVISIBLE);
     }
 
-    private void refreshAnimals(Room room) {
-
-        refreshAnimalsPropertes(room);
-
-        List<Animal> animalList = room.getAnimalsList();
-        int[] playerAnimlCount = new int[room.numberPlayers()];
-        for (int i = 0; i < room.getAnimalsList().size(); i++) {
-            for (int j = 0; j < room.numberPlayers(); j++) {
-                if (animalList.get(i).getPlayer() == room.getPlayers().get(j)) {
-                    playerAnimlCount[j]++;
-                }
-            }
+    private void renderAnimals(Room room) {
+        List<List<Animal>> playerAnimalList = new ArrayList<>();
+        for (int i = 0; i < room.numberPlayers(); i++) {
+            playerAnimalList.add(room.getField().getAnimals(room.getPlayers().get(i)));
         }
-        if (isServer) {
-            switch (playerAnimlCount[0]) {
+        if (room.getPlayers().get(0) == player) {
+            switch (playerAnimalList.get(0).size()) {
+                case 0: {
+                    playerAnimal1.setVisibility(View.INVISIBLE);
+                    playerAnimal2.setVisibility(View.INVISIBLE);
+                    playerAnimal3.setVisibility(View.INVISIBLE);
+                    playerAnimal4.setVisibility(View.INVISIBLE);
+                    playerAnimal5.setVisibility(View.INVISIBLE);
+                    playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
+                }
                 case 1: {
                     playerAnimal1.setVisibility(View.VISIBLE);
                     playerAnimal2.setVisibility(View.INVISIBLE);
@@ -194,6 +268,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.INVISIBLE);
                     playerAnimal5.setVisibility(View.INVISIBLE);
                     playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 2: {
                     playerAnimal1.setVisibility(View.VISIBLE);
@@ -202,6 +277,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.INVISIBLE);
                     playerAnimal5.setVisibility(View.INVISIBLE);
                     playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 3: {
                     playerAnimal1.setVisibility(View.VISIBLE);
@@ -210,6 +286,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.INVISIBLE);
                     playerAnimal5.setVisibility(View.INVISIBLE);
                     playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 4: {
                     playerAnimal1.setVisibility(View.VISIBLE);
@@ -218,6 +295,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.VISIBLE);
                     playerAnimal5.setVisibility(View.INVISIBLE);
                     playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 5: {
                     playerAnimal1.setVisibility(View.VISIBLE);
@@ -226,6 +304,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.VISIBLE);
                     playerAnimal5.setVisibility(View.VISIBLE);
                     playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 6: {
                     playerAnimal1.setVisibility(View.VISIBLE);
@@ -234,9 +313,19 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.VISIBLE);
                     playerAnimal5.setVisibility(View.VISIBLE);
                     playerAnimal6.setVisibility(View.VISIBLE);
+                    break;
                 }
             }
-            switch (playerAnimlCount[1]) {
+            switch (playerAnimalList.get(1).size()) {
+                case 0: {
+                    enemyAnimal1.setVisibility(View.INVISIBLE);
+                    enemyAnimal2.setVisibility(View.INVISIBLE);
+                    enemyAnimal3.setVisibility(View.INVISIBLE);
+                    enemyAnimal4.setVisibility(View.INVISIBLE);
+                    enemyAnimal5.setVisibility(View.INVISIBLE);
+                    enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
+                }
                 case 1: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
                     enemyAnimal2.setVisibility(View.INVISIBLE);
@@ -244,6 +333,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.INVISIBLE);
                     enemyAnimal5.setVisibility(View.INVISIBLE);
                     enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 2: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
@@ -252,6 +342,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.INVISIBLE);
                     enemyAnimal5.setVisibility(View.INVISIBLE);
                     enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 3: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
@@ -260,6 +351,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.INVISIBLE);
                     enemyAnimal5.setVisibility(View.INVISIBLE);
                     enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 4: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
@@ -268,6 +360,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.VISIBLE);
                     enemyAnimal5.setVisibility(View.INVISIBLE);
                     enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 5: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
@@ -276,6 +369,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.VISIBLE);
                     enemyAnimal5.setVisibility(View.VISIBLE);
                     enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 6: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
@@ -284,10 +378,20 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.VISIBLE);
                     enemyAnimal5.setVisibility(View.VISIBLE);
                     enemyAnimal6.setVisibility(View.VISIBLE);
+                    break;
                 }
             }
         } else {
-            switch (playerAnimlCount[1]) {
+            switch (playerAnimalList.get(1).size()) {
+                case 0: {
+                    playerAnimal1.setVisibility(View.INVISIBLE);
+                    playerAnimal2.setVisibility(View.INVISIBLE);
+                    playerAnimal3.setVisibility(View.INVISIBLE);
+                    playerAnimal4.setVisibility(View.INVISIBLE);
+                    playerAnimal5.setVisibility(View.INVISIBLE);
+                    playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
+                }
                 case 1: {
                     playerAnimal1.setVisibility(View.VISIBLE);
                     playerAnimal2.setVisibility(View.INVISIBLE);
@@ -295,6 +399,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.INVISIBLE);
                     playerAnimal5.setVisibility(View.INVISIBLE);
                     playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 2: {
                     playerAnimal1.setVisibility(View.VISIBLE);
@@ -303,6 +408,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.INVISIBLE);
                     playerAnimal5.setVisibility(View.INVISIBLE);
                     playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 3: {
                     playerAnimal1.setVisibility(View.VISIBLE);
@@ -311,6 +417,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.INVISIBLE);
                     playerAnimal5.setVisibility(View.INVISIBLE);
                     playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 4: {
                     playerAnimal1.setVisibility(View.VISIBLE);
@@ -319,6 +426,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.VISIBLE);
                     playerAnimal5.setVisibility(View.INVISIBLE);
                     playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 5: {
                     playerAnimal1.setVisibility(View.VISIBLE);
@@ -327,6 +435,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.VISIBLE);
                     playerAnimal5.setVisibility(View.VISIBLE);
                     playerAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 6: {
                     playerAnimal1.setVisibility(View.VISIBLE);
@@ -335,9 +444,19 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     playerAnimal4.setVisibility(View.VISIBLE);
                     playerAnimal5.setVisibility(View.VISIBLE);
                     playerAnimal6.setVisibility(View.VISIBLE);
+                    break;
                 }
             }
-            switch (playerAnimlCount[0]) {
+            switch (playerAnimalList.get(0).size()) {
+                case 0: {
+                    enemyAnimal1.setVisibility(View.INVISIBLE);
+                    enemyAnimal2.setVisibility(View.INVISIBLE);
+                    enemyAnimal3.setVisibility(View.INVISIBLE);
+                    enemyAnimal4.setVisibility(View.INVISIBLE);
+                    enemyAnimal5.setVisibility(View.INVISIBLE);
+                    enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
+                }
                 case 1: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
                     enemyAnimal2.setVisibility(View.INVISIBLE);
@@ -345,6 +464,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.INVISIBLE);
                     enemyAnimal5.setVisibility(View.INVISIBLE);
                     enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 2: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
@@ -353,6 +473,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.INVISIBLE);
                     enemyAnimal5.setVisibility(View.INVISIBLE);
                     enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 3: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
@@ -361,6 +482,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.INVISIBLE);
                     enemyAnimal5.setVisibility(View.INVISIBLE);
                     enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 4: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
@@ -369,6 +491,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.VISIBLE);
                     enemyAnimal5.setVisibility(View.INVISIBLE);
                     enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 5: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
@@ -377,6 +500,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.VISIBLE);
                     enemyAnimal5.setVisibility(View.VISIBLE);
                     enemyAnimal6.setVisibility(View.INVISIBLE);
+                    break;
                 }
                 case 6: {
                     enemyAnimal1.setVisibility(View.VISIBLE);
@@ -385,19 +509,20 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                     enemyAnimal4.setVisibility(View.VISIBLE);
                     enemyAnimal5.setVisibility(View.VISIBLE);
                     enemyAnimal6.setVisibility(View.VISIBLE);
+                    break;
                 }
             }
         }
     }
 
-    private void refreshAnimalsPropertes(Room room) {
+    private void renderAnimalPropertes(Room room) {
         List<Animal> animalList = room.getAnimalsList();
 
         List<Animal> playerAnimals = new ArrayList<>();
         List<Animal> enemyAnimals = new ArrayList<>();
 
         for (int i = 0; i < room.getAnimalsList().size(); i++) {
-            if (isServer) {
+            if (room.getPlayers().get(0) == player) {
                 if (room.getAnimalsList().get(i).getPlayer() == room.getPlayers().get(0)) {
                     playerAnimals.add(room.getAnimalsList().get(i));
                 } else {
@@ -412,34 +537,124 @@ public class MainBoardActivity extends Activity implements UiRenderer {
             }
         }
 
-        refreshPlayerAnimals(playerAnimals);
-        refreshEnemyAnimals(enemyAnimals);
+        renderPlayerAnimals(playerAnimals);
+        renderEnemyAnimals(enemyAnimals);
     }
 
-    private void refreshPlayerAnimals(List<Animal> playerAnimals) {
-        if (playerAnimals.size() == 1) {
-            for (int i = 0; i < playerAnimals.get(0).getProperty().size(); i++) {
-                refreshProp(playerAnimals.get(0).getProperty().get(i), enemyImageView_1_1);
-            }
-            if (playerAnimals.size() == 2) {
-                for (int i = 0; i < playerAnimals.get(1).getProperty().size(); i++) {
-                    refreshProp(playerAnimals.get(1).getProperty().get(i), enemyImageView_1_1);
-                }
-                if (playerAnimals.size() == 3) {
-                    for (int i = 0; i < playerAnimals.get(2).getProperty().size(); i++) {
-                        refreshProp(playerAnimals.get(2).getProperty().get(i), enemyImageView_1_1);
-                    }
-                    if (playerAnimals.size() == 4) {
-                        for (int i = 0; i < playerAnimals.get(3).getProperty().size(); i++) {
-                            refreshProp(playerAnimals.get(3).getProperty().get(i), enemyImageView_1_1);
-                        }
-                        if (playerAnimals.size() == 5) {
-                            for (int i = 0; i < playerAnimals.get(4).getProperty().size(); i++) {
-                                refreshProp(playerAnimals.get(4).getProperty().get(i), enemyImageView_1_1);
+    private void renderPlayerAnimals(List<Animal> playerAnimals) {
+        if (playerAnimals.size() >= 1) {
+            if (playerAnimals.get(0).getProperty().size() >= 1) {
+                renderProp(playerAnimals.get(0).getProperty().get(0), playerImageView_1_1);
+                if (playerAnimals.get(0).getProperty().size() >= 2) {
+                    renderProp(playerAnimals.get(0).getProperty().get(1), playerImageView_1_2);
+                    if (playerAnimals.get(0).getProperty().size() >= 3) {
+                        renderProp(playerAnimals.get(0).getProperty().get(2), playerImageView_1_3);
+                        if (playerAnimals.get(0).getProperty().size() >= 4) {
+                            renderProp(playerAnimals.get(0).getProperty().get(3), playerImageView_1_4);
+                            if (playerAnimals.get(0).getProperty().size() >= 5) {
+                                renderProp(playerAnimals.get(0).getProperty().get(4), playerImageView_1_5);
+                                if (playerAnimals.get(0).getProperty().size() >= 6) {
+                                    renderProp(playerAnimals.get(0).getProperty().get(5), playerImageView_1_6);
+                                }
                             }
-                            if (playerAnimals.size() == 6) {
-                                for (int i = 0; i < playerAnimals.get(5).getProperty().size(); i++) {
-                                    refreshProp(playerAnimals.get(5).getProperty().get(i), enemyImageView_1_1);
+                        }
+                    }
+                }
+            }
+            if (playerAnimals.size() >= 2) {
+                if (playerAnimals.get(1).getProperty().size() >= 1) {
+                    renderProp(playerAnimals.get(1).getProperty().get(0), playerImageView_2_1);
+                    if (playerAnimals.get(1).getProperty().size() >= 2) {
+                        renderProp(playerAnimals.get(1).getProperty().get(1), playerImageView_2_2);
+                        if (playerAnimals.get(1).getProperty().size() >= 3) {
+                            renderProp(playerAnimals.get(1).getProperty().get(2), playerImageView_2_3);
+                            if (playerAnimals.get(1).getProperty().size() >= 4) {
+                                renderProp(playerAnimals.get(1).getProperty().get(3), playerImageView_2_4);
+                                if (playerAnimals.get(1).getProperty().size() >= 5) {
+                                    renderProp(playerAnimals.get(1).getProperty().get(4), playerImageView_2_5);
+                                    if (playerAnimals.get(1).getProperty().size() >= 6) {
+                                        renderProp(playerAnimals.get(1).getProperty().get(5), playerImageView_2_6);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (playerAnimals.size() >= 3) {
+                    if (playerAnimals.get(2).getProperty().size() >= 1) {
+                        renderProp(playerAnimals.get(2).getProperty().get(0), playerImageView_3_1);
+                        if (playerAnimals.get(2).getProperty().size() >= 2) {
+                            renderProp(playerAnimals.get(2).getProperty().get(1), playerImageView_3_2);
+                            if (playerAnimals.get(2).getProperty().size() >= 3) {
+                                renderProp(playerAnimals.get(2).getProperty().get(2), playerImageView_3_3);
+                                if (playerAnimals.get(2).getProperty().size() >= 4) {
+                                    renderProp(playerAnimals.get(2).getProperty().get(3), playerImageView_3_4);
+                                    if (playerAnimals.get(2).getProperty().size() >= 5) {
+                                        renderProp(playerAnimals.get(2).getProperty().get(4), playerImageView_3_5);
+                                        if (playerAnimals.get(2).getProperty().size() >= 6) {
+                                            renderProp(playerAnimals.get(2).getProperty().get(5), playerImageView_3_6);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (playerAnimals.size() >= 4) {
+                        if (playerAnimals.get(3).getProperty().size() >= 1) {
+                            renderProp(playerAnimals.get(3).getProperty().get(0), playerImageView_4_1);
+                            if (playerAnimals.get(3).getProperty().size() >= 2) {
+                                renderProp(playerAnimals.get(3).getProperty().get(1), playerImageView_4_2);
+                                if (playerAnimals.get(3).getProperty().size() >= 3) {
+                                    renderProp(playerAnimals.get(3).getProperty().get(2), playerImageView_4_3);
+                                    if (playerAnimals.get(3).getProperty().size() >= 4) {
+                                        renderProp(playerAnimals.get(3).getProperty().get(3), playerImageView_4_4);
+                                        if (playerAnimals.get(3).getProperty().size() >= 5) {
+                                            renderProp(playerAnimals.get(3).getProperty().get(4), playerImageView_4_5);
+                                            if (playerAnimals.get(3).getProperty().size() >= 6) {
+                                                renderProp(playerAnimals.get(3).getProperty().get(5), playerImageView_4_6);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (playerAnimals.size() >= 5) {
+                            if (playerAnimals.get(4).getProperty().size() >= 1) {
+                                renderProp(playerAnimals.get(4).getProperty().get(0), playerImageView_5_1);
+                                if (playerAnimals.get(4).getProperty().size() >= 2) {
+                                    renderProp(playerAnimals.get(4).getProperty().get(1), playerImageView_5_2);
+                                    if (playerAnimals.get(4).getProperty().size() >= 3) {
+                                        renderProp(playerAnimals.get(4).getProperty().get(2), playerImageView_5_3);
+                                        if (playerAnimals.get(4).getProperty().size() >= 4) {
+                                            renderProp(playerAnimals.get(4).getProperty().get(3), playerImageView_5_4);
+                                            if (playerAnimals.get(4).getProperty().size() >= 5) {
+                                                renderProp(playerAnimals.get(4).getProperty().get(4), playerImageView_5_5);
+                                                if (playerAnimals.get(4).getProperty().size() >= 6) {
+                                                    renderProp(playerAnimals.get(4).getProperty().get(5), playerImageView_5_6);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (playerAnimals.size() >= 6) {
+                                if (playerAnimals.get(5).getProperty().size() >= 1) {
+                                    renderProp(playerAnimals.get(5).getProperty().get(0), playerImageView_6_1);
+                                    if (playerAnimals.get(5).getProperty().size() >= 2) {
+                                        renderProp(playerAnimals.get(5).getProperty().get(1), playerImageView_6_2);
+                                        if (playerAnimals.get(5).getProperty().size() >= 3) {
+                                            renderProp(playerAnimals.get(5).getProperty().get(2), playerImageView_6_3);
+                                            if (playerAnimals.get(5).getProperty().size() >= 4) {
+                                                renderProp(playerAnimals.get(5).getProperty().get(3), playerImageView_6_4);
+                                                if (playerAnimals.get(5).getProperty().size() >= 5) {
+                                                    renderProp(playerAnimals.get(5).getProperty().get(4), playerImageView_6_5);
+                                                    if (playerAnimals.get(5).getProperty().size() >= 6) {
+                                                        renderProp(playerAnimals.get(5).getProperty().get(5), playerImageView_6_6);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -449,30 +664,120 @@ public class MainBoardActivity extends Activity implements UiRenderer {
         }
     }
 
-    private void refreshEnemyAnimals(List<Animal> enemyAnimals) {
-        if (enemyAnimals.size() == 1) {
-            for (int i = 0; i < enemyAnimals.get(0).getProperty().size(); i++) {
-                refreshProp(enemyAnimals.get(0).getProperty().get(i), enemyImageView_1_1);
-            }
-            if (enemyAnimals.size() == 2) {
-                for (int i = 0; i < enemyAnimals.get(1).getProperty().size(); i++) {
-                    refreshProp(enemyAnimals.get(1).getProperty().get(i), enemyImageView_1_1);
-                }
-                if (enemyAnimals.size() == 3) {
-                    for (int i = 0; i < enemyAnimals.get(2).getProperty().size(); i++) {
-                        refreshProp(enemyAnimals.get(2).getProperty().get(i), enemyImageView_1_1);
-                    }
-                    if (enemyAnimals.size() == 4) {
-                        for (int i = 0; i < enemyAnimals.get(3).getProperty().size(); i++) {
-                            refreshProp(enemyAnimals.get(3).getProperty().get(i), enemyImageView_1_1);
-                        }
-                        if (enemyAnimals.size() == 5) {
-                            for (int i = 0; i < enemyAnimals.get(4).getProperty().size(); i++) {
-                                refreshProp(enemyAnimals.get(4).getProperty().get(i), enemyImageView_1_1);
+    private void renderEnemyAnimals(List<Animal> enemyAnimals) {
+        if (enemyAnimals.size() >= 1) {
+            if (enemyAnimals.get(0).getProperty().size() >= 1) {
+                renderProp(enemyAnimals.get(0).getProperty().get(0), enemyImageView_1_1);
+                if (enemyAnimals.get(0).getProperty().size() >= 2) {
+                    renderProp(enemyAnimals.get(0).getProperty().get(1), enemyImageView_1_2);
+                    if (enemyAnimals.get(0).getProperty().size() >= 3) {
+                        renderProp(enemyAnimals.get(0).getProperty().get(2), enemyImageView_1_3);
+                        if (enemyAnimals.get(0).getProperty().size() >= 4) {
+                            renderProp(enemyAnimals.get(0).getProperty().get(3), enemyImageView_1_4);
+                            if (enemyAnimals.get(0).getProperty().size() >= 5) {
+                                renderProp(enemyAnimals.get(0).getProperty().get(4), enemyImageView_1_5);
+                                if (enemyAnimals.get(0).getProperty().size() >= 6) {
+                                    renderProp(enemyAnimals.get(0).getProperty().get(5), enemyImageView_1_6);
+                                }
                             }
-                            if (enemyAnimals.size() == 6) {
-                                for (int i = 0; i < enemyAnimals.get(5).getProperty().size(); i++) {
-                                    refreshProp(enemyAnimals.get(5).getProperty().get(i), enemyImageView_1_1);
+                        }
+                    }
+                }
+            }
+            if (enemyAnimals.size() >= 2) {
+                if (enemyAnimals.get(1).getProperty().size() >= 1) {
+                    renderProp(enemyAnimals.get(1).getProperty().get(0), enemyImageView_2_1);
+                    if (enemyAnimals.get(1).getProperty().size() >= 2) {
+                        renderProp(enemyAnimals.get(1).getProperty().get(1), enemyImageView_2_2);
+                        if (enemyAnimals.get(1).getProperty().size() >= 3) {
+                            renderProp(enemyAnimals.get(1).getProperty().get(2), enemyImageView_2_3);
+                            if (enemyAnimals.get(1).getProperty().size() >= 4) {
+                                renderProp(enemyAnimals.get(1).getProperty().get(3), enemyImageView_2_4);
+                                if (enemyAnimals.get(1).getProperty().size() >= 5) {
+                                    renderProp(enemyAnimals.get(1).getProperty().get(4), enemyImageView_2_5);
+                                    if (enemyAnimals.get(1).getProperty().size() >= 6) {
+                                        renderProp(enemyAnimals.get(1).getProperty().get(5), enemyImageView_2_6);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (enemyAnimals.size() >= 3) {
+                    if (enemyAnimals.get(2).getProperty().size() >= 1) {
+                        renderProp(enemyAnimals.get(2).getProperty().get(0), enemyImageView_3_1);
+                        if (enemyAnimals.get(2).getProperty().size() >= 2) {
+                            renderProp(enemyAnimals.get(2).getProperty().get(1), enemyImageView_3_2);
+                            if (enemyAnimals.get(2).getProperty().size() >= 3) {
+                                renderProp(enemyAnimals.get(2).getProperty().get(2), enemyImageView_3_3);
+                                if (enemyAnimals.get(2).getProperty().size() >= 4) {
+                                    renderProp(enemyAnimals.get(2).getProperty().get(3), enemyImageView_3_4);
+                                    if (enemyAnimals.get(2).getProperty().size() >= 5) {
+                                        renderProp(enemyAnimals.get(2).getProperty().get(4), enemyImageView_3_5);
+                                        if (enemyAnimals.get(2).getProperty().size() >= 6) {
+                                            renderProp(enemyAnimals.get(2).getProperty().get(5), enemyImageView_3_6);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (enemyAnimals.size() >= 4) {
+                        if (enemyAnimals.get(3).getProperty().size() >= 1) {
+                            renderProp(enemyAnimals.get(3).getProperty().get(0), enemyImageView_4_1);
+                            if (enemyAnimals.get(3).getProperty().size() >= 2) {
+                                renderProp(enemyAnimals.get(3).getProperty().get(1), enemyImageView_4_2);
+                                if (enemyAnimals.get(3).getProperty().size() >= 3) {
+                                    renderProp(enemyAnimals.get(3).getProperty().get(2), enemyImageView_4_3);
+                                    if (enemyAnimals.get(3).getProperty().size() >= 4) {
+                                        renderProp(enemyAnimals.get(3).getProperty().get(3), enemyImageView_4_4);
+                                        if (enemyAnimals.get(3).getProperty().size() >= 5) {
+                                            renderProp(enemyAnimals.get(3).getProperty().get(4), enemyImageView_4_5);
+                                            if (enemyAnimals.get(3).getProperty().size() >= 6) {
+                                                renderProp(enemyAnimals.get(3).getProperty().get(5), enemyImageView_4_6);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (enemyAnimals.size() >= 5) {
+                            if (enemyAnimals.get(4).getProperty().size() >= 1) {
+                                renderProp(enemyAnimals.get(4).getProperty().get(0), enemyImageView_5_1);
+                                if (enemyAnimals.get(4).getProperty().size() >= 2) {
+                                    renderProp(enemyAnimals.get(4).getProperty().get(1), enemyImageView_5_2);
+                                    if (enemyAnimals.get(4).getProperty().size() >= 3) {
+                                        renderProp(enemyAnimals.get(4).getProperty().get(2), enemyImageView_5_3);
+                                        if (enemyAnimals.get(4).getProperty().size() >= 4) {
+                                            renderProp(enemyAnimals.get(4).getProperty().get(3), enemyImageView_5_4);
+                                            if (enemyAnimals.get(4).getProperty().size() >= 5) {
+                                                renderProp(enemyAnimals.get(4).getProperty().get(4), enemyImageView_5_5);
+                                                if (enemyAnimals.get(4).getProperty().size() >= 6) {
+                                                    renderProp(enemyAnimals.get(4).getProperty().get(5), enemyImageView_5_6);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (enemyAnimals.size() >= 6) {
+                                if (enemyAnimals.get(5).getProperty().size() >= 1) {
+                                    renderProp(enemyAnimals.get(5).getProperty().get(0), enemyImageView_6_1);
+                                    if (enemyAnimals.get(5).getProperty().size() >= 2) {
+                                        renderProp(enemyAnimals.get(5).getProperty().get(1), enemyImageView_6_2);
+                                        if (enemyAnimals.get(5).getProperty().size() >= 3) {
+                                            renderProp(enemyAnimals.get(5).getProperty().get(2), enemyImageView_6_3);
+                                            if (enemyAnimals.get(5).getProperty().size() >= 4) {
+                                                renderProp(enemyAnimals.get(5).getProperty().get(3), enemyImageView_6_4);
+                                                if (enemyAnimals.get(5).getProperty().size() >= 5) {
+                                                    renderProp(enemyAnimals.get(5).getProperty().get(4), enemyImageView_6_5);
+                                                    if (enemyAnimals.get(5).getProperty().size() >= 6) {
+                                                        renderProp(enemyAnimals.get(5).getProperty().get(5), enemyImageView_6_6);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -482,82 +787,101 @@ public class MainBoardActivity extends Activity implements UiRenderer {
         }
     }
 
-    private void refreshProp(Property property, ImageView enemyImageView) {
+    private void renderProp(Property property, ImageView imageView) {
         switch (property.getValue()) {
             case BURROWING: {
-                enemyImageView.setImageResource(R.drawable.burrowing_prp);
+                imageView.setImageResource(R.drawable.burrowing_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
-            case CAMOUFLAGE: {
-                enemyImageView.setImageResource(R.drawable.camouflage_prp);
+            case COMMOUFLAGE: {
+                imageView.setImageResource(R.drawable.commouflage_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case CARNIVOROUS: {
-                enemyImageView.setImageResource(R.drawable.carnivorous_prp);
+                imageView.setImageResource(R.drawable.carnivorous_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case COMMUNICATION: {
-                enemyImageView.setImageResource(R.drawable.communication_prp);
+                imageView.setImageResource(R.drawable.communication_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case COOPERATION: {
-                enemyImageView.setImageResource(R.drawable.cooperation_prp);
+                imageView.setImageResource(R.drawable.cooperation_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case GRAZING: {
-                enemyImageView.setImageResource(R.drawable.grazing_prp);
+                imageView.setImageResource(R.drawable.grazing_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case HIBERNATION_ABILITY: {
-                enemyImageView.setImageResource(R.drawable.hibernation_ability_prp);
+                imageView.setImageResource(R.drawable.hibernation_ability_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case HIGH_BODY_WEIGHT: {
-                enemyImageView.setImageResource(R.drawable.high_body_weight_prp);
+                imageView.setImageResource(R.drawable.high_body_weight_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case MIMICRY: {
-                enemyImageView.setImageResource(R.drawable.mimicry_prp);
+                imageView.setImageResource(R.drawable.mimicry_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case PARASITE: {
-                enemyImageView.setImageResource(R.drawable.parasite_prp);
+                imageView.setImageResource(R.drawable.parasite_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case PIRACY: {
-                enemyImageView.setImageResource(R.drawable.pirasy_prp);
+                imageView.setImageResource(R.drawable.pirasy_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case POISONOUS: {
-                enemyImageView.setImageResource(R.drawable.poisonous_prp);
+                imageView.setImageResource(R.drawable.poisonous_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case RUNNING: {
-                enemyImageView.setImageResource(R.drawable.running_prp);
+                imageView.setImageResource(R.drawable.running_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case SCAVENGER: {
-                enemyImageView.setImageResource(R.drawable.scavenger_prp);
+                imageView.setImageResource(R.drawable.scavenger_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case SHARP_VISION: {
-                enemyImageView.setImageResource(R.drawable.sharp_vision__prp);
+                imageView.setImageResource(R.drawable.sharp_vision_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case SWIMMING: {
-                enemyImageView.setImageResource(R.drawable.swimming_prp);
+                imageView.setImageResource(R.drawable.swimming_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case SYMBIOSYS: {
-                enemyImageView.setImageResource(R.drawable.symbiosis_prp);
+                imageView.setImageResource(R.drawable.symbiosis_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             case TAIL_LOSS: {
-                enemyImageView.setImageResource(R.drawable.tail_loss_prp);
+                imageView.setImageResource(R.drawable.tail_loss_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
             default: {
-                enemyImageView.setImageResource(R.drawable.evolution_prp);
+                imageView.setImageResource(R.drawable.evolution_prp);
+                System.out.println("" + property + " " + imageView.getId());
                 break;
             }
         }
@@ -565,7 +889,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 
     @Override
     public void render(Room room) {
-        refreshAnimalsPropertes(room);
-        refreshAnimals(room);
+        renderAnimalPropertes(room);
+        renderAnimals(room);
     }
 }

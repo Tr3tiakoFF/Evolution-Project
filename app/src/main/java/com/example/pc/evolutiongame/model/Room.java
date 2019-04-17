@@ -27,6 +27,40 @@ public class Room {
         this.numberPlayers = numberPlayers;
     }
 
+//    public static Room getTestRoom() {
+//        Room room = new Room();
+//
+//        room.addPlayer(new Player());
+//        room.addPlayer(new Player());
+//
+//        room.addDeck(DeckShufler.deckShuffle());
+//
+//        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
+//
+//        for (int i = 0; i < room.numberPlayers(); i++) {
+//            room.addCardsToPlayer(i, cardsForPlayers.get(i));
+//        }
+//
+//        room.setAllNotPass();
+//
+//        do {
+//            Player currentPlayer = room.getCurrentPlayer();
+//
+//            int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
+//
+//            Card currentCard = currentPlayer.getCard(localRandomCardNumber);
+//
+//            room.getCurrentPlayer().playAnimal(room.getField(), localRandomCardNumber);
+//
+//            room.getCurrentPlayer().setPass(true);
+//            room.setNextPlayer();
+//        }
+//        while (!room.allPlayersPass());
+//
+//
+//        return room;
+//    }
+
     public List<Player> getPlayers() {
         return players;
     }

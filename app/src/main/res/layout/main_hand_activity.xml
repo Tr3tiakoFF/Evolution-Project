@@ -39,9 +39,10 @@
                             android:visibility="invisible" />
 
                         <ImageView
-                            android:id="@+id/imageView2"
+                            android:id="@+id/playerCard1"
                             android:layout_width="156dp"
                             android:layout_height="232dp"
+                            android:visibility="visible"
                             tools:srcCompat="@tools:sample/avatars" />
 
                         <TextView
@@ -136,7 +137,7 @@
                             android:visibility="invisible" />
 
                         <ImageView
-                            android:id="@+id/imageView2"
+                            android:id="@+id/playerCard2"
                             android:layout_width="156dp"
                             android:layout_height="232dp"
                             tools:srcCompat="@tools:sample/avatars" />
@@ -232,7 +233,7 @@
                             android:visibility="invisible" />
 
                         <ImageView
-                            android:id="@+id/imageView2"
+                            android:id="@+id/playerCard3"
                             android:layout_width="156dp"
                             android:layout_height="232dp"
                             tools:srcCompat="@tools:sample/avatars" />
@@ -328,7 +329,7 @@
                             android:visibility="invisible" />
 
                         <ImageView
-                            android:id="@+id/imageView2"
+                            android:id="@+id/playerCard4"
                             android:layout_width="156dp"
                             android:layout_height="232dp"
                             tools:srcCompat="@tools:sample/avatars" />
@@ -425,7 +426,7 @@
                             android:visibility="invisible" />
 
                         <ImageView
-                            android:id="@+id/imageView2"
+                            android:id="@+id/playerCard5"
                             android:layout_width="156dp"
                             android:layout_height="232dp"
                             tools:srcCompat="@tools:sample/avatars" />
@@ -521,7 +522,7 @@
                             android:visibility="invisible" />
 
                         <ImageView
-                            android:id="@+id/imageView2"
+                            android:id="@+id/playerCard6"
                             android:layout_width="156dp"
                             android:layout_height="232dp"
                             tools:srcCompat="@tools:sample/avatars" />

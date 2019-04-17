@@ -10,4 +10,8 @@ public class Card {
         this.properties = values_;
     }
     public Card(){};
+
+    public List<Property> getProperties() {
+        return properties;
+    }
 }
