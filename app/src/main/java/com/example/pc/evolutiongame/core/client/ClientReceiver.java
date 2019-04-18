@@ -1,6 +1,6 @@
 package com.example.pc.evolutiongame.core.client;
 
-import com.example.pc.evolutiongame.core.Context;
+import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.core.Processable;
 import com.example.pc.evolutiongame.core.UiRenderer;
 import com.example.pc.evolutiongame.core.control.Action;
@@ -25,7 +25,7 @@ public class ClientReceiver implements Processable {
     }
 
     @Override
-    public void process(Context context, String msg) {
+    public void process(EvolutionContext evolutionContext, String msg) {
         System.out.printf("Received message->%s%n", msg);
         if (msg == null) {
             return;
@@ -35,7 +35,7 @@ public class ClientReceiver implements Processable {
         if (SET_ID == game.getAction()) {
             String id = game.getPlayer().getId();
             System.out.printf("Set id for client->%s%n", id);
-            context.setId(id);
+            evolutionContext.setId(id);
         }
 
         if (REFRESH_STATE == game.getAction()) {
@@ -48,7 +48,7 @@ public class ClientReceiver implements Processable {
 
             if (EVOLUTION == game.getPhase()) {
                 System.out.println("Process evolution phase");
-                if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass() && currentPlayer.canPlay()) {
+                if (evolutionContext.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass() && currentPlayer.canPlay()) {
                     System.out.println("Player should turn");
 
                     int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
@@ -58,12 +58,12 @@ public class ClientReceiver implements Processable {
                         currentPlayer.setPass(true);
                     }
 
-                    context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
+                    evolutionContext.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
                 } else {
 
                     if (!currentPlayer.canPlay()) {
                         currentPlayer.setPass(true);
-                        context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
+                        evolutionContext.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
                     }
 
                     System.out.println("Player skip message and waiting turn");
@@ -72,7 +72,7 @@ public class ClientReceiver implements Processable {
 
             if (POWER == game.getPhase()) {
                 System.out.println("Process power phase");
-                if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass()) {
+                if (evolutionContext.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass()) {
                     System.out.println("Player should turn");
 
                     room.getCurrentPlayer().giveFood(room, 0);
@@ -81,7 +81,7 @@ public class ClientReceiver implements Processable {
                         room.getCurrentPlayer().setPass(true);
                     }
 
-                    context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, POWER, room)));
+                    evolutionContext.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, POWER, room)));
                 } else {
                     System.out.println("Player skip message and waiting turn");
                 }

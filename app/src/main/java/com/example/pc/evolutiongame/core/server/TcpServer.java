@@ -2,7 +2,7 @@ package com.example.pc.evolutiongame.core.server;
 
 import com.example.pc.evolutiongame.core.Acceptable;
 import com.example.pc.evolutiongame.core.Connectable;
-import com.example.pc.evolutiongame.core.Context;
+import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.core.Processable;
 import com.example.pc.evolutiongame.core.Sendable;
 
@@ -26,15 +26,15 @@ public class TcpServer implements Sendable {
     private final Processable processable;
     private final Acceptable acceptable;
     private final Connectable connectable;
-    private final Context context;
+    private final EvolutionContext evolutionContext;
 
-    public TcpServer(Context context, Processable processable, Acceptable acceptable, Connectable connectable) {
+    public TcpServer(EvolutionContext evolutionContext, Processable processable, Acceptable acceptable, Connectable connectable) {
         this.processable = processable;
         this.acceptable = acceptable;
         this.connectable = connectable;
 
         this.clients = new HashSet<>();
-        this.context = context;
+        this.evolutionContext = evolutionContext;
     }
 
     public void start(int port) {
@@ -60,14 +60,14 @@ public class TcpServer implements Sendable {
                     serverSocket.bind(inetSocketAddress);
                     System.out.printf("Server is binded to -> %s%n", inetSocketAddress);
 
-                    context.setSender(TcpServer.this);
-                    connectable.started(context);
+                    evolutionContext.setSender(TcpServer.this);
+                    connectable.started(evolutionContext);
 
                     while (!Thread.interrupted()) {
                         final Socket clientSocket = serverSocket.accept();
                         System.out.printf("Accepted new connection->%s%n", clientSocket.getRemoteSocketAddress());
                         clients.add(clientSocket);
-                        acceptable.accept(clientSocket, context);
+                        acceptable.accept(clientSocket, evolutionContext);
                         new Thread(new Runnable() {
 
                             @Override
@@ -81,7 +81,7 @@ public class TcpServer implements Sendable {
                                             break;
                                         }
                                         System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
-                                        processable.process(context, msg);
+                                        processable.process(evolutionContext, msg);
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();

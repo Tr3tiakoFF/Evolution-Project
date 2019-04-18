@@ -1,6 +1,6 @@
 package com.example.pc.evolutiongame;
 
-import com.example.pc.evolutiongame.core.Context;
+import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.core.client.ClientReceiver;
 import com.example.pc.evolutiongame.core.client.TcpClient;
 import com.example.pc.evolutiongame.core.server.AcceptableImpl;
@@ -14,15 +14,15 @@ public class Configuration {
 
     public static TcpServer getServerConfiguration() {
         Gson gson = new GsonBuilder().create();
-        Context context = new Context();
+        EvolutionContext evolutionContext = new EvolutionContext();
 
-        return new TcpServer(context, new ServerReceiver(gson), new AcceptableImpl(gson), new ServerConnector());
+        return new TcpServer(evolutionContext, new ServerReceiver(gson), new AcceptableImpl(gson), new ServerConnector());
     }
 
     public static TcpClient getClientConfiguration(MainBoardActivity mainBoardActivity) {
         Gson gson = new GsonBuilder().create();
-        Context context = new Context();
+        EvolutionContext evolutionContext = new EvolutionContext();
 
-        return new TcpClient(context, new ClientReceiver(mainBoardActivity, gson));
+        return new TcpClient(evolutionContext, new ClientReceiver(mainBoardActivity, gson));
     }
 }

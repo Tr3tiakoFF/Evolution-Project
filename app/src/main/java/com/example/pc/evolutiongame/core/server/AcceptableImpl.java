@@ -1,7 +1,7 @@
 package com.example.pc.evolutiongame.core.server;
 
 import com.example.pc.evolutiongame.core.Acceptable;
-import com.example.pc.evolutiongame.core.Context;
+import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.core.Sendable;
 import com.example.pc.evolutiongame.core.control.Action;
 import com.example.pc.evolutiongame.core.control.Game;
@@ -27,11 +27,11 @@ public class AcceptableImpl implements Acceptable {
     }
 
     @Override
-    public void accept(Socket clientSocket, Context context) {
+    public void accept(Socket clientSocket, EvolutionContext evolutionContext) {
         System.out.printf("Client ->%s connected to server%n", clientSocket.getRemoteSocketAddress());
-        Sendable sender = context.getSender();
+        Sendable sender = evolutionContext.getSender();
 
-        Room room = context.getRoom();
+        Room room = evolutionContext.getRoom();
         Player player = new Player(getNewId());
         room.addPlayer(player);
 

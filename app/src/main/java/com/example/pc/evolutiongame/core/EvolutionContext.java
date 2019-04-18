@@ -2,7 +2,7 @@ package com.example.pc.evolutiongame.core;
 
 import com.example.pc.evolutiongame.model.Room;
 
-public class Context {
+public class EvolutionContext {
     private String id;
     private Room room;
     private Sendable sender;

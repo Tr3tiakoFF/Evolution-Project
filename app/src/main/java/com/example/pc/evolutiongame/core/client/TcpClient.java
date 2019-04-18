@@ -1,6 +1,6 @@
 package com.example.pc.evolutiongame.core.client;
 
-import com.example.pc.evolutiongame.core.Context;
+import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.core.Processable;
 import com.example.pc.evolutiongame.core.Sendable;
 
@@ -19,11 +19,11 @@ import static java.lang.Thread.sleep;
 public class TcpClient implements Sendable {
     private Socket clientSocket;
     private PrintWriter out;
-    private Context context;
+    private EvolutionContext evolutionContext;
     private final Processable processable;
 
-    public TcpClient(Context context, Processable processable) {
-        this.context = context;
+    public TcpClient(EvolutionContext evolutionContext, Processable processable) {
+        this.evolutionContext = evolutionContext;
         this.processable = processable;
     }
 
@@ -40,7 +40,7 @@ public class TcpClient implements Sendable {
                     out = new PrintWriter(clientSocket.getOutputStream(), true);
                     final BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-                    context.setSender(TcpClient.this);
+                    evolutionContext.setSender(TcpClient.this);
 
                     new Thread(new Runnable() {
                         @Override
@@ -53,7 +53,7 @@ public class TcpClient implements Sendable {
                                         break;
                                     }
                                     System.out.printf("Received message from->%s%n", clientSocket.getRemoteSocketAddress());
-                                    processable.process(context, msg);
+                                    processable.process(evolutionContext, msg);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }

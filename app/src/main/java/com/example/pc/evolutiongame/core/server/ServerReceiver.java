@@ -1,6 +1,6 @@
 package com.example.pc.evolutiongame.core.server;
 
-import com.example.pc.evolutiongame.core.Context;
+import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.core.Processable;
 import com.example.pc.evolutiongame.core.Sendable;
 import com.example.pc.evolutiongame.core.control.Action;
@@ -26,7 +26,7 @@ public class ServerReceiver implements Processable {
     }
 
     @Override
-    public void process(Context context, String msg) {
+    public void process(EvolutionContext evolutionContext, String msg) {
         System.out.printf("Received msg->%s%n", msg);
         if (msg == null) {
             return;
@@ -35,9 +35,9 @@ public class ServerReceiver implements Processable {
 
         if (REFRESH_STATE == game.getAction()) {
             Room room = game.getRoom();
-            context.setRoom(room);
+            evolutionContext.setRoom(room);
 
-            Sendable sender = context.getSender();
+            Sendable sender = evolutionContext.getSender();
             if (EVOLUTION == game.getPhase()) {
                 System.out.println("Process evolution phase");
                 if (room.allPlayersPass()) {
