@@ -19,11 +19,11 @@ import static java.lang.Thread.sleep;
 public class TcpClient implements Sendable {
     private Socket clientSocket;
     private PrintWriter out;
-    private EvolutionContext evolutionContext;
+    private EvolutionContext context;
     private final Processable processable;
 
-    public TcpClient(EvolutionContext evolutionContext, Processable processable) {
-        this.evolutionContext = evolutionContext;
+    public TcpClient(EvolutionContext context, Processable processable) {
+        this.context = context;
         this.processable = processable;
     }
 
@@ -40,7 +40,7 @@ public class TcpClient implements Sendable {
                     out = new PrintWriter(clientSocket.getOutputStream(), true);
                     final BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-                    evolutionContext.setSender(TcpClient.this);
+                    context.setSender(TcpClient.this);
 
                     new Thread(new Runnable() {
                         @Override
@@ -53,7 +53,7 @@ public class TcpClient implements Sendable {
                                         break;
                                     }
                                     System.out.printf("Received message from->%s%n", clientSocket.getRemoteSocketAddress());
-                                    processable.process(evolutionContext, msg);
+                                    processable.process(context, msg);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -86,7 +86,7 @@ public class TcpClient implements Sendable {
     }
 
     public static void main(String[] args) {
-        TcpClient client = getClientConfiguration(null);
+        TcpClient client = getClientConfiguration(null, null);
         client.createConnection(SERVER_HOST, SERVER_PORT);
 
 //        for (int i = 0; i < 100; i++) {

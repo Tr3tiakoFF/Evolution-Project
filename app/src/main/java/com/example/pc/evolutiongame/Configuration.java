@@ -22,10 +22,11 @@ public class Configuration {
         return new TcpServer(context, new ServerReceiver(gson), new AcceptableImpl(gson), new ServerConnector());
     }
 
-    public static TcpClient getClientConfiguration(MainBoardActivity mainBoardActivity) {
+    public static TcpClient getClientConfiguration(NsdManager nsdManager, MainBoardActivity mainBoardActivity) {
         Gson gson = new GsonBuilder().create();
-        EvolutionContext evolutionContext = new EvolutionContext();
+        EvolutionContext context = new EvolutionContext();
+        context.setNsdManager(nsdManager);
 
-        return new TcpClient(evolutionContext, new ClientReceiver(mainBoardActivity, gson));
+        return new TcpClient(context, new ClientReceiver(mainBoardActivity, gson));
     }
 }

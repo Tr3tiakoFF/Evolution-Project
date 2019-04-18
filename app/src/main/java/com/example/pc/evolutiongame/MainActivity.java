@@ -17,8 +17,8 @@ import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
 
 public class MainActivity extends Activity {
 
-    private final TcpServer server;
-    TcpClient client;
+    private TcpServer server;
+    private TcpClient client;
 
     Button startServer;
     Button startClient;
@@ -26,16 +26,14 @@ public class MainActivity extends Activity {
     Button stopClient;
     Button stopServer;
 
-    public MainActivity() {
-        NsdManager nsdManager = (NsdManager) this.getSystemService(Context.NSD_SERVICE);
-        this.server = getServerConfiguration(nsdManager);
-        this.client = getClientConfiguration(null);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.server_test_activity);
+
+        final NsdManager nsdManager = (NsdManager) this.getSystemService(Context.NSD_SERVICE);
+        this.server = getServerConfiguration(nsdManager);
+        this.client = getClientConfiguration(nsdManager, null);
 
         startServer = (Button) findViewById(R.id.button_1);
         startClient = (Button) findViewById(R.id.button_2);
@@ -61,12 +59,13 @@ public class MainActivity extends Activity {
         startClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    String ipAddr = editText.getText().toString();
-                    client.createConnection("192.168.1.40", 8988);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    String ipAddr = editText.getText().toString();
+//                    client.createConnection("192.168.1.40", 8988);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                nsdManager.discoverServices(SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, discoveryListener);
             }
         });
 
