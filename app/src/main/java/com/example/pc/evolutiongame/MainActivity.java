@@ -1,10 +1,10 @@
 package com.example.pc.evolutiongame;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.WifiManager;
+import android.net.nsd.NsdManager;
 import android.os.Bundle;
-import android.text.format.Formatter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +27,8 @@ public class MainActivity extends Activity {
     Button stopServer;
 
     public MainActivity() {
-        this.server = getServerConfiguration();
+        NsdManager nsdManager = (NsdManager) this.getSystemService(Context.NSD_SERVICE);
+        this.server = getServerConfiguration(nsdManager);
         this.client = getClientConfiguration(null);
     }
 
@@ -49,15 +50,11 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                String ip_ = editText2.getText().toString();
-                WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-                String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+//                String ip_ = editText2.getText().toString();
+//                WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+//                String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
-                try {
-                    server.start("192.168.1.40", 8988);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                server.start();
             }
         });
 
@@ -70,7 +67,6 @@ public class MainActivity extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-//                100.120.184.236
             }
         });
 

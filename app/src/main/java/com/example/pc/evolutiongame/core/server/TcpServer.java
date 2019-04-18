@@ -26,15 +26,19 @@ public class TcpServer implements Sendable {
     private final Processable processable;
     private final Acceptable acceptable;
     private final Connectable connectable;
-    private final EvolutionContext evolutionContext;
+    private final EvolutionContext context;
 
-    public TcpServer(EvolutionContext evolutionContext, Processable processable, Acceptable acceptable, Connectable connectable) {
+    public TcpServer(EvolutionContext context, Processable processable, Acceptable acceptable, Connectable connectable) {
         this.processable = processable;
         this.acceptable = acceptable;
         this.connectable = connectable;
 
         this.clients = new HashSet<>();
-        this.evolutionContext = evolutionContext;
+        this.context = context;
+    }
+
+    public void start() {
+        this.start(null, 0);
     }
 
     public void start(int port) {
@@ -60,14 +64,15 @@ public class TcpServer implements Sendable {
                     serverSocket.bind(inetSocketAddress);
                     System.out.printf("Server is binded to -> %s%n", inetSocketAddress);
 
-                    evolutionContext.setSender(TcpServer.this);
-                    connectable.started(evolutionContext);
+                    context.setPort(serverSocket.getLocalPort());
+                    context.setSender(TcpServer.this);
+                    connectable.started(context);
 
                     while (!Thread.interrupted()) {
                         final Socket clientSocket = serverSocket.accept();
                         System.out.printf("Accepted new connection->%s%n", clientSocket.getRemoteSocketAddress());
                         clients.add(clientSocket);
-                        acceptable.accept(clientSocket, evolutionContext);
+                        acceptable.accept(clientSocket, context);
                         new Thread(new Runnable() {
 
                             @Override
@@ -81,7 +86,7 @@ public class TcpServer implements Sendable {
                                             break;
                                         }
                                         System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
-                                        processable.process(evolutionContext, msg);
+                                        processable.process(context, msg);
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -122,7 +127,7 @@ public class TcpServer implements Sendable {
     }
 
     public static void main(String[] args) {
-        TcpServer server = getServerConfiguration();
+        TcpServer server = getServerConfiguration(null);
         server.start(SERVER_HOST, SERVER_PORT);
     }
 }
