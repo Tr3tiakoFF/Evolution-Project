@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.nsd.NsdManager;
+import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,7 +53,7 @@ public class MainActivity extends Activity {
 //                WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 //                String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
-                server.start();
+                server.start(6666);
             }
         });
 
@@ -65,7 +66,58 @@ public class MainActivity extends Activity {
 //                } catch (Exception e) {
 //                    e.printStackTrace();
 //                }
-//                nsdManager.discoverServices("_evolution._tcp", NsdManager.PROTOCOL_DNS_SD, discoveryListener);
+                final String serviceName = "Evolution";
+                final String SERVICE_TYPE = "_evolution._tcp";
+                nsdManager.discoverServices(SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD,
+                        new NsdManager.DiscoveryListener() {
+
+                            // Called as soon as service discovery begins.
+                            @Override
+                            public void onDiscoveryStarted(String regType) {
+                                System.out.printf("Service discovery started");
+                            }
+
+                            @Override
+                            public void onServiceFound(NsdServiceInfo service) {
+                                // A service was found! Do something with it.
+                                System.out.printf("Service discovery success" + service);
+                                if (!service.getServiceType().equals(SERVICE_TYPE)) {
+                                    // Service type is the string containing the protocol and
+                                    // transport layer for this service.
+                                    System.out.printf("Unknown Service Type: " + service.getServiceType());
+                                } else if (service.getServiceName().equals(serviceName)) {
+                                    // The name of the service tells the user what they'd be
+                                    // connecting to. It could be "Bob's Chat App".
+                                    System.out.printf("Same machine: " + serviceName);
+                                } else if (service.getServiceName().contains("NsdChat")) {
+//                                    nsdManager.resolveService(service, resolveListener);
+                                }
+                            }
+
+                            @Override
+                            public void onServiceLost(NsdServiceInfo service) {
+                                // When the network service is no longer available.
+                                // Internal bookkeeping code goes here.
+                                System.out.printf("service lost: " + service);
+                            }
+
+                            @Override
+                            public void onDiscoveryStopped(String serviceType) {
+                                System.out.printf("Discovery stopped: " + serviceType);
+                            }
+
+                            @Override
+                            public void onStartDiscoveryFailed(String serviceType, int errorCode) {
+                                System.out.printf("Discovery failed: Error code:" + errorCode);
+                                nsdManager.stopServiceDiscovery(this);
+                            }
+
+                            @Override
+                            public void onStopDiscoveryFailed(String serviceType, int errorCode) {
+                                System.out.printf("Discovery failed: Error code:" + errorCode);
+                                nsdManager.stopServiceDiscovery(this);
+                            }
+                        });
             }
         });
 
