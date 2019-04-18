@@ -112,7 +112,7 @@ public class MainActivity extends Activity {
     }
 
     public void open() {
-        Intent intent = new Intent(this, MainHandActivity.class);
+        Intent intent = new Intent(this, MainBoardActivity.class);
         startActivity(intent);
     }
 

@@ -1,6 +1,7 @@
 package com.example.pc.evolutiongame;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,8 @@ import static com.example.pc.evolutiongame.Utils.getNewId;
 public class MainBoardActivity extends Activity implements UiRenderer {
 
     Player player;
+
+    Button hand, reRender;
 
     Button playerAnimal1, playerAnimal2, playerAnimal3, playerAnimal4, playerAnimal5, playerAnimal6;
     Button enemyAnimal1, enemyAnimal2, enemyAnimal3, enemyAnimal4, enemyAnimal5, enemyAnimal6;
@@ -49,6 +52,9 @@ public class MainBoardActivity extends Activity implements UiRenderer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_board_activity);
+
+        hand = (Button) findViewById(R.id.showDeckButton);
+        reRender = (Button) findViewById(R.id.foodCapacityButton);
 
         playerTable1 = (TableLayout) findViewById(R.id.playerPropertyTable1);
         {
@@ -176,7 +182,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
         enemyAnimal5 = (Button) findViewById(R.id.enemyMinion5);
         enemyAnimal6 = (Button) findViewById(R.id.enemyMinion6);
 
-        Room room = new Room();
+        final Room room = new Room();
 
         room.addPlayer(new Player(getNewId()));
         room.addPlayer(new Player(getNewId()));
@@ -243,6 +249,58 @@ public class MainBoardActivity extends Activity implements UiRenderer {
         enemyAnimal4.setVisibility(View.INVISIBLE);
         enemyAnimal5.setVisibility(View.INVISIBLE);
         enemyAnimal6.setVisibility(View.INVISIBLE);
+
+        hand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                open();
+            }
+        });
+
+        reRender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
+
+                for (int i = 0; i < room.numberPlayers(); i++) {
+                    room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
+                }
+
+                room.setAllNotPass();
+
+
+                do {
+                    Player currentPlayer = room.getCurrentPlayer();
+
+                    int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
+                    int localRandomAnimalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
+
+                    room.getCurrentPlayer().playProperty(room.getField(), localRandomCardNumber, localRandomAnimalNumber, 0);
+
+                    if (room.getCurrentPlayer().getCardsCount() == 0) {
+                        room.getCurrentPlayer().setPass(true);
+                    }
+                    room.setNextPlayer();
+                }
+                while (!room.allPlayersPass());
+
+                render(room);
+
+                playerAnimal1.setVisibility(View.INVISIBLE);
+                playerAnimal2.setVisibility(View.INVISIBLE);
+                playerAnimal3.setVisibility(View.INVISIBLE);
+                playerAnimal4.setVisibility(View.INVISIBLE);
+                playerAnimal5.setVisibility(View.INVISIBLE);
+                playerAnimal6.setVisibility(View.INVISIBLE);
+
+                enemyAnimal1.setVisibility(View.INVISIBLE);
+                enemyAnimal2.setVisibility(View.INVISIBLE);
+                enemyAnimal3.setVisibility(View.INVISIBLE);
+                enemyAnimal4.setVisibility(View.INVISIBLE);
+                enemyAnimal5.setVisibility(View.INVISIBLE);
+                enemyAnimal6.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
     private void renderAnimals(Room room) {
@@ -543,119 +601,38 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 
     private void renderPlayerAnimals(List<Animal> playerAnimals) {
         if (playerAnimals.size() >= 1) {
-            if (playerAnimals.get(0).getProperty().size() >= 1) {
-                renderProp(playerAnimals.get(0).getProperty().get(0), playerImageView_1_1);
-                if (playerAnimals.get(0).getProperty().size() >= 2) {
-                    renderProp(playerAnimals.get(0).getProperty().get(1), playerImageView_1_2);
-                    if (playerAnimals.get(0).getProperty().size() >= 3) {
-                        renderProp(playerAnimals.get(0).getProperty().get(2), playerImageView_1_3);
-                        if (playerAnimals.get(0).getProperty().size() >= 4) {
-                            renderProp(playerAnimals.get(0).getProperty().get(3), playerImageView_1_4);
-                            if (playerAnimals.get(0).getProperty().size() >= 5) {
-                                renderProp(playerAnimals.get(0).getProperty().get(4), playerImageView_1_5);
-                                if (playerAnimals.get(0).getProperty().size() >= 6) {
-                                    renderProp(playerAnimals.get(0).getProperty().get(5), playerImageView_1_6);
-                                }
+            renderProps(playerAnimals, playerImageView_1_1, playerImageView_1_2, playerImageView_1_3, playerImageView_1_4, playerImageView_1_5, playerImageView_1_6, 0);
+            if (playerAnimals.size() >= 2) {
+                renderProps(playerAnimals, playerImageView_2_1, playerImageView_2_2, playerImageView_2_3, playerImageView_2_4, playerImageView_2_5, playerImageView_2_6, 1);
+                if (playerAnimals.size() >= 3) {
+                    renderProps(playerAnimals, playerImageView_3_1, playerImageView_3_2, playerImageView_3_3, playerImageView_3_4, playerImageView_3_5, playerImageView_3_6, 2);
+                    if (playerAnimals.size() >= 4) {
+                        renderProps(playerAnimals, playerImageView_4_1, playerImageView_4_2, playerImageView_4_3, playerImageView_4_4, playerImageView_4_5, playerImageView_4_6, 3);
+                        if (playerAnimals.size() >= 5) {
+                            renderProps(playerAnimals, playerImageView_5_1, playerImageView_5_2, playerImageView_5_3, playerImageView_5_4, playerImageView_5_5, playerImageView_4_6, 4);
+                            if (playerAnimals.size() >= 6) {
+                                renderProps(playerAnimals, playerImageView_6_1, playerImageView_6_2, playerImageView_6_3, playerImageView_6_4, playerImageView_4_5, playerImageView_6_6, 5);
                             }
                         }
                     }
                 }
             }
-            if (playerAnimals.size() >= 2) {
-                if (playerAnimals.get(1).getProperty().size() >= 1) {
-                    renderProp(playerAnimals.get(1).getProperty().get(0), playerImageView_2_1);
-                    if (playerAnimals.get(1).getProperty().size() >= 2) {
-                        renderProp(playerAnimals.get(1).getProperty().get(1), playerImageView_2_2);
-                        if (playerAnimals.get(1).getProperty().size() >= 3) {
-                            renderProp(playerAnimals.get(1).getProperty().get(2), playerImageView_2_3);
-                            if (playerAnimals.get(1).getProperty().size() >= 4) {
-                                renderProp(playerAnimals.get(1).getProperty().get(3), playerImageView_2_4);
-                                if (playerAnimals.get(1).getProperty().size() >= 5) {
-                                    renderProp(playerAnimals.get(1).getProperty().get(4), playerImageView_2_5);
-                                    if (playerAnimals.get(1).getProperty().size() >= 6) {
-                                        renderProp(playerAnimals.get(1).getProperty().get(5), playerImageView_2_6);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                if (playerAnimals.size() >= 3) {
-                    if (playerAnimals.get(2).getProperty().size() >= 1) {
-                        renderProp(playerAnimals.get(2).getProperty().get(0), playerImageView_3_1);
-                        if (playerAnimals.get(2).getProperty().size() >= 2) {
-                            renderProp(playerAnimals.get(2).getProperty().get(1), playerImageView_3_2);
-                            if (playerAnimals.get(2).getProperty().size() >= 3) {
-                                renderProp(playerAnimals.get(2).getProperty().get(2), playerImageView_3_3);
-                                if (playerAnimals.get(2).getProperty().size() >= 4) {
-                                    renderProp(playerAnimals.get(2).getProperty().get(3), playerImageView_3_4);
-                                    if (playerAnimals.get(2).getProperty().size() >= 5) {
-                                        renderProp(playerAnimals.get(2).getProperty().get(4), playerImageView_3_5);
-                                        if (playerAnimals.get(2).getProperty().size() >= 6) {
-                                            renderProp(playerAnimals.get(2).getProperty().get(5), playerImageView_3_6);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if (playerAnimals.size() >= 4) {
-                        if (playerAnimals.get(3).getProperty().size() >= 1) {
-                            renderProp(playerAnimals.get(3).getProperty().get(0), playerImageView_4_1);
-                            if (playerAnimals.get(3).getProperty().size() >= 2) {
-                                renderProp(playerAnimals.get(3).getProperty().get(1), playerImageView_4_2);
-                                if (playerAnimals.get(3).getProperty().size() >= 3) {
-                                    renderProp(playerAnimals.get(3).getProperty().get(2), playerImageView_4_3);
-                                    if (playerAnimals.get(3).getProperty().size() >= 4) {
-                                        renderProp(playerAnimals.get(3).getProperty().get(3), playerImageView_4_4);
-                                        if (playerAnimals.get(3).getProperty().size() >= 5) {
-                                            renderProp(playerAnimals.get(3).getProperty().get(4), playerImageView_4_5);
-                                            if (playerAnimals.get(3).getProperty().size() >= 6) {
-                                                renderProp(playerAnimals.get(3).getProperty().get(5), playerImageView_4_6);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        if (playerAnimals.size() >= 5) {
-                            if (playerAnimals.get(4).getProperty().size() >= 1) {
-                                renderProp(playerAnimals.get(4).getProperty().get(0), playerImageView_5_1);
-                                if (playerAnimals.get(4).getProperty().size() >= 2) {
-                                    renderProp(playerAnimals.get(4).getProperty().get(1), playerImageView_5_2);
-                                    if (playerAnimals.get(4).getProperty().size() >= 3) {
-                                        renderProp(playerAnimals.get(4).getProperty().get(2), playerImageView_5_3);
-                                        if (playerAnimals.get(4).getProperty().size() >= 4) {
-                                            renderProp(playerAnimals.get(4).getProperty().get(3), playerImageView_5_4);
-                                            if (playerAnimals.get(4).getProperty().size() >= 5) {
-                                                renderProp(playerAnimals.get(4).getProperty().get(4), playerImageView_5_5);
-                                                if (playerAnimals.get(4).getProperty().size() >= 6) {
-                                                    renderProp(playerAnimals.get(4).getProperty().get(5), playerImageView_5_6);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            if (playerAnimals.size() >= 6) {
-                                if (playerAnimals.get(5).getProperty().size() >= 1) {
-                                    renderProp(playerAnimals.get(5).getProperty().get(0), playerImageView_6_1);
-                                    if (playerAnimals.get(5).getProperty().size() >= 2) {
-                                        renderProp(playerAnimals.get(5).getProperty().get(1), playerImageView_6_2);
-                                        if (playerAnimals.get(5).getProperty().size() >= 3) {
-                                            renderProp(playerAnimals.get(5).getProperty().get(2), playerImageView_6_3);
-                                            if (playerAnimals.get(5).getProperty().size() >= 4) {
-                                                renderProp(playerAnimals.get(5).getProperty().get(3), playerImageView_6_4);
-                                                if (playerAnimals.get(5).getProperty().size() >= 5) {
-                                                    renderProp(playerAnimals.get(5).getProperty().get(4), playerImageView_6_5);
-                                                    if (playerAnimals.get(5).getProperty().size() >= 6) {
-                                                        renderProp(playerAnimals.get(5).getProperty().get(5), playerImageView_6_6);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+        }
+    }
+
+    private void renderProps(List<Animal> animals, ImageView imageView_1, ImageView imageView_2, ImageView imageView_3, ImageView imageView_4, ImageView imageView_5, ImageView imageView_6, int i) {
+        if (animals.get(i).getProperty().size() >= 1) {
+            renderProp(animals.get(i).getProperty().get(0), imageView_1);
+            if (animals.get(i).getProperty().size() >= 2) {
+                renderProp(animals.get(i).getProperty().get(1), imageView_2);
+                if (animals.get(i).getProperty().size() >= 3) {
+                    renderProp(animals.get(i).getProperty().get(2), imageView_3);
+                    if (animals.get(i).getProperty().size() >= 4) {
+                        renderProp(animals.get(i).getProperty().get(3), imageView_4);
+                        if (animals.get(i).getProperty().size() >= 5) {
+                            renderProp(animals.get(i).getProperty().get(4), imageView_5);
+                            if (animals.get(i).getProperty().size() >= 6) {
+                                renderProp(animals.get(i).getProperty().get(5), imageView_6);
                             }
                         }
                     }
@@ -666,119 +643,17 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 
     private void renderEnemyAnimals(List<Animal> enemyAnimals) {
         if (enemyAnimals.size() >= 1) {
-            if (enemyAnimals.get(0).getProperty().size() >= 1) {
-                renderProp(enemyAnimals.get(0).getProperty().get(0), enemyImageView_1_1);
-                if (enemyAnimals.get(0).getProperty().size() >= 2) {
-                    renderProp(enemyAnimals.get(0).getProperty().get(1), enemyImageView_1_2);
-                    if (enemyAnimals.get(0).getProperty().size() >= 3) {
-                        renderProp(enemyAnimals.get(0).getProperty().get(2), enemyImageView_1_3);
-                        if (enemyAnimals.get(0).getProperty().size() >= 4) {
-                            renderProp(enemyAnimals.get(0).getProperty().get(3), enemyImageView_1_4);
-                            if (enemyAnimals.get(0).getProperty().size() >= 5) {
-                                renderProp(enemyAnimals.get(0).getProperty().get(4), enemyImageView_1_5);
-                                if (enemyAnimals.get(0).getProperty().size() >= 6) {
-                                    renderProp(enemyAnimals.get(0).getProperty().get(5), enemyImageView_1_6);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            renderProps(enemyAnimals, enemyImageView_1_1, enemyImageView_1_2, enemyImageView_1_3, enemyImageView_1_4, enemyImageView_1_5, enemyImageView_1_6, 0);
             if (enemyAnimals.size() >= 2) {
-                if (enemyAnimals.get(1).getProperty().size() >= 1) {
-                    renderProp(enemyAnimals.get(1).getProperty().get(0), enemyImageView_2_1);
-                    if (enemyAnimals.get(1).getProperty().size() >= 2) {
-                        renderProp(enemyAnimals.get(1).getProperty().get(1), enemyImageView_2_2);
-                        if (enemyAnimals.get(1).getProperty().size() >= 3) {
-                            renderProp(enemyAnimals.get(1).getProperty().get(2), enemyImageView_2_3);
-                            if (enemyAnimals.get(1).getProperty().size() >= 4) {
-                                renderProp(enemyAnimals.get(1).getProperty().get(3), enemyImageView_2_4);
-                                if (enemyAnimals.get(1).getProperty().size() >= 5) {
-                                    renderProp(enemyAnimals.get(1).getProperty().get(4), enemyImageView_2_5);
-                                    if (enemyAnimals.get(1).getProperty().size() >= 6) {
-                                        renderProp(enemyAnimals.get(1).getProperty().get(5), enemyImageView_2_6);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                renderProps(enemyAnimals, enemyImageView_2_1, enemyImageView_2_2, enemyImageView_2_3, enemyImageView_2_4, enemyImageView_2_5, enemyImageView_2_6, 1);
                 if (enemyAnimals.size() >= 3) {
-                    if (enemyAnimals.get(2).getProperty().size() >= 1) {
-                        renderProp(enemyAnimals.get(2).getProperty().get(0), enemyImageView_3_1);
-                        if (enemyAnimals.get(2).getProperty().size() >= 2) {
-                            renderProp(enemyAnimals.get(2).getProperty().get(1), enemyImageView_3_2);
-                            if (enemyAnimals.get(2).getProperty().size() >= 3) {
-                                renderProp(enemyAnimals.get(2).getProperty().get(2), enemyImageView_3_3);
-                                if (enemyAnimals.get(2).getProperty().size() >= 4) {
-                                    renderProp(enemyAnimals.get(2).getProperty().get(3), enemyImageView_3_4);
-                                    if (enemyAnimals.get(2).getProperty().size() >= 5) {
-                                        renderProp(enemyAnimals.get(2).getProperty().get(4), enemyImageView_3_5);
-                                        if (enemyAnimals.get(2).getProperty().size() >= 6) {
-                                            renderProp(enemyAnimals.get(2).getProperty().get(5), enemyImageView_3_6);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    renderProps(enemyAnimals, enemyImageView_3_1, enemyImageView_3_2, enemyImageView_3_3, enemyImageView_3_4, enemyImageView_3_5, enemyImageView_3_6, 2);
                     if (enemyAnimals.size() >= 4) {
-                        if (enemyAnimals.get(3).getProperty().size() >= 1) {
-                            renderProp(enemyAnimals.get(3).getProperty().get(0), enemyImageView_4_1);
-                            if (enemyAnimals.get(3).getProperty().size() >= 2) {
-                                renderProp(enemyAnimals.get(3).getProperty().get(1), enemyImageView_4_2);
-                                if (enemyAnimals.get(3).getProperty().size() >= 3) {
-                                    renderProp(enemyAnimals.get(3).getProperty().get(2), enemyImageView_4_3);
-                                    if (enemyAnimals.get(3).getProperty().size() >= 4) {
-                                        renderProp(enemyAnimals.get(3).getProperty().get(3), enemyImageView_4_4);
-                                        if (enemyAnimals.get(3).getProperty().size() >= 5) {
-                                            renderProp(enemyAnimals.get(3).getProperty().get(4), enemyImageView_4_5);
-                                            if (enemyAnimals.get(3).getProperty().size() >= 6) {
-                                                renderProp(enemyAnimals.get(3).getProperty().get(5), enemyImageView_4_6);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        renderProps(enemyAnimals, enemyImageView_4_1, enemyImageView_4_2, enemyImageView_4_3, enemyImageView_4_4, enemyImageView_4_5, enemyImageView_4_6, 3);
                         if (enemyAnimals.size() >= 5) {
-                            if (enemyAnimals.get(4).getProperty().size() >= 1) {
-                                renderProp(enemyAnimals.get(4).getProperty().get(0), enemyImageView_5_1);
-                                if (enemyAnimals.get(4).getProperty().size() >= 2) {
-                                    renderProp(enemyAnimals.get(4).getProperty().get(1), enemyImageView_5_2);
-                                    if (enemyAnimals.get(4).getProperty().size() >= 3) {
-                                        renderProp(enemyAnimals.get(4).getProperty().get(2), enemyImageView_5_3);
-                                        if (enemyAnimals.get(4).getProperty().size() >= 4) {
-                                            renderProp(enemyAnimals.get(4).getProperty().get(3), enemyImageView_5_4);
-                                            if (enemyAnimals.get(4).getProperty().size() >= 5) {
-                                                renderProp(enemyAnimals.get(4).getProperty().get(4), enemyImageView_5_5);
-                                                if (enemyAnimals.get(4).getProperty().size() >= 6) {
-                                                    renderProp(enemyAnimals.get(4).getProperty().get(5), enemyImageView_5_6);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                            renderProps(enemyAnimals, enemyImageView_5_1, enemyImageView_5_2, enemyImageView_5_3, enemyImageView_5_4, enemyImageView_5_5, enemyImageView_4_6, 4);
                             if (enemyAnimals.size() >= 6) {
-                                if (enemyAnimals.get(5).getProperty().size() >= 1) {
-                                    renderProp(enemyAnimals.get(5).getProperty().get(0), enemyImageView_6_1);
-                                    if (enemyAnimals.get(5).getProperty().size() >= 2) {
-                                        renderProp(enemyAnimals.get(5).getProperty().get(1), enemyImageView_6_2);
-                                        if (enemyAnimals.get(5).getProperty().size() >= 3) {
-                                            renderProp(enemyAnimals.get(5).getProperty().get(2), enemyImageView_6_3);
-                                            if (enemyAnimals.get(5).getProperty().size() >= 4) {
-                                                renderProp(enemyAnimals.get(5).getProperty().get(3), enemyImageView_6_4);
-                                                if (enemyAnimals.get(5).getProperty().size() >= 5) {
-                                                    renderProp(enemyAnimals.get(5).getProperty().get(4), enemyImageView_6_5);
-                                                    if (enemyAnimals.get(5).getProperty().size() >= 6) {
-                                                        renderProp(enemyAnimals.get(5).getProperty().get(5), enemyImageView_6_6);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                                renderProps(enemyAnimals, enemyImageView_6_1, enemyImageView_6_2, enemyImageView_6_3, enemyImageView_6_4, enemyImageView_4_5, enemyImageView_6_6, 5);
                             }
                         }
                     }
@@ -885,6 +760,11 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                 break;
             }
         }
+    }
+
+    public void open() {
+        Intent intent = new Intent(this, MainHandActivity.class);
+        startActivity(intent);
     }
 
     @Override
