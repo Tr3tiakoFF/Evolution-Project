@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
 //                WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 //                String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
-                server.start(6666);
+                server.start();
             }
         });
 
