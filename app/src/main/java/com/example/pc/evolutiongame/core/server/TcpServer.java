@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -51,15 +52,16 @@ public class TcpServer implements Sendable {
             public void run() {
                 try {
                     System.out.println("Trying to start tcp server");
-                    ServerSocket serverSocket = new ServerSocket();
-                    InetSocketAddress inetSocketAddress;
-                    if (host == null) {
-                        inetSocketAddress = new InetSocketAddress(port);
-                    } else {
-                        inetSocketAddress = new InetSocketAddress(host, port);
+                    ServerSocket serverSocket = new ServerSocket(port);
+//                    InetSocketAddress inetSocketAddress;
+//                    if (host == null) {
+//                        inetSocketAddress = new InetSocketAddress(port);
+//                    } else {
+//                        inetSocketAddress = new InetSocketAddress(host, port);
+//
+//                    }
 
-                    }
-
+                    SocketAddress inetSocketAddress = serverSocket.getLocalSocketAddress();
                     System.out.printf("Server is trying to bind to -> %s%n", inetSocketAddress);
                     serverSocket.bind(inetSocketAddress);
                     System.out.printf("Server is binded to -> %s%n", inetSocketAddress);

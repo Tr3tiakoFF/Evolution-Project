@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
 //                } catch (Exception e) {
 //                    e.printStackTrace();
 //                }
-//                nsdManager.discoverServices(SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, discoveryListener);
+//                nsdManager.discoverServices("_evolution._tcp", NsdManager.PROTOCOL_DNS_SD, discoveryListener);
             }
         });
 
