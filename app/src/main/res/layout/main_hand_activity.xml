@@ -69,10 +69,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/playAnimal1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="Animal" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -81,10 +81,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/Prop1_1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="1_prop" />
 
                         <TextView
                             android:id="@+id/textView6"
@@ -93,10 +93,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button2"
+                            android:id="@+id/Prop5_1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="2_Prop" />
 
                         <TextView
                             android:id="@+id/textView7"
@@ -166,10 +166,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/playAnimal2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="Animal" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -181,7 +181,7 @@
                             android:id="@+id/button3"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="1_prop" />
 
                         <TextView
                             android:id="@+id/textView6"
@@ -190,10 +190,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button2"
+                            android:id="@+id/Prop2_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="2_Prop" />
 
                         <TextView
                             android:id="@+id/textView7"
@@ -262,10 +262,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/playAnimal3"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="Animal" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -274,10 +274,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/Prop3_1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="1_prop" />
 
                         <TextView
                             android:id="@+id/textView6"
@@ -286,10 +286,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button2"
+                            android:id="@+id/Prop3_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="2_Prop" />
 
                         <TextView
                             android:id="@+id/textView7"
@@ -358,10 +358,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/playAnimal4"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="Animal" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -370,10 +370,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/Prop4_1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="1_prop" />
 
                         <TextView
                             android:id="@+id/textView6"
@@ -382,10 +382,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button2"
+                            android:id="@+id/Prop4_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="2_Prop" />
 
                         <TextView
                             android:id="@+id/textView7"
@@ -455,10 +455,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/playAnimal5"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="Animal" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -470,7 +470,7 @@
                             android:id="@+id/button3"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="1_prop" />
 
                         <TextView
                             android:id="@+id/textView6"
@@ -479,10 +479,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button2"
+                            android:id="@+id/Prop5_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="2_Prop" />
 
                         <TextView
                             android:id="@+id/textView7"
@@ -551,10 +551,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/playAnimal6"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="Animal" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -563,10 +563,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/Prop6_1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="1_prop" />
 
                         <TextView
                             android:id="@+id/textView6"
@@ -575,10 +575,10 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button2"
+                            android:id="@+id/Prop6_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Button" />
+                            android:text="2_Prop" />
 
                         <TextView
                             android:id="@+id/textView7"

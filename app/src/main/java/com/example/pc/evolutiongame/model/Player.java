@@ -48,9 +48,9 @@ public class Player {
     }
 
     public void playProperty(Field field, int localRandomCardNumber, int localRandomAnimalNumber, int cardPropertyNum) {
-        if (isValid(field.getAnimals().get(localRandomAnimalNumber).properties, cards.get(localRandomCardNumber).properties.get(cardPropertyNum))
+        if (isValid(field.getAnimals(this).get(localRandomAnimalNumber).properties, cards.get(localRandomCardNumber).properties.get(cardPropertyNum))
         )
-            field.getAnimals().get(localRandomAnimalNumber).properties.add(cards.get(localRandomCardNumber).properties.get(cardPropertyNum));
+            field.getAnimals(this).get(localRandomAnimalNumber).properties.add(cards.get(localRandomCardNumber).properties.get(cardPropertyNum));
         cards.remove(localRandomCardNumber);
     }
 

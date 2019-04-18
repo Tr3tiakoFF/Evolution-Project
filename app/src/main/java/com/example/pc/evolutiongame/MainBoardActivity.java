@@ -236,19 +236,19 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 
         render(room);
 
-        playerAnimal1.setVisibility(View.INVISIBLE);
-        playerAnimal2.setVisibility(View.INVISIBLE);
-        playerAnimal3.setVisibility(View.INVISIBLE);
-        playerAnimal4.setVisibility(View.INVISIBLE);
-        playerAnimal5.setVisibility(View.INVISIBLE);
-        playerAnimal6.setVisibility(View.INVISIBLE);
-
-        enemyAnimal1.setVisibility(View.INVISIBLE);
-        enemyAnimal2.setVisibility(View.INVISIBLE);
-        enemyAnimal3.setVisibility(View.INVISIBLE);
-        enemyAnimal4.setVisibility(View.INVISIBLE);
-        enemyAnimal5.setVisibility(View.INVISIBLE);
-        enemyAnimal6.setVisibility(View.INVISIBLE);
+//        playerAnimal1.setVisibility(View.INVISIBLE);
+//        playerAnimal2.setVisibility(View.INVISIBLE);
+//        playerAnimal3.setVisibility(View.INVISIBLE);
+//        playerAnimal4.setVisibility(View.INVISIBLE);
+//        playerAnimal5.setVisibility(View.INVISIBLE);
+//        playerAnimal6.setVisibility(View.INVISIBLE);
+//
+//        enemyAnimal1.setVisibility(View.INVISIBLE);
+//        enemyAnimal2.setVisibility(View.INVISIBLE);
+//        enemyAnimal3.setVisibility(View.INVISIBLE);
+//        enemyAnimal4.setVisibility(View.INVISIBLE);
+//        enemyAnimal5.setVisibility(View.INVISIBLE);
+//        enemyAnimal6.setVisibility(View.INVISIBLE);
 
         hand.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -286,19 +286,19 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 
                 render(room);
 
-                playerAnimal1.setVisibility(View.INVISIBLE);
-                playerAnimal2.setVisibility(View.INVISIBLE);
-                playerAnimal3.setVisibility(View.INVISIBLE);
-                playerAnimal4.setVisibility(View.INVISIBLE);
-                playerAnimal5.setVisibility(View.INVISIBLE);
-                playerAnimal6.setVisibility(View.INVISIBLE);
-
-                enemyAnimal1.setVisibility(View.INVISIBLE);
-                enemyAnimal2.setVisibility(View.INVISIBLE);
-                enemyAnimal3.setVisibility(View.INVISIBLE);
-                enemyAnimal4.setVisibility(View.INVISIBLE);
-                enemyAnimal5.setVisibility(View.INVISIBLE);
-                enemyAnimal6.setVisibility(View.INVISIBLE);
+//                playerAnimal1.setVisibility(View.INVISIBLE);
+//                playerAnimal2.setVisibility(View.INVISIBLE);
+//                playerAnimal3.setVisibility(View.INVISIBLE);
+//                playerAnimal4.setVisibility(View.INVISIBLE);
+//                playerAnimal5.setVisibility(View.INVISIBLE);
+//                playerAnimal6.setVisibility(View.INVISIBLE);
+//
+//                enemyAnimal1.setVisibility(View.INVISIBLE);
+//                enemyAnimal2.setVisibility(View.INVISIBLE);
+//                enemyAnimal3.setVisibility(View.INVISIBLE);
+//                enemyAnimal4.setVisibility(View.INVISIBLE);
+//                enemyAnimal5.setVisibility(View.INVISIBLE);
+//                enemyAnimal6.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -639,6 +639,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
                 }
             }
         }
+        System.out.println(i);
     }
 
     private void renderEnemyAnimals(List<Animal> enemyAnimals) {
@@ -769,7 +770,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 
     @Override
     public void render(Room room) {
-        renderAnimalPropertes(room);
         renderAnimals(room);
+        renderAnimalPropertes(room);
     }
 }
