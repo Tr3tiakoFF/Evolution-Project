@@ -1,6 +1,7 @@
 package com.example.pc.evolutiongame.core;
 
 import android.net.nsd.NsdManager;
+import android.net.wifi.p2p.WifiP2pManager;
 
 import com.example.pc.evolutiongame.model.Room;
 
@@ -10,6 +11,8 @@ public class EvolutionContext {
     private Sendable sender;
     private int port;
     private NsdManager nsdManager;
+    private WifiP2pManager wifiP2pManager;
+    private WifiP2pManager.Channel channel;
 
     public String getId() {
         return id;
@@ -49,5 +52,22 @@ public class EvolutionContext {
 
     public NsdManager getNsdManager() {
         return nsdManager;
+    }
+
+    public void setWifiP2pManager(WifiP2pManager wifiP2pManager) {
+
+        this.wifiP2pManager = wifiP2pManager;
+    }
+
+    public WifiP2pManager getWifiP2pManager() {
+        return wifiP2pManager;
+    }
+
+    public void setChannel(WifiP2pManager.Channel channel) {
+        this.channel = channel;
+    }
+
+    public WifiP2pManager.Channel getChannel() {
+        return channel;
     }
 }

@@ -10,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -128,7 +127,7 @@ public class TcpServer implements Sendable {
     }
 
     public static void main(String[] args) {
-        TcpServer server = getServerConfiguration(null);
+        TcpServer server = getServerConfiguration(null, wifiP2pManager, channel);
         server.start(SERVER_HOST, SERVER_PORT);
     }
 }
