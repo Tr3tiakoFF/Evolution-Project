@@ -9,7 +9,6 @@ import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceRequest;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -185,39 +184,7 @@ public class MainActivity extends Activity {
 //                    }
 //                });
 
-//        WifiP2pDnsSdServiceRequest serviceRequest = WifiP2pDnsSdServiceRequest.newInstance();
-//        wifiP2pManager.addServiceRequest(channel,
-//                serviceRequest,
-//                new WifiP2pManager.ActionListener() {
-//                    @Override
-//                    public void onSuccess() {
-//                        System.out.printf("Success!");
-//                    }
 //
-//                    @Override
-//                    public void onFailure(int code) {
-//                        // Command failed.  Check for P2P_UNSUPPORTED, ERROR, or BUSY
-//                        System.out.printf("Command failed->%d", code);
-//                    }
-//                });
-//
-//
-//        wifiP2pManager.discoverServices(channel, new WifiP2pManager.ActionListener() {
-//
-//            @Override
-//            public void onSuccess() {
-//                // Success!
-//                System.out.printf("Success!");
-//            }
-//
-//            @Override
-//            public void onFailure(int code) {
-//                // Command failed.  Check for P2P_UNSUPPORTED, ERROR, or BUSY
-//                if (code == WifiP2pManager.P2P_UNSUPPORTED) {
-//                    System.out.printf("P2P isn't supported on this device.");
-//                }
-//            }
-//        });
     }
 
     public void open() {
@@ -311,6 +278,41 @@ public class MainActivity extends Activity {
                 System.out.printf("onBonjourServiceAvailable " + instanceName);
             }
         };
+
+
+        WifiP2pDnsSdServiceRequest serviceRequest = WifiP2pDnsSdServiceRequest.newInstance();
+        wifiP2pManager.addServiceRequest(channel,
+                serviceRequest,
+                new WifiP2pManager.ActionListener() {
+                    @Override
+                    public void onSuccess() {
+                        System.out.printf("Success!");
+                    }
+
+                    @Override
+                    public void onFailure(int code) {
+                        // Command failed.  Check for P2P_UNSUPPORTED, ERROR, or BUSY
+                        System.out.printf("Command failed->%d", code);
+                    }
+                });
+
+
+        wifiP2pManager.discoverServices(channel, new WifiP2pManager.ActionListener() {
+
+            @Override
+            public void onSuccess() {
+                // Success!
+                System.out.printf("Success!");
+            }
+
+            @Override
+            public void onFailure(int code) {
+                // Command failed.  Check for P2P_UNSUPPORTED, ERROR, or BUSY
+                if (code == WifiP2pManager.P2P_UNSUPPORTED) {
+                    System.out.printf("P2P isn't supported on this device.");
+                }
+            }
+        });
 
         wifiP2pManager.setDnsSdResponseListeners(channel, servListener, txtListener);
     }

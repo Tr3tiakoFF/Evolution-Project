@@ -36,6 +36,9 @@
         <activity
             android:name=".MainHandActivity"
             android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".GameStartActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
