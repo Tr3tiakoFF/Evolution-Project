@@ -15,7 +15,7 @@ import java.net.Socket;
  */
 public class ChatManager implements Runnable {
 
-    private Socket socket;
+    private Socket socket = null;
     private Handler handler;
 
     public ChatManager(Socket socket, Handler handler) {
@@ -23,6 +23,7 @@ public class ChatManager implements Runnable {
         this.handler = handler;
     }
 
+    private InputStream iStream;
     private OutputStream oStream;
     private static final String TAG = "ChatHandler";
 
@@ -30,7 +31,7 @@ public class ChatManager implements Runnable {
     public void run() {
         try {
 
-            InputStream iStream = socket.getInputStream();
+            iStream = socket.getInputStream();
             oStream = socket.getOutputStream();
             byte[] buffer = new byte[1024];
             int bytes;
@@ -47,7 +48,8 @@ public class ChatManager implements Runnable {
 
                     // Send the obtained bytes to the UI Activity
                     Log.d(TAG, "Rec:" + String.valueOf(buffer));
-                    handler.obtainMessage(WiFiServiceDiscoveryActivity.MESSAGE_READ, bytes, -1, buffer).sendToTarget();
+                    handler.obtainMessage(WiFiServiceDiscoveryActivity.MESSAGE_READ,
+                            bytes, -1, buffer).sendToTarget();
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                 }
