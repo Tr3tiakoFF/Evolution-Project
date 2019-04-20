@@ -5,7 +5,6 @@ import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.model.Room;
 
 import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
-import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 
 public class ServerConnector implements Connectable {
 
@@ -17,7 +16,7 @@ public class ServerConnector implements Connectable {
 
         context.setRoom(new Room(NUMBER_PLAYER));
 
-        String hostAddress = context.getAddress().getHostAddress();
-        getClientConfiguration(null).createConnection(hostAddress, SERVER_PORT);
+        getClientConfiguration(null)
+                .createConnection(context.getAddress().getHostAddress(), context.getPort());
     }
 }

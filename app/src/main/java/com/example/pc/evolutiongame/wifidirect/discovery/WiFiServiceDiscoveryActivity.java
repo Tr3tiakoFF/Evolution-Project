@@ -309,23 +309,9 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
 
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
-//            try {
-//                handler = new GroupOwnerSocketHandler(
-//                        ((WiFiChatFragment.MessageTarget) this).getHandler());
-//                handler.start();
             getServerConfiguration().start(SERVER_PORT);
-//            } catch (IOException e) {
-//                Log.d(TAG,
-//                        "Failed to create a server thread - " + e.getMessage());
-//                return;
-//            }
         } else {
             Log.d(TAG, "Connected as peer");
-//            handler = new ClientSocketHandler(
-//                    ((WiFiChatFragment.MessageTarget) this).getHandler(),
-//                    p2pInfo.groupOwnerAddress);
-//            handler.start();
-
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
             getClientConfiguration(null).createConnection(serverAddress, SERVER_PORT);
         }
@@ -337,6 +323,6 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
 
     public void appendStatus(String status) {
         String current = statusTxtView.getText().toString();
-        statusTxtView.setText(current + "\n" + status);
+        statusTxtView.setText(String.format("%s\n%s", current, status));
     }
 }
