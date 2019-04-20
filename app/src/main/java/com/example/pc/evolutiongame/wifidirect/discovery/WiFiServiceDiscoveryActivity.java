@@ -25,14 +25,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.pc.evolutiongame.core.ClientSocketHandler;
-import com.example.pc.evolutiongame.core.GroupOwnerSocketHandler;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import static android.os.SystemClock.sleep;
+import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
+import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
+import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 
 public class WiFiServiceDiscoveryActivity extends Activity implements
         WiFiDirectServicesList.DeviceClickListener, Handler.Callback, WiFiChatFragment.MessageTarget,
@@ -310,21 +309,24 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
 
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
-            try {
-                handler = new GroupOwnerSocketHandler(
-                        ((WiFiChatFragment.MessageTarget) this).getHandler());
-                handler.start();
-            } catch (IOException e) {
-                Log.d(TAG,
-                        "Failed to create a server thread - " + e.getMessage());
-                return;
-            }
+//            try {
+//                handler = new GroupOwnerSocketHandler(
+//                        ((WiFiChatFragment.MessageTarget) this).getHandler());
+//                handler.start();
+            getServerConfiguration().start(SERVER_PORT);
+//            } catch (IOException e) {
+//                Log.d(TAG,
+//                        "Failed to create a server thread - " + e.getMessage());
+//                return;
+//            }
         } else {
             Log.d(TAG, "Connected as peer");
-            handler = new ClientSocketHandler(
-                    ((WiFiChatFragment.MessageTarget) this).getHandler(),
-                    p2pInfo.groupOwnerAddress);
-            handler.start();
+//            handler = new ClientSocketHandler(
+//                    ((WiFiChatFragment.MessageTarget) this).getHandler(),
+//                    p2pInfo.groupOwnerAddress);
+//            handler.start();
+
+            getClientConfiguration(null).createConnection(p2pInfo.groupOwnerAddress.getHostAddress(), SERVER_PORT);
         }
         chatFragment = new WiFiChatFragment();
         getFragmentManager().beginTransaction()
