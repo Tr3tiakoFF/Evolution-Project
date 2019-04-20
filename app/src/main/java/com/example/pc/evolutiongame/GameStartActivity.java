@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 
 import com.example.pc.evolutiongame.core.UiRenderer;
 import com.example.pc.evolutiongame.model.Room;
@@ -13,7 +13,7 @@ import static android.os.SystemClock.sleep;
 
 public class GameStartActivity extends Activity implements UiRenderer {
 
-    private LinearLayout linearLayout;
+    private ImageView imageView;
     private int alpha = 100, red = 243, green = 0, blue = 23;
     private int colorMin = 0, colorMax = 255;
     private int colorChange = 1;
@@ -23,16 +23,18 @@ public class GameStartActivity extends Activity implements UiRenderer {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_start_activity);
 
-        linearLayout = (LinearLayout) findViewById(R.id.container);
+        imageView = (ImageView) findViewById(R.id.container);
 
-        new Thread(new Runnable() {
+        render(null);
+
+        getWindow().getDecorView().post(new Runnable() {
+
             @Override
             public void run() {
-                setNextColor();
-                sleep(100);
                 render(null);
             }
-        }).start();
+
+        });
     }
 
     private void setNextColor() {
@@ -105,6 +107,8 @@ public class GameStartActivity extends Activity implements UiRenderer {
 
     @Override
     public void render(Room room) {
-        linearLayout.setBackgroundColor(Color.argb(alpha, red, green, blue));
+        setNextColor();
+        imageView.setBackgroundColor(Color.argb(alpha, red, green, blue));
+        sleep(100);
     }
 }
