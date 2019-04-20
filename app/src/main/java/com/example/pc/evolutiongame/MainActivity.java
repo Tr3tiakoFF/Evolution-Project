@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.nsd.NsdManager;
-import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
-import android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceRequest;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,9 +13,6 @@ import android.widget.EditText;
 
 import com.example.pc.evolutiongame.core.client.TcpClient;
 import com.example.pc.evolutiongame.core.server.TcpServer;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
 import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
