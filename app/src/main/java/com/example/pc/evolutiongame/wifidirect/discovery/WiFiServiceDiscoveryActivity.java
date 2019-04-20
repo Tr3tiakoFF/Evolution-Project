@@ -29,6 +29,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.os.SystemClock.sleep;
+
 /**
  * The main activity for the sample. This activity registers a local service and
  * perform discovery over Wi-Fi p2p network. It also hosts a couple of fragments
@@ -81,6 +83,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         statusTxtView = (TextView) findViewById(R.id.status_text);
@@ -100,6 +103,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
         getFragmentManager().beginTransaction()
                 .add(R.id.container_root, servicesList, "services").commit();
 
+        sleep(10);
     }
 
     @Override

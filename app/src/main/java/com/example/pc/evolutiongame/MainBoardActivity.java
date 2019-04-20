@@ -16,6 +16,7 @@ import com.example.pc.evolutiongame.model.Card;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Property;
 import com.example.pc.evolutiongame.model.Room;
+import com.example.pc.evolutiongame.wifidirect.discovery.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_board_activity);
+        setContentView(R.layout.board_activity);
 
         hand = (Button) findViewById(R.id.showDeckButton);
         reRender = (Button) findViewById(R.id.foodCapacityButton);

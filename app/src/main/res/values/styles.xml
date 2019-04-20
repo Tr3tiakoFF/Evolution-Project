@@ -15,4 +15,14 @@
         <item name="android:textColor">#33B5E5</item>
     </style>
 
+    <style name="AppTheme.Launcher">
+
+        <item name="android:windowBackground">@drawable/evolution_174x118</item>
+
+        <!-- Optional, on Android 5+ you can modify the colorPrimaryDark color to match the windowBackground color for further branding-->
+
+        <!-- <item name="colorPrimaryDark">@android:color/white</item> -->
+
+    </style>
+
 </resources>

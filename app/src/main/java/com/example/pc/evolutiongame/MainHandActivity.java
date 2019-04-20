@@ -11,6 +11,7 @@ import com.example.pc.evolutiongame.model.Card;
 import com.example.pc.evolutiongame.model.LowLevelAnimalProperty;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Room;
+import com.example.pc.evolutiongame.wifidirect.discovery.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class MainHandActivity extends Activity implements UiRenderer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_hand_activity);
+        setContentView(R.layout.hand_activity);
 
         playerCard1 = (ImageView) findViewById(R.id.playerCard1);
         playerCard2 = (ImageView) findViewById(R.id.playerCard2);

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.example.pc.evolutiongame.core.UiRenderer;
 import com.example.pc.evolutiongame.model.Room;
+import com.example.pc.evolutiongame.wifidirect.discovery.R;
 
 import static android.os.SystemClock.sleep;
 
@@ -26,15 +27,6 @@ public class GameStartActivity extends Activity implements UiRenderer {
         imageView = (ImageView) findViewById(R.id.container);
 
         render(null);
-
-        getWindow().getDecorView().post(new Runnable() {
-
-            @Override
-            public void run() {
-                render(null);
-            }
-
-        });
     }
 
     private void setNextColor() {
