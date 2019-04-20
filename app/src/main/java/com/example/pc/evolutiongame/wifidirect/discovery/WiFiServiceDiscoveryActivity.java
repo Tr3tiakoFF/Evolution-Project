@@ -326,7 +326,8 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
 //                    p2pInfo.groupOwnerAddress);
 //            handler.start();
 
-            getClientConfiguration(null).createConnection(p2pInfo.groupOwnerAddress.getHostAddress(), SERVER_PORT);
+            String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
+            getClientConfiguration(null).createConnection(serverAddress, SERVER_PORT);
         }
         chatFragment = new WiFiChatFragment();
         getFragmentManager().beginTransaction()

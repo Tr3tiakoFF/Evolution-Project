@@ -52,18 +52,10 @@ public class TcpServer implements Sendable {
                 try {
                     System.out.println("Trying to start tcp server");
                     ServerSocket serverSocket = new ServerSocket(port);
-//                    InetSocketAddress inetSocketAddress;
-//                    if (host == null) {
-//                        inetSocketAddress = new InetSocketAddress(port);
-//                    } else {
-//                        inetSocketAddress = new InetSocketAddress(host, port);
-//                    }
-
                     SocketAddress inetSocketAddress = serverSocket.getLocalSocketAddress();
-//                    System.out.printf("Server is trying to bind to -> %s%n", inetSocketAddress);
-//                    serverSocket.bind(inetSocketAddress);
                     System.out.printf("Server is binded to -> %s%n", inetSocketAddress);
 
+                    context.setAddress(serverSocket.getInetAddress());
                     context.setPort(serverSocket.getLocalPort());
                     context.setSender(TcpServer.this);
                     connectable.started(context);

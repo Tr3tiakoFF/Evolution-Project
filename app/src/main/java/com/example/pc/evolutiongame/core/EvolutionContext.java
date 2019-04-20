@@ -2,11 +2,14 @@ package com.example.pc.evolutiongame.core;
 
 import com.example.pc.evolutiongame.model.Room;
 
+import java.net.InetAddress;
+
 public class EvolutionContext {
     private String id;
     private Room room;
     private Sendable sender;
     private int port;
+    private InetAddress address;
 
     public String getId() {
         return id;
@@ -38,5 +41,13 @@ public class EvolutionContext {
 
     public int getPort() {
         return port;
+    }
+
+    public void setAddress(InetAddress address) {
+        this.address = address;
+    }
+
+    public InetAddress getAddress() {
+        return address;
     }
 }
