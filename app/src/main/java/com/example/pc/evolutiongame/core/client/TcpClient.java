@@ -14,7 +14,6 @@ import java.net.Socket;
 import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_HOST;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
-import static java.lang.Thread.sleep;
 
 public class TcpClient implements Sendable {
     private Socket clientSocket;

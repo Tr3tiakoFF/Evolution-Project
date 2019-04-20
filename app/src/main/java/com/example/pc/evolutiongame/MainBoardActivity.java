@@ -26,7 +26,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 
     Player player;
 
-    Button hand, reRender;
+    Button hand, reRender, open;
 
     Button playerAnimal1, playerAnimal2, playerAnimal3, playerAnimal4, playerAnimal5, playerAnimal6;
     Button enemyAnimal1, enemyAnimal2, enemyAnimal3, enemyAnimal4, enemyAnimal5, enemyAnimal6;
@@ -55,6 +55,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 
         hand = (Button) findViewById(R.id.showDeckButton);
         reRender = (Button) findViewById(R.id.foodCapacityButton);
+        open = (Button) findViewById(R.id.passButton);
 
         playerTable1 = (TableLayout) findViewById(R.id.playerPropertyTable1);
         {
@@ -299,6 +300,13 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 //                enemyAnimal4.setVisibility(View.INVISIBLE);
 //                enemyAnimal5.setVisibility(View.INVISIBLE);
 //                enemyAnimal6.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        open.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                open_();
             }
         });
     }
@@ -765,6 +773,11 @@ public class MainBoardActivity extends Activity implements UiRenderer {
 
     public void open() {
         Intent intent = new Intent(this, MainHandActivity.class);
+        startActivity(intent);
+    }
+
+    public void open_() {
+        Intent intent = new Intent(this, GameStartActivity.class);
         startActivity(intent);
     }
 
