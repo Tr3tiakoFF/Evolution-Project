@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WpsInfo;
 import android.net.wifi.p2p.WifiP2pConfig;
@@ -24,6 +25,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.pc.evolutiongame.MainBoardActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -315,6 +318,8 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
             getClientConfiguration(null).createConnection(serverAddress, SERVER_PORT);
         }
+        Intent intent = new Intent(this, MainBoardActivity.class);
+        startActivity(intent);
         chatFragment = new WiFiChatFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.container_root, chatFragment).commit();
