@@ -1,13 +1,17 @@
 
-package com.example.pc.evolutiongame.wifidirect.discovery;
+package com.example.pc.evolutiongame.core;
 
 import android.os.Handler;
 import android.util.Log;
+
+import com.example.pc.evolutiongame.wifidirect.discovery.ChatManager;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+
+import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 
 public class ClientSocketHandler extends Thread {
 
@@ -26,8 +30,7 @@ public class ClientSocketHandler extends Thread {
         Socket socket = new Socket();
         try {
             socket.bind(null);
-            socket.connect(new InetSocketAddress(mAddress.getHostAddress(),
-                    WiFiServiceDiscoveryActivity.SERVER_PORT), 5000);
+            socket.connect(new InetSocketAddress(mAddress.getHostAddress(), SERVER_PORT), 5000);
             Log.d(TAG, "Launching the I/O handler");
             chat = new ChatManager(socket, handler);
             new Thread(chat).start();

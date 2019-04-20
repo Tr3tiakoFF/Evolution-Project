@@ -25,39 +25,30 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.pc.evolutiongame.core.ClientSocketHandler;
+import com.example.pc.evolutiongame.core.GroupOwnerSocketHandler;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import static android.os.SystemClock.sleep;
 
-/**
- * The main activity for the sample. This activity registers a local service and
- * perform discovery over Wi-Fi p2p network. It also hosts a couple of fragments
- * to manage chat operations. When the app is launched, the device publishes a
- * chat service and also tries to discover services published by other peers. On
- * selecting a peer published service, the app initiates a Wi-Fi P2P (Direct)
- * connection with the peer. On successful connection with a peer advertising
- * the same service, the app opens up sockets to initiate a chat.
- * {@code WiFiChatFragment} is then added to the the main activity which manages
- * the interface and messaging needs for a chat session.
- */
 public class WiFiServiceDiscoveryActivity extends Activity implements
         WiFiDirectServicesList.DeviceClickListener, Handler.Callback, WiFiChatFragment.MessageTarget,
         ConnectionInfoListener {
 
-    public static final String TAG = "wifidirectdemo";
+    public static final String TAG = "evolutiongame";
 
-    // TXT RECORD properties
     public static final String TXTRECORD_PROP_AVAILABLE = "available";
-    public static final String SERVICE_INSTANCE = "_wifidemotest";
-    public static final String SERVICE_REG_TYPE = "_presence._tcp";
+    public static final String SERVICE_INSTANCE = "_evolution_game";
+    public static final String SERVICE_REG_TYPE = "_evolution._tcp";
 
     public static final int MESSAGE_READ = 0x400 + 1;
     public static final int MY_HANDLE = 0x400 + 2;
     private WifiP2pManager manager;
 
-    static final int SERVER_PORT = 4545;
+//    public static final int SERVER_PORT = 4545;
 
     private final IntentFilter intentFilter = new IntentFilter();
     private Channel channel;
