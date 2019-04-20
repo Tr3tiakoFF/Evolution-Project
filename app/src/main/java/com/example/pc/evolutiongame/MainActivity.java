@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.pc.evolutiongame.wifidirect.discovery.R;
 import com.example.pc.evolutiongame.wifidirect.discovery.WiFiServiceDiscoveryActivity;
@@ -12,6 +13,7 @@ import com.example.pc.evolutiongame.wifidirect.discovery.WiFiServiceDiscoveryAct
 public class MainActivity extends Activity {
     Button startServer;
     Button startClient;
+    Button startHyb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +21,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_start_activity);
 
-        startServer = (Button) findViewById(R.id.serverButton);
-        startClient = (Button) findViewById(R.id.clientButton);
+        startServer = (Button) findViewById(R.id.onlineButton);
+        startClient = (Button) findViewById(R.id.offlineButton);
+        startHyb = (Button) findViewById(R.id.hybridButton);
 
 
         startServer.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +39,13 @@ public class MainActivity extends Activity {
                 openClient();
             }
         });
+
+        startHyb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHyb();
+            }
+        });
     }
 
     public void openServer() {
@@ -44,7 +54,10 @@ public class MainActivity extends Activity {
     }
 
     public void openClient() {
-        Intent intent = new Intent(this, WiFiServiceDiscoveryActivity.class);
-        startActivity(intent);
+        Toast.makeText(this, "In dev :)", Toast.LENGTH_SHORT).show();
+    }
+
+    public void openHyb() {
+        Toast.makeText(this, "In dev :)", Toast.LENGTH_SHORT).show();
     }
 }
