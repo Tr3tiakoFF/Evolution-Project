@@ -21,17 +21,19 @@ import java.util.List;
  */
 public class WiFiChatFragment extends Fragment {
 
+    private View view;
     private ChatManager chatManager;
     private TextView chatLine;
+    private ListView listView;
     ChatMessageAdapter adapter = null;
-    private List<String> items = new ArrayList<>();
+    private List<String> items = new ArrayList<String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_chat, container, false);
+        view = inflater.inflate(R.layout.fragment_chat, container, false);
         chatLine = (TextView) view.findViewById(R.id.txtChatLine);
-        ListView listView = (ListView) view.findViewById(android.R.id.list);
+        listView = (ListView) view.findViewById(android.R.id.list);
         adapter = new ChatMessageAdapter(getActivity(), android.R.id.text1,
                 items);
         listView.setAdapter(adapter);
@@ -69,6 +71,8 @@ public class WiFiChatFragment extends Fragment {
      * ArrayAdapter to manage chat messages.
      */
     public class ChatMessageAdapter extends ArrayAdapter<String> {
+
+        List<String> messages = null;
 
         public ChatMessageAdapter(Context context, int textViewResourceId, List<String> items) {
             super(context, textViewResourceId, items);

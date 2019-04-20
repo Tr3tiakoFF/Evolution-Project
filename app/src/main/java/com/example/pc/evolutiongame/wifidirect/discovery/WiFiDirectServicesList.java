@@ -21,8 +21,10 @@ import java.util.List;
  */
 public class WiFiDirectServicesList extends ListFragment {
 
+    WiFiDevicesAdapter listAdapter = null;
+
     interface DeviceClickListener {
-        void connectP2p(WiFiP2pService wifiP2pService);
+        public void connectP2p(WiFiP2pService wifiP2pService);
     }
 
     @Override
@@ -34,13 +36,15 @@ public class WiFiDirectServicesList extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        WiFiDevicesAdapter listAdapter = new WiFiDevicesAdapter(this.getActivity(),
-                android.R.layout.simple_list_item_2, android.R.id.text1, new ArrayList<WiFiP2pService>());
+        listAdapter = new WiFiDevicesAdapter(this.getActivity(),
+                android.R.layout.simple_list_item_2, android.R.id.text1,
+                new ArrayList<WiFiP2pService>());
         setListAdapter(listAdapter);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+        // TODO Auto-generated method stub
         ((DeviceClickListener) getActivity()).connectP2p((WiFiP2pService) l
                 .getItemAtPosition(position));
         ((TextView) v.findViewById(android.R.id.text2)).setText("Connecting");
@@ -71,7 +75,7 @@ public class WiFiDirectServicesList extends ListFragment {
                         .findViewById(android.R.id.text1);
 
                 if (nameText != null) {
-                    nameText.setText(String.format("%s - %s", service.device.deviceName, service.instanceName));
+                    nameText.setText(service.device.deviceName + " - " + service.instanceName);
                 }
                 TextView statusText = (TextView) v
                         .findViewById(android.R.id.text2);
