@@ -34,9 +34,9 @@ import java.util.Map;
 
 import static android.os.SystemClock.sleep;
 
-public class WiFiServiceDiscoveryActivity extends Activity implements
-        WiFiDirectServicesList.DeviceClickListener, Handler.Callback, WiFiChatFragment.MessageTarget,
-        ConnectionInfoListener {
+public class WiFiServiceDiscoveryActivity extends Activity
+        implements WiFiDirectServicesList.DeviceClickListener, Handler.Callback,
+        WiFiChatFragment.MessageTarget, ConnectionInfoListener {
 
     public static final String TAG = "evolutiongame";
 
@@ -48,8 +48,6 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
     public static final int MY_HANDLE = 0x400 + 2;
     private WifiP2pManager manager;
 
-//    public static final int SERVER_PORT = 4545;
-
     private final IntentFilter intentFilter = new IntentFilter();
     private Channel channel;
     private BroadcastReceiver receiver = null;
@@ -57,16 +55,11 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
 
     private Handler handler = new Handler(this);
     private WiFiChatFragment chatFragment;
-    private WiFiDirectServicesList servicesList;
 
     private TextView statusTxtView;
 
     public Handler getHandler() {
         return handler;
-    }
-
-    public void setHandler(Handler handler) {
-        this.handler = handler;
     }
 
     /**
@@ -90,7 +83,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
         channel = manager.initialize(this, getMainLooper(), null);
         startRegistrationAndDiscovery();
 
-        servicesList = new WiFiDirectServicesList();
+        WiFiDirectServicesList servicesList = new WiFiDirectServicesList();
         getFragmentManager().beginTransaction()
                 .add(R.id.container_root, servicesList, "services").commit();
 
@@ -129,7 +122,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
      * Registers a local service and then initiates a service discovery
      */
     private void startRegistrationAndDiscovery() {
-        Map<String, String> record = new HashMap<String, String>();
+        Map<String, String> record = new HashMap<>();
         record.put(TXTRECORD_PROP_AVAILABLE, "visible");
 
         WifiP2pDnsSdServiceInfo service = WifiP2pDnsSdServiceInfo.newInstance(
@@ -182,8 +175,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
                                 service.serviceRegistrationType = registrationType;
                                 adapter.add(service);
                                 adapter.notifyDataSetChanged();
-                                Log.d(TAG, "onBonjourServiceAvailable "
-                                        + instanceName);
+                                Log.d(TAG, "onBonjourServiceAvailable " + instanceName);
                             }
                         }
 
@@ -301,7 +293,6 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
 
     @Override
     public void onConnectionInfoAvailable(WifiP2pInfo p2pInfo) {
-        Thread handler = null;
         /*
          * The group owner accepts connections using a server socket and then spawns a
          * client socket for every client. This is handled by {@code
@@ -311,29 +302,28 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
             try {
-                handler = new GroupOwnerSocketHandler(
-                        ((WiFiChatFragment.MessageTarget) this).getHandler());
+                Thread handler =
+                        new GroupOwnerSocketHandler(((WiFiChatFragment.MessageTarget) this).getHandler());
                 handler.start();
+                return;
             } catch (IOException e) {
-                Log.d(TAG,
-                        "Failed to create a server thread - " + e.getMessage());
+                Log.d(TAG, "Failed to create a server thread - " + e.getMessage());
                 return;
             }
-        } else {
-            Log.d(TAG, "Connected as peer");
-            handler = new ClientSocketHandler(
-                    ((WiFiChatFragment.MessageTarget) this).getHandler(),
-                    p2pInfo.groupOwnerAddress);
-            handler.start();
         }
+        Log.d(TAG, "Connected as peer");
+        Thread handler = new ClientSocketHandler(
+                ((WiFiChatFragment.MessageTarget) this).getHandler(),
+                p2pInfo.groupOwnerAddress);
+        handler.start();
+
         chatFragment = new WiFiChatFragment();
-        getFragmentManager().beginTransaction()
-                .replace(R.id.container_root, chatFragment).commit();
+        getFragmentManager().beginTransaction().replace(R.id.container_root, chatFragment).commit();
         statusTxtView.setVisibility(View.GONE);
     }
 
     public void appendStatus(String status) {
         String current = statusTxtView.getText().toString();
-        statusTxtView.setText(current + "\n" + status);
+        statusTxtView.setText(String.format("%s\n%s", current, status));
     }
 }

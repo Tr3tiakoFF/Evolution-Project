@@ -34,11 +34,6 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
         this.activity = activity;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see android.content.BroadcastReceiver#onReceive(android.content.Context,
-     * android.content.Intent)
-     */
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
@@ -49,8 +44,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                 return;
             }
 
-            NetworkInfo networkInfo = (NetworkInfo) intent
-                    .getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO);
+            NetworkInfo networkInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO);
 
             if (networkInfo.isConnected()) {
 
@@ -60,11 +54,12 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                         "Connected to p2p network. Requesting network details");
                 manager.requestConnectionInfo(channel,
                         (ConnectionInfoListener) activity);
-            } else {
-                // It's a disconnect
             }
-        } else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION
-                .equals(action)) {
+
+            return;
+        }
+
+        if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)) {
 
             WifiP2pDevice device = (WifiP2pDevice) intent
                     .getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_DEVICE);

@@ -85,7 +85,7 @@ public class TcpClient implements Sendable {
     }
 
     public static void main(String[] args) {
-        TcpClient client = getClientConfiguration(null, null, null);
+        TcpClient client = getClientConfiguration(null);
         client.createConnection(SERVER_HOST, SERVER_PORT);
 
 //        for (int i = 0; i < 100; i++) {
