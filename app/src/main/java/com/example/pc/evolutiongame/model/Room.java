@@ -4,6 +4,7 @@ import com.example.pc.evolutiongame.logic.FoodGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Room {
     private final Field field;
@@ -16,7 +17,7 @@ public class Room {
     public Room() {
         this.numberPlayers = 2;
         this.field = new Field();
-        this.players = new ArrayList<>();
+        this.players = new CopyOnWriteArrayList<>();
         this.deck = new ArrayList<>();
         this.capacityFood = 0;
         this.playerControlCount = 0;

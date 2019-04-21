@@ -4,9 +4,10 @@ import com.example.pc.evolutiongame.logic.CubeThrower;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Field {
-    private List<Animal> animals = new ArrayList<Animal>();
+    private List<Animal> animals = new CopyOnWriteArrayList<>();
 
     public void addAnimal(Player player) {
         animals.add(new Animal(player));
