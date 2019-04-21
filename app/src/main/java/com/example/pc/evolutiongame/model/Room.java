@@ -200,4 +200,8 @@ public class Room {
     public List<Animal> getAnimalsList() {
         return this.field.getAnimals();
     }
+
+    public void calculateAnimalsFoodCapacity() {
+        field.calculateAnimalsFoodCapacity();
+    }
 }
