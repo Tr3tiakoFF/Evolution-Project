@@ -17,34 +17,6 @@
 
     <uses-feature android:name="android.hardware.wifi" />
 
-    <!--<application-->
-    <!--android:allowBackup="true"-->
-    <!--android:icon="@mipmap/ic_launcher"-->
-    <!--android:label="@string/app_name"-->
-    <!--android:roundIcon="@mipmap/ic_launcher_round"-->
-    <!--android:screenOrientation="landscape"-->
-    <!--android:supportsRtl="true"-->
-    <!--android:theme="@style/AppTheme">-->
-    <!--<activity-->
-    <!--android:name=".MainActivity"-->
-    <!--android:screenOrientation="landscape">-->
-    <!--<intent-filter>-->
-    <!--<action android:name="android.intent.action.MAIN" />-->
-
-    <!--<category android:name="android.intent.category.LAUNCHER" />-->
-    <!--</intent-filter>-->
-    <!--</activity>-->
-    <!--<activity-->
-    <!--android:name=".MainBoardActivity"-->
-    <!--android:screenOrientation="landscape"></activity>-->
-    <!--<activity-->
-    <!--android:name=".MainHandActivity"-->
-    <!--android:screenOrientation="landscape"></activity>-->
-    <!--<activity-->
-    <!--android:name=".GameStartActivity"-->
-    <!--android:screenOrientation="landscape"></activity>-->
-    <!--</application>-->
-
     <application
         android:icon="@drawable/entity_36x36"
         android:theme="@style/AppTheme.Launcher">
@@ -59,9 +31,6 @@
 
         <activity
             android:name=".WiFiServiceDiscoveryActivity"
-            android:screenOrientation="landscape"></activity>
-        <activity
-            android:name="com.example.pc.evolutiongame.MainBoardActivity"
             android:screenOrientation="landscape"></activity>
         <activity
             android:name="com.example.pc.evolutiongame.MainHandActivity"

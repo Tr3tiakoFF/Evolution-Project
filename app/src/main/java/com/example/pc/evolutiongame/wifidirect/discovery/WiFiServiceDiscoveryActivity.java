@@ -27,6 +27,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.pc.evolutiongame.BoardFragment;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +38,7 @@ import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 
 public class WiFiServiceDiscoveryActivity extends Activity
-        implements WiFiDirectServicesList.DeviceClickListener, Handler.Callback,
-        WiFiChatFragment.MessageTarget, ConnectionInfoListener {
+        implements WiFiDirectServicesList.DeviceClickListener, Handler.Callback, ConnectionInfoListener {
 
     public static final String TAG = "evolutiongame";
 
@@ -55,18 +56,9 @@ public class WiFiServiceDiscoveryActivity extends Activity
     private WifiP2pDnsSdServiceRequest serviceRequest;
 
     private Handler handler = new Handler(this);
-    private WiFiChatFragment chatFragment;
-    private WiFiDirectServicesList servicesList;
+    private BoardFragment chatFragment;
 
     private TextView statusTxtView;
-
-    public Handler getHandler() {
-        return handler;
-    }
-
-    public void setHandler(Handler handler) {
-        this.handler = handler;
-    }
 
     /**
      * Called when the activity is first created.
@@ -92,7 +84,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
         channel = manager.initialize(this, getMainLooper(), null);
         startRegistrationAndDiscovery();
 
-        servicesList = new WiFiDirectServicesList();
+        WiFiDirectServicesList servicesList = new WiFiDirectServicesList();
         getFragmentManager().beginTransaction()
                 .add(R.id.container_root, servicesList, "services").commit();
 
@@ -274,12 +266,12 @@ public class WiFiServiceDiscoveryActivity extends Activity
         switch (msg.what) {
             case MESSAGE_READ:
                 String readMessage = (String) msg.obj;
-                (chatFragment).pushMessage("Buddy: " + readMessage);
+                (chatFragment).pushMessage(readMessage);
                 break;
 
             case MY_HANDLE:
                 Object obj = msg.obj;
-                (chatFragment).setChatManager((ChatManager) obj);
+//                (chatFragment).setChatManager((ChatManager) obj);
 
         }
         return true;
@@ -305,8 +297,6 @@ public class WiFiServiceDiscoveryActivity extends Activity
          * client socket for every client. This is handled by {@code
          * GroupOwnerSocketHandler}
          */
-
-        chatFragment = new WiFiChatFragment();
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
             getServerConfiguration().start(SERVER_PORT);
@@ -316,9 +306,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
             getClientConfiguration(handler).start(serverAddress, SERVER_PORT);
         }
 
-//        Intent intent = new Intent(this, MainBoardActivity.class);
-//        startActivity(intent);
-
+        chatFragment = new BoardFragment();
         getFragmentManager().beginTransaction().replace(R.id.container_root, chatFragment).commit();
         statusTxtView.setVisibility(View.GONE);
     }

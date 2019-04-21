@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context="com.example.pc.evolutiongame.MainBoardActivity">
+    android:background="@drawable/background">
 
     <TableLayout
         android:id="@+id/enemyPropertyTable2"
@@ -1625,8 +1624,8 @@
         android:layout_alignTop="@+id/enemyMinion1"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
-        android:visibility="visible"
-        android:elevation="@android:dimen/app_icon_size">
+        android:elevation="@android:dimen/app_icon_size"
+        android:visibility="visible">
 
         <TableRow
             android:layout_width="match_parent"
