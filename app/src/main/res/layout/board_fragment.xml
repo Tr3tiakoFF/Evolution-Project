@@ -1504,71 +1504,77 @@
         android:text="Animal" />
 
 
-    <Button
-        android:id="@+id/playerMinion1"
-        android:layout_width="78dp"
-        android:layout_height="116dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/animal_174x118"
-        android:text="Animal" />
+    <RelativeLayout
+        android:id="@+id/playerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/playerMinion2"
-        android:layout_width="78dp"
-        android:layout_height="116dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/playerMinion1"
-        android:background="@drawable/animal_174x118"
-        android:text="Animal" />
+        <Button
+            android:id="@+id/playerMinion1"
+            android:layout_width="78dp"
+            android:layout_height="116dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/animal_174x118"
+            android:text="Animal" />
 
-    <Button
-        android:id="@+id/playerMinion3"
-        android:layout_width="78dp"
-        android:layout_height="116dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/playerMinion2"
-        android:background="@drawable/animal_174x118"
-        android:text="Animal" />
+        <Button
+            android:id="@+id/playerMinion2"
+            android:layout_width="78dp"
+            android:layout_height="116dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/playerMinion1"
+            android:background="@drawable/animal_174x118"
+            android:text="Animal" />
 
-    <Button
-        android:id="@+id/playerMinion4"
-        android:layout_width="78dp"
-        android:layout_height="116dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/playerMinion3"
-        android:background="@drawable/animal_174x118"
-        android:text="Animal" />
+        <Button
+            android:id="@+id/playerMinion3"
+            android:layout_width="78dp"
+            android:layout_height="116dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/playerMinion2"
+            android:background="@drawable/animal_174x118"
+            android:text="Animal" />
 
-    <Button
-        android:id="@+id/playerMinion5"
-        android:layout_width="78dp"
-        android:layout_height="116dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/playerMinion4"
-        android:background="@drawable/animal_174x118"
-        android:text="Animal" />
+        <Button
+            android:id="@+id/playerMinion4"
+            android:layout_width="78dp"
+            android:layout_height="116dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/playerMinion3"
+            android:background="@drawable/animal_174x118"
+            android:text="Animal" />
 
-    <Button
-        android:id="@+id/playerMinion6"
-        android:layout_width="78dp"
-        android:layout_height="116dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/playerMinion5"
-        android:background="@drawable/animal_174x118"
-        android:text="Animal" />
+        <Button
+            android:id="@+id/playerMinion5"
+            android:layout_width="78dp"
+            android:layout_height="116dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/playerMinion4"
+            android:background="@drawable/animal_174x118"
+            android:text="Animal" />
+
+        <Button
+            android:id="@+id/playerMinion6"
+            android:layout_width="78dp"
+            android:layout_height="116dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/playerMinion5"
+            android:background="@drawable/animal_174x118"
+            android:text="Animal" />
+    </RelativeLayout>
 
 
     <Button

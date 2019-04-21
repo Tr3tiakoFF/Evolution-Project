@@ -197,7 +197,7 @@ public class Room {
         return counter;
     }
 
-    public List<Animal> getAnimalsList() {
+    public List<Animal> getAnimals() {
         return this.field.getAnimals();
     }
 
