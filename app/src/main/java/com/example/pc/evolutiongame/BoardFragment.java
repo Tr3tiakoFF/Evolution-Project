@@ -1,11 +1,10 @@
 package com.example.pc.evolutiongame;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -24,7 +23,7 @@ import java.util.List;
 
 import static com.example.pc.evolutiongame.Utils.getNewId;
 
-public class MainBoardActivity extends Activity {
+public class BoardFragment extends Fragment {
 
     Player player;
 
@@ -48,145 +47,141 @@ public class MainBoardActivity extends Activity {
     ImageView enemyImageView_4_1, enemyImageView_4_2, enemyImageView_4_3, enemyImageView_4_4, enemyImageView_4_5, enemyImageView_4_6;
     ImageView enemyImageView_5_1, enemyImageView_5_2, enemyImageView_5_3, enemyImageView_5_4, enemyImageView_5_5, enemyImageView_5_6;
     ImageView enemyImageView_6_1, enemyImageView_6_2, enemyImageView_6_3, enemyImageView_6_4, enemyImageView_6_5, enemyImageView_6_6;
-
+    private View view;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.board_activity);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.board_activity, container, false);
 
-        hand = (Button) findViewById(R.id.showDeckButton);
-        reRender = (Button) findViewById(R.id.foodCapacityButton);
-        open = (Button) findViewById(R.id.passButton);
+        hand = (Button) view.findViewById(R.id.showDeckButton);
+        reRender = (Button) view.findViewById(R.id.foodCapacityButton);
+        open = (Button) view.findViewById(R.id.passButton);
 
-        playerTable1 = (TableLayout) findViewById(R.id.playerPropertyTable1);
+        playerTable1 = (TableLayout) view.findViewById(R.id.playerPropertyTable1);
         {
-            playerImageView_1_1 = (ImageView) findViewById(R.id.imageView7_1_1);
-            playerImageView_1_2 = (ImageView) findViewById(R.id.imageView7_1_2);
-            playerImageView_1_3 = (ImageView) findViewById(R.id.imageView7_2_1);
-            playerImageView_1_4 = (ImageView) findViewById(R.id.imageView7_2_2);
-            playerImageView_1_5 = (ImageView) findViewById(R.id.imageView7_3_1);
-            playerImageView_1_6 = (ImageView) findViewById(R.id.imageView7_3_2);
+            playerImageView_1_1 = (ImageView) view.findViewById(R.id.imageView7_1_1);
+            playerImageView_1_2 = (ImageView) view.findViewById(R.id.imageView7_1_2);
+            playerImageView_1_3 = (ImageView) view.findViewById(R.id.imageView7_2_1);
+            playerImageView_1_4 = (ImageView) view.findViewById(R.id.imageView7_2_2);
+            playerImageView_1_5 = (ImageView) view.findViewById(R.id.imageView7_3_1);
+            playerImageView_1_6 = (ImageView) view.findViewById(R.id.imageView7_3_2);
         }
-        playerTable2 = (TableLayout) findViewById(R.id.playerPropertyTable2);
+        playerTable2 = (TableLayout) view.findViewById(R.id.playerPropertyTable2);
         {
-            playerImageView_2_1 = (ImageView) findViewById(R.id.imageView8_1_1);
-            playerImageView_2_2 = (ImageView) findViewById(R.id.imageView8_1_2);
-            playerImageView_2_3 = (ImageView) findViewById(R.id.imageView8_2_1);
-            playerImageView_2_4 = (ImageView) findViewById(R.id.imageView8_2_2);
-            playerImageView_2_5 = (ImageView) findViewById(R.id.imageView8_3_1);
-            playerImageView_2_6 = (ImageView) findViewById(R.id.imageView8_3_2);
+            playerImageView_2_1 = (ImageView) view.findViewById(R.id.imageView8_1_1);
+            playerImageView_2_2 = (ImageView) view.findViewById(R.id.imageView8_1_2);
+            playerImageView_2_3 = (ImageView) view.findViewById(R.id.imageView8_2_1);
+            playerImageView_2_4 = (ImageView) view.findViewById(R.id.imageView8_2_2);
+            playerImageView_2_5 = (ImageView) view.findViewById(R.id.imageView8_3_1);
+            playerImageView_2_6 = (ImageView) view.findViewById(R.id.imageView8_3_2);
         }
-        playerTable3 = (TableLayout) findViewById(R.id.playerPropertyTable3);
+        playerTable3 = (TableLayout) view.findViewById(R.id.playerPropertyTable3);
         {
-            playerImageView_3_1 = (ImageView) findViewById(R.id.imageView9_1_1);
-            playerImageView_3_2 = (ImageView) findViewById(R.id.imageView9_1_2);
-            playerImageView_3_3 = (ImageView) findViewById(R.id.imageView9_2_1);
-            playerImageView_3_4 = (ImageView) findViewById(R.id.imageView9_2_2);
-            playerImageView_3_5 = (ImageView) findViewById(R.id.imageView9_3_1);
-            playerImageView_3_6 = (ImageView) findViewById(R.id.imageView9_3_2);
+            playerImageView_3_1 = (ImageView) view.findViewById(R.id.imageView9_1_1);
+            playerImageView_3_2 = (ImageView) view.findViewById(R.id.imageView9_1_2);
+            playerImageView_3_3 = (ImageView) view.findViewById(R.id.imageView9_2_1);
+            playerImageView_3_4 = (ImageView) view.findViewById(R.id.imageView9_2_2);
+            playerImageView_3_5 = (ImageView) view.findViewById(R.id.imageView9_3_1);
+            playerImageView_3_6 = (ImageView) view.findViewById(R.id.imageView9_3_2);
         }
-        playerTable4 = (TableLayout) findViewById(R.id.playerPropertyTable4);
+        playerTable4 = (TableLayout) view.findViewById(R.id.playerPropertyTable4);
         {
-            playerImageView_4_1 = (ImageView) findViewById(R.id.imageView10_1_1);
-            playerImageView_4_2 = (ImageView) findViewById(R.id.imageView10_1_2);
-            playerImageView_4_3 = (ImageView) findViewById(R.id.imageView10_2_1);
-            playerImageView_4_4 = (ImageView) findViewById(R.id.imageView10_2_2);
-            playerImageView_4_5 = (ImageView) findViewById(R.id.imageView10_3_1);
-            playerImageView_4_6 = (ImageView) findViewById(R.id.imageView10_3_2);
+            playerImageView_4_1 = (ImageView) view.findViewById(R.id.imageView10_1_1);
+            playerImageView_4_2 = (ImageView) view.findViewById(R.id.imageView10_1_2);
+            playerImageView_4_3 = (ImageView) view.findViewById(R.id.imageView10_2_1);
+            playerImageView_4_4 = (ImageView) view.findViewById(R.id.imageView10_2_2);
+            playerImageView_4_5 = (ImageView) view.findViewById(R.id.imageView10_3_1);
+            playerImageView_4_6 = (ImageView) view.findViewById(R.id.imageView10_3_2);
         }
-        playerTable5 = (TableLayout) findViewById(R.id.playerPropertyTable5);
+        playerTable5 = (TableLayout) view.findViewById(R.id.playerPropertyTable5);
         {
-            playerImageView_5_1 = (ImageView) findViewById(R.id.imageView11_1_1);
-            playerImageView_5_2 = (ImageView) findViewById(R.id.imageView11_1_2);
-            playerImageView_5_3 = (ImageView) findViewById(R.id.imageView11_2_1);
-            playerImageView_5_4 = (ImageView) findViewById(R.id.imageView11_2_2);
-            playerImageView_5_5 = (ImageView) findViewById(R.id.imageView11_3_1);
-            playerImageView_5_6 = (ImageView) findViewById(R.id.imageView11_3_2);
+            playerImageView_5_1 = (ImageView) view.findViewById(R.id.imageView11_1_1);
+            playerImageView_5_2 = (ImageView) view.findViewById(R.id.imageView11_1_2);
+            playerImageView_5_3 = (ImageView) view.findViewById(R.id.imageView11_2_1);
+            playerImageView_5_4 = (ImageView) view.findViewById(R.id.imageView11_2_2);
+            playerImageView_5_5 = (ImageView) view.findViewById(R.id.imageView11_3_1);
+            playerImageView_5_6 = (ImageView) view.findViewById(R.id.imageView11_3_2);
         }
-        playerTable6 = (TableLayout) findViewById(R.id.playerPropertyTable6);
+        playerTable6 = (TableLayout) view.findViewById(R.id.playerPropertyTable6);
         {
-            playerImageView_6_1 = (ImageView) findViewById(R.id.imageView12_1_1);
-            playerImageView_6_2 = (ImageView) findViewById(R.id.imageView12_1_2);
-            playerImageView_6_3 = (ImageView) findViewById(R.id.imageView12_2_1);
-            playerImageView_6_4 = (ImageView) findViewById(R.id.imageView12_2_2);
-            playerImageView_6_5 = (ImageView) findViewById(R.id.imageView12_3_1);
-            playerImageView_6_6 = (ImageView) findViewById(R.id.imageView12_3_2);
+            playerImageView_6_1 = (ImageView) view.findViewById(R.id.imageView12_1_1);
+            playerImageView_6_2 = (ImageView) view.findViewById(R.id.imageView12_1_2);
+            playerImageView_6_3 = (ImageView) view.findViewById(R.id.imageView12_2_1);
+            playerImageView_6_4 = (ImageView) view.findViewById(R.id.imageView12_2_2);
+            playerImageView_6_5 = (ImageView) view.findViewById(R.id.imageView12_3_1);
+            playerImageView_6_6 = (ImageView) view.findViewById(R.id.imageView12_3_2);
         }
 
 
-        enemyTable1 = (TableLayout) findViewById(R.id.enemyPropertyTable1);
+        enemyTable1 = (TableLayout) view.findViewById(R.id.enemyPropertyTable1);
         {
-            enemyImageView_1_1 = (ImageView) findViewById(R.id.imageView1_1_1);
-            enemyImageView_1_2 = (ImageView) findViewById(R.id.imageView1_1_2);
-            enemyImageView_1_3 = (ImageView) findViewById(R.id.imageView1_2_1);
-            enemyImageView_1_4 = (ImageView) findViewById(R.id.imageView1_2_2);
-            enemyImageView_1_5 = (ImageView) findViewById(R.id.imageView1_3_1);
-            enemyImageView_1_6 = (ImageView) findViewById(R.id.imageView1_3_2);
+            enemyImageView_1_1 = (ImageView) view.findViewById(R.id.imageView1_1_1);
+            enemyImageView_1_2 = (ImageView) view.findViewById(R.id.imageView1_1_2);
+            enemyImageView_1_3 = (ImageView) view.findViewById(R.id.imageView1_2_1);
+            enemyImageView_1_4 = (ImageView) view.findViewById(R.id.imageView1_2_2);
+            enemyImageView_1_5 = (ImageView) view.findViewById(R.id.imageView1_3_1);
+            enemyImageView_1_6 = (ImageView) view.findViewById(R.id.imageView1_3_2);
         }
-        enemyTable2 = (TableLayout) findViewById(R.id.enemyPropertyTable2);
+        enemyTable2 = (TableLayout) view.findViewById(R.id.enemyPropertyTable2);
         {
-            enemyImageView_2_1 = (ImageView) findViewById(R.id.imageView2_1_1);
-            enemyImageView_2_2 = (ImageView) findViewById(R.id.imageView2_1_2);
-            enemyImageView_2_3 = (ImageView) findViewById(R.id.imageView2_2_1);
-            enemyImageView_2_4 = (ImageView) findViewById(R.id.imageView2_2_2);
-            enemyImageView_2_5 = (ImageView) findViewById(R.id.imageView2_3_1);
-            enemyImageView_2_6 = (ImageView) findViewById(R.id.imageView2_3_2);
+            enemyImageView_2_1 = (ImageView) view.findViewById(R.id.imageView2_1_1);
+            enemyImageView_2_2 = (ImageView) view.findViewById(R.id.imageView2_1_2);
+            enemyImageView_2_3 = (ImageView) view.findViewById(R.id.imageView2_2_1);
+            enemyImageView_2_4 = (ImageView) view.findViewById(R.id.imageView2_2_2);
+            enemyImageView_2_5 = (ImageView) view.findViewById(R.id.imageView2_3_1);
+            enemyImageView_2_6 = (ImageView) view.findViewById(R.id.imageView2_3_2);
         }
-        enemyTable3 = (TableLayout) findViewById(R.id.enemyPropertyTable3);
+        enemyTable3 = (TableLayout) view.findViewById(R.id.enemyPropertyTable3);
         {
-            enemyImageView_3_1 = (ImageView) findViewById(R.id.imageView3_1_1);
-            enemyImageView_3_2 = (ImageView) findViewById(R.id.imageView3_1_2);
-            enemyImageView_3_3 = (ImageView) findViewById(R.id.imageView3_2_1);
-            enemyImageView_3_4 = (ImageView) findViewById(R.id.imageView3_2_2);
-            enemyImageView_3_5 = (ImageView) findViewById(R.id.imageView3_3_1);
-            enemyImageView_3_6 = (ImageView) findViewById(R.id.imageView3_3_2);
+            enemyImageView_3_1 = (ImageView) view.findViewById(R.id.imageView3_1_1);
+            enemyImageView_3_2 = (ImageView) view.findViewById(R.id.imageView3_1_2);
+            enemyImageView_3_3 = (ImageView) view.findViewById(R.id.imageView3_2_1);
+            enemyImageView_3_4 = (ImageView) view.findViewById(R.id.imageView3_2_2);
+            enemyImageView_3_5 = (ImageView) view.findViewById(R.id.imageView3_3_1);
+            enemyImageView_3_6 = (ImageView) view.findViewById(R.id.imageView3_3_2);
         }
-        enemyTable4 = (TableLayout) findViewById(R.id.enemyPropertyTable4);
+        enemyTable4 = (TableLayout) view.findViewById(R.id.enemyPropertyTable4);
         {
-            enemyImageView_4_1 = (ImageView) findViewById(R.id.imageView4_1_1);
-            enemyImageView_4_2 = (ImageView) findViewById(R.id.imageView4_1_2);
-            enemyImageView_4_3 = (ImageView) findViewById(R.id.imageView4_2_1);
-            enemyImageView_4_4 = (ImageView) findViewById(R.id.imageView4_2_2);
-            enemyImageView_4_5 = (ImageView) findViewById(R.id.imageView4_3_1);
-            enemyImageView_4_6 = (ImageView) findViewById(R.id.imageView4_3_2);
+            enemyImageView_4_1 = (ImageView) view.findViewById(R.id.imageView4_1_1);
+            enemyImageView_4_2 = (ImageView) view.findViewById(R.id.imageView4_1_2);
+            enemyImageView_4_3 = (ImageView) view.findViewById(R.id.imageView4_2_1);
+            enemyImageView_4_4 = (ImageView) view.findViewById(R.id.imageView4_2_2);
+            enemyImageView_4_5 = (ImageView) view.findViewById(R.id.imageView4_3_1);
+            enemyImageView_4_6 = (ImageView) view.findViewById(R.id.imageView4_3_2);
         }
-        enemyTable5 = (TableLayout) findViewById(R.id.enemyPropertyTable5);
+        enemyTable5 = (TableLayout) view.findViewById(R.id.enemyPropertyTable5);
         {
-            enemyImageView_5_1 = (ImageView) findViewById(R.id.imageView5_1_1);
-            enemyImageView_5_2 = (ImageView) findViewById(R.id.imageView5_1_2);
-            enemyImageView_5_3 = (ImageView) findViewById(R.id.imageView5_2_1);
-            enemyImageView_5_4 = (ImageView) findViewById(R.id.imageView5_2_2);
-            enemyImageView_5_5 = (ImageView) findViewById(R.id.imageView5_3_1);
-            enemyImageView_5_6 = (ImageView) findViewById(R.id.imageView5_3_2);
+            enemyImageView_5_1 = (ImageView) view.findViewById(R.id.imageView5_1_1);
+            enemyImageView_5_2 = (ImageView) view.findViewById(R.id.imageView5_1_2);
+            enemyImageView_5_3 = (ImageView) view.findViewById(R.id.imageView5_2_1);
+            enemyImageView_5_4 = (ImageView) view.findViewById(R.id.imageView5_2_2);
+            enemyImageView_5_5 = (ImageView) view.findViewById(R.id.imageView5_3_1);
+            enemyImageView_5_6 = (ImageView) view.findViewById(R.id.imageView5_3_2);
         }
-        enemyTable6 = (TableLayout) findViewById(R.id.enemyPropertyTable6);
+        enemyTable6 = (TableLayout) view.findViewById(R.id.enemyPropertyTable6);
         {
-            enemyImageView_6_1 = (ImageView) findViewById(R.id.imageView6_1_1);
-            enemyImageView_6_2 = (ImageView) findViewById(R.id.imageView6_1_2);
-            enemyImageView_6_3 = (ImageView) findViewById(R.id.imageView6_2_1);
-            enemyImageView_6_4 = (ImageView) findViewById(R.id.imageView6_2_2);
-            enemyImageView_6_5 = (ImageView) findViewById(R.id.imageView6_3_1);
-            enemyImageView_6_6 = (ImageView) findViewById(R.id.imageView6_3_2);
+            enemyImageView_6_1 = (ImageView) view.findViewById(R.id.imageView6_1_1);
+            enemyImageView_6_2 = (ImageView) view.findViewById(R.id.imageView6_1_2);
+            enemyImageView_6_3 = (ImageView) view.findViewById(R.id.imageView6_2_1);
+            enemyImageView_6_4 = (ImageView) view.findViewById(R.id.imageView6_2_2);
+            enemyImageView_6_5 = (ImageView) view.findViewById(R.id.imageView6_3_1);
+            enemyImageView_6_6 = (ImageView) view.findViewById(R.id.imageView6_3_2);
         }
 
 
-        playerAnimal1 = (Button) findViewById(R.id.playerMinion1);
-        playerAnimal2 = (Button) findViewById(R.id.playerMinion2);
-        playerAnimal3 = (Button) findViewById(R.id.playerMinion3);
-        playerAnimal4 = (Button) findViewById(R.id.playerMinion4);
-        playerAnimal5 = (Button) findViewById(R.id.playerMinion5);
-        playerAnimal6 = (Button) findViewById(R.id.playerMinion6);
+        playerAnimal1 = (Button) view.findViewById(R.id.playerMinion1);
+        playerAnimal2 = (Button) view.findViewById(R.id.playerMinion2);
+        playerAnimal3 = (Button) view.findViewById(R.id.playerMinion3);
+        playerAnimal4 = (Button) view.findViewById(R.id.playerMinion4);
+        playerAnimal5 = (Button) view.findViewById(R.id.playerMinion5);
+        playerAnimal6 = (Button) view.findViewById(R.id.playerMinion6);
 
-        enemyAnimal1 = (Button) findViewById(R.id.enemyMinion1);
-        enemyAnimal2 = (Button) findViewById(R.id.enemyMinion2);
-        enemyAnimal3 = (Button) findViewById(R.id.enemyMinion3);
-        enemyAnimal4 = (Button) findViewById(R.id.enemyMinion4);
-        enemyAnimal5 = (Button) findViewById(R.id.enemyMinion5);
-        enemyAnimal6 = (Button) findViewById(R.id.enemyMinion6);
+        enemyAnimal1 = (Button) view.findViewById(R.id.enemyMinion1);
+        enemyAnimal2 = (Button) view.findViewById(R.id.enemyMinion2);
+        enemyAnimal3 = (Button) view.findViewById(R.id.enemyMinion3);
+        enemyAnimal4 = (Button) view.findViewById(R.id.enemyMinion4);
+        enemyAnimal5 = (Button) view.findViewById(R.id.enemyMinion5);
+        enemyAnimal6 = (Button) view.findViewById(R.id.enemyMinion6);
 
         final Room room = new Room();
 
@@ -259,7 +254,7 @@ public class MainBoardActivity extends Activity {
         hand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                open();
+//                open();
             }
         });
 
@@ -313,6 +308,8 @@ public class MainBoardActivity extends Activity {
             public void onClick(View view) {
             }
         });
+
+        return view;
     }
 
     private void renderAnimals(Room room) {
@@ -632,7 +629,9 @@ public class MainBoardActivity extends Activity {
         }
     }
 
-    private void renderProps(List<Animal> animals, ImageView imageView_1, ImageView imageView_2, ImageView imageView_3, ImageView imageView_4, ImageView imageView_5, ImageView imageView_6, int i) {
+    private void renderProps(List<Animal> animals, ImageView imageView_1, ImageView
+            imageView_2, ImageView imageView_3, ImageView imageView_4, ImageView imageView_5, ImageView
+                                     imageView_6, int i) {
         if (animals.get(i).getProperty().size() >= 1) {
             renderProp(animals.get(i).getProperty().get(0), imageView_1);
             if (animals.get(i).getProperty().size() >= 2) {
@@ -775,12 +774,10 @@ public class MainBoardActivity extends Activity {
         }
     }
 
-    public void open() {
-        Intent intent = new Intent(this, MainHandActivity.class);
-        startActivity(intent);
+    public void pushMessage(String readMessage) {
+
     }
 
-//    @Override
     public void render(Room room) {
         renderAnimals(room);
         renderAnimalPropertes(room);
