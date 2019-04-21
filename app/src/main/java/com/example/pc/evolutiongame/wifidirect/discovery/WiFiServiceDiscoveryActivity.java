@@ -28,6 +28,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.pc.evolutiongame.BoardFragment;
+import com.example.pc.evolutiongame.HandFragment;
 import com.example.pc.evolutiongame.model.Room;
 
 import java.util.HashMap;
@@ -47,8 +48,9 @@ public class WiFiServiceDiscoveryActivity extends Activity
     public static final String SERVICE_INSTANCE = "_evolution_game";
     public static final String SERVICE_REG_TYPE = "_evolution._tcp";
 
-    public static final int ROOM_READ = 0x400 + 1;
-    public static final int MY_HANDLE = 0x400 + 2;
+    public static final int SET_ID = 0x400 + 1;
+    public static final int ROOM_READ = 0x400 + 2;
+    //    public static final int MY_HANDLE = 0x400 + 2;
     private WifiP2pManager manager;
 
     private final IntentFilter intentFilter = new IntentFilter();
@@ -57,9 +59,11 @@ public class WiFiServiceDiscoveryActivity extends Activity
     private WifiP2pDnsSdServiceRequest serviceRequest;
 
     private Handler handler = new Handler(this);
-    private BoardFragment chatFragment;
+    private BoardFragment boardFragment;
 
     private TextView statusTxtView;
+    private HandFragment handFragment;
+    private String playerId;
 
     /**
      * Called when the activity is first created.
@@ -265,14 +269,19 @@ public class WiFiServiceDiscoveryActivity extends Activity
     @Override
     public boolean handleMessage(Message msg) {
         switch (msg.what) {
-            case ROOM_READ:
-                Room room = (Room) msg.obj;
-                (chatFragment).refreshRoom(room);
+            case SET_ID:
+                playerId = (String) msg.obj;
                 break;
 
-            case MY_HANDLE:
-                Object obj = msg.obj;
-//                (chatFragment).setChatManager((ChatManager) obj);
+            case ROOM_READ:
+                Room room = (Room) msg.obj;
+                boardFragment.refreshRoom(playerId, room);
+                handFragment.refreshRoom(playerId, room);
+                break;
+
+//            case MY_HANDLE:
+//                Object obj = msg.obj;
+//                (boardFragment).setChatManager((ChatManager) obj);
 
         }
         return true;
@@ -307,8 +316,12 @@ public class WiFiServiceDiscoveryActivity extends Activity
             getClientConfiguration(handler).start(serverAddress, SERVER_PORT);
         }
 
-        chatFragment = new BoardFragment();
-        getFragmentManager().beginTransaction().replace(R.id.container_root, chatFragment).commit();
+        boardFragment = new BoardFragment();
+        handFragment = new HandFragment();
+        boardFragment.setHandFragment(handFragment);
+
+        getFragmentManager().beginTransaction().replace(R.id.container_root, boardFragment).commit();
+
         statusTxtView.setVisibility(View.GONE);
     }
 

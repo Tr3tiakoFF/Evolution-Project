@@ -32,9 +32,6 @@
         <activity
             android:name=".WiFiServiceDiscoveryActivity"
             android:screenOrientation="landscape"></activity>
-        <activity
-            android:name="com.example.pc.evolutiongame.MainHandActivity"
-            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

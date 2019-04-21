@@ -39,6 +39,7 @@ public class ClientReceiver implements Processor {
             String id = game.getPlayer().getId();
             System.out.printf("Set id for client->%s%n", id);
             context.setId(id);
+            handler.obtainMessage(WiFiServiceDiscoveryActivity.SET_ID, -1, -1, id).sendToTarget();
         }
 
         if (REFRESH_STATE == game.getAction()) {

@@ -9,10 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 
-import com.example.pc.evolutiongame.logic.CardGiver;
-import com.example.pc.evolutiongame.logic.DeckShufler;
 import com.example.pc.evolutiongame.model.Animal;
-import com.example.pc.evolutiongame.model.Card;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Property;
 import com.example.pc.evolutiongame.model.Room;
@@ -21,9 +18,9 @@ import com.example.pc.evolutiongame.wifidirect.discovery.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.pc.evolutiongame.Utils.getNewId;
-
 public class BoardFragment extends Fragment {
+
+    public static final String TAG = "evolutiongame";
 
     Player player;
 
@@ -47,6 +44,7 @@ public class BoardFragment extends Fragment {
     ImageView enemyImageView_4_1, enemyImageView_4_2, enemyImageView_4_3, enemyImageView_4_4, enemyImageView_4_5, enemyImageView_4_6;
     ImageView enemyImageView_5_1, enemyImageView_5_2, enemyImageView_5_3, enemyImageView_5_4, enemyImageView_5_5, enemyImageView_5_6;
     ImageView enemyImageView_6_1, enemyImageView_6_2, enemyImageView_6_3, enemyImageView_6_4, enemyImageView_6_5, enemyImageView_6_6;
+    private HandFragment handFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -253,7 +251,7 @@ public class BoardFragment extends Fragment {
         hand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                open();
+                getFragmentManager().beginTransaction().replace(R.id.container_root, handFragment).commit();
             }
         });
 
@@ -773,8 +771,13 @@ public class BoardFragment extends Fragment {
         }
     }
 
-    public void refreshRoom(Room room) {
+    public void refreshRoom(String playerId, Room room) {
+        System.out.printf("Trying board for room->%s", room);
         renderAnimals(room);
         renderAnimalPropertes(room);
+    }
+
+    public void setHandFragment(HandFragment handFragment) {
+        this.handFragment = handFragment;
     }
 }
