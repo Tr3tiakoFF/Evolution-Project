@@ -51,12 +51,12 @@ public class ClientReceiver implements Processor {
             }
 
             Room room = game.getRoom();
+            Player currentPlayer = room.getCurrentPlayer();
 
             obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, room);
 
-            Player currentPlayer = room.getCurrentPlayer();
-
             if (EVOLUTION == game.getPhase()) {
+                room = gson.fromJson(msg, Game.class).getRoom();
                 System.out.println("Process evolution phase");
                 if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass() && currentPlayer.canPlay()) {
                     System.out.println("Player should turn");
@@ -71,7 +71,7 @@ public class ClientReceiver implements Processor {
                             currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
                         }
                     }
-                    obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, room);
+//                    obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, room);
 
                     if (!currentPlayer.canPlay()) {
                         currentPlayer.setPass(true);
