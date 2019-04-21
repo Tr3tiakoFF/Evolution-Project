@@ -45,7 +45,7 @@ public class ClientReceiver implements Processor {
 
         if (REFRESH_STATE == game.getAction()) {
             try {
-                sleep(1000);
+                sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

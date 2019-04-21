@@ -48,7 +48,7 @@ public class ServerReceiver implements Processor {
                 System.out.println("Process evolution phase");
                 if (room.allPlayersPass()) {
                     System.out.println("Evolution phase is completed");
-                    System.out.printf("All animals->%s%n", room.getAnimalsList());
+                    System.out.printf("All animals->%s%n", room.getAnimals());
 
                     System.out.println("Start power phase");
                     room.setAllNotPass();
@@ -70,7 +70,7 @@ public class ServerReceiver implements Processor {
                 System.out.println("Process power phase");
                 if (room.allPlayersPass()) {
                     System.out.println("Power phase is completed");
-                    System.out.printf("All animals->%s%n", room.getAnimalsList());
+                    System.out.printf("All animals->%s%n", room.getAnimals());
 
                     System.out.println("Start extinction phase");
                     room.getField().killAllMustDie();

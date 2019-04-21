@@ -45,10 +45,11 @@ public class BoardFragment extends Fragment {
     ImageView enemyImageView_5_1, enemyImageView_5_2, enemyImageView_5_3, enemyImageView_5_4, enemyImageView_5_5, enemyImageView_5_6;
     ImageView enemyImageView_6_1, enemyImageView_6_2, enemyImageView_6_3, enemyImageView_6_4, enemyImageView_6_5, enemyImageView_6_6;
     private HandFragment handFragment;
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.board_fragment, container, false);
+        view = inflater.inflate(R.layout.board_fragment, container, false);
 
         hand = (Button) view.findViewById(R.id.showDeckButton);
         reRender = (Button) view.findViewById(R.id.foodCapacityButton);
@@ -180,125 +181,12 @@ public class BoardFragment extends Fragment {
         enemyAnimal5 = (Button) view.findViewById(R.id.enemyMinion5);
         enemyAnimal6 = (Button) view.findViewById(R.id.enemyMinion6);
 
-//        final Room room = new Room();
-//
-//        room.addPlayer(new Player(getNewId()));
-//        room.addPlayer(new Player(getNewId()));
-//        room.addDeck(DeckShufler.deckShuffle());
-//
-//        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
-//
-//        for (int i = 0; i < room.numberPlayers(); i++) {
-//            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
-//        }
-//
-//        room.setAllNotPass();
-//
-//        do {
-//            Player currentPlayer = room.getCurrentPlayer();
-//
-//            int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
-//
-//            currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
-//
-//            if (currentPlayer.getCardsCount() == 0) {
-//                currentPlayer.setPass(true);
-//            }
-//            room.setNextPlayer();
-//        }
-//        while (!room.allPlayersPass());
-//
-//        cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
-//
-//        for (int i = 0; i < room.numberPlayers(); i++) {
-//            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
-//        }
-//
-//        room.setAllNotPass();
-//
-//
-//        do {
-//            Player currentPlayer = room.getCurrentPlayer();
-//
-//            int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
-//            int localRandomAnimalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
-//
-//            room.getCurrentPlayer().playProperty(room.getField(), localRandomCardNumber, localRandomAnimalNumber, 0);
-//
-//            if (room.getCurrentPlayer().getCardsCount() == 0) {
-//                room.getCurrentPlayer().setPass(true);
-//            }
-//            room.setNextPlayer();
-//        }
-//        while (!room.allPlayersPass());
-
-//        refreshRoom(room);
-
-//        playerAnimal1.setVisibility(View.INVISIBLE);
-//        playerAnimal2.setVisibility(View.INVISIBLE);
-//        playerAnimal3.setVisibility(View.INVISIBLE);
-//        playerAnimal4.setVisibility(View.INVISIBLE);
-//        playerAnimal5.setVisibility(View.INVISIBLE);
-//        playerAnimal6.setVisibility(View.INVISIBLE);
-//
-//        enemyAnimal1.setVisibility(View.INVISIBLE);
-//        enemyAnimal2.setVisibility(View.INVISIBLE);
-//        enemyAnimal3.setVisibility(View.INVISIBLE);
-//        enemyAnimal4.setVisibility(View.INVISIBLE);
-//        enemyAnimal5.setVisibility(View.INVISIBLE);
-//        enemyAnimal6.setVisibility(View.INVISIBLE);
-
         hand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction().replace(R.id.container_root, handFragment).commit();
             }
         });
-
-//        reRender.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
-//
-//                for (int i = 0; i < room.numberPlayers(); i++) {
-//                    room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
-//                }
-//
-//                room.setAllNotPass();
-//
-//
-//                do {
-//                    Player currentPlayer = room.getCurrentPlayer();
-//
-//                    int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
-//                    int localRandomAnimalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
-//
-//                    room.getCurrentPlayer().playProperty(room.getField(), localRandomCardNumber, localRandomAnimalNumber, 0);
-//
-//                    if (room.getCurrentPlayer().getCardsCount() == 0) {
-//                        room.getCurrentPlayer().setPass(true);
-//                    }
-//                    room.setNextPlayer();
-//                }
-//                while (!room.allPlayersPass());
-//
-//                refreshRoom(room);
-
-//                playerAnimal1.setVisibility(View.INVISIBLE);
-//                playerAnimal2.setVisibility(View.INVISIBLE);
-//                playerAnimal3.setVisibility(View.INVISIBLE);
-//                playerAnimal4.setVisibility(View.INVISIBLE);
-//                playerAnimal5.setVisibility(View.INVISIBLE);
-//                playerAnimal6.setVisibility(View.INVISIBLE);
-//
-//                enemyAnimal1.setVisibility(View.INVISIBLE);
-//                enemyAnimal2.setVisibility(View.INVISIBLE);
-//                enemyAnimal3.setVisibility(View.INVISIBLE);
-//                enemyAnimal4.setVisibility(View.INVISIBLE);
-//                enemyAnimal5.setVisibility(View.INVISIBLE);
-//                enemyAnimal6.setVisibility(View.INVISIBLE);
-//            }
-//        });
 
         open.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -309,294 +197,22 @@ public class BoardFragment extends Fragment {
         return view;
     }
 
-    private void renderAnimals(Player player, Room room) {
-        List<List<Animal>> playerAnimalList = new ArrayList<>();
-
-        for (int i = 0; i < room.numberPlayers(); i++) {
-            playerAnimalList.add(room.getField().getAnimals(room.getPlayers().get(i)));
-        }
-
-        if (room.getPlayers().get(0) == player) {
-            switch (playerAnimalList.get(0).size()) {
-                case 0: {
-                    playerAnimal1.setVisibility(View.INVISIBLE);
-                    playerAnimal2.setVisibility(View.INVISIBLE);
-                    playerAnimal3.setVisibility(View.INVISIBLE);
-                    playerAnimal4.setVisibility(View.INVISIBLE);
-                    playerAnimal5.setVisibility(View.INVISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 1: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.INVISIBLE);
-                    playerAnimal3.setVisibility(View.INVISIBLE);
-                    playerAnimal4.setVisibility(View.INVISIBLE);
-                    playerAnimal5.setVisibility(View.INVISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 2: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.VISIBLE);
-                    playerAnimal3.setVisibility(View.INVISIBLE);
-                    playerAnimal4.setVisibility(View.INVISIBLE);
-                    playerAnimal5.setVisibility(View.INVISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 3: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.VISIBLE);
-                    playerAnimal3.setVisibility(View.VISIBLE);
-                    playerAnimal4.setVisibility(View.INVISIBLE);
-                    playerAnimal5.setVisibility(View.INVISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 4: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.VISIBLE);
-                    playerAnimal3.setVisibility(View.VISIBLE);
-                    playerAnimal4.setVisibility(View.VISIBLE);
-                    playerAnimal5.setVisibility(View.INVISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 5: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.VISIBLE);
-                    playerAnimal3.setVisibility(View.VISIBLE);
-                    playerAnimal4.setVisibility(View.VISIBLE);
-                    playerAnimal5.setVisibility(View.VISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 6: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.VISIBLE);
-                    playerAnimal3.setVisibility(View.VISIBLE);
-                    playerAnimal4.setVisibility(View.VISIBLE);
-                    playerAnimal5.setVisibility(View.VISIBLE);
-                    playerAnimal6.setVisibility(View.VISIBLE);
-                    break;
-                }
-            }
-            switch (playerAnimalList.get(1).size()) {
-                case 0: {
-                    enemyAnimal1.setVisibility(View.INVISIBLE);
-                    enemyAnimal2.setVisibility(View.INVISIBLE);
-                    enemyAnimal3.setVisibility(View.INVISIBLE);
-                    enemyAnimal4.setVisibility(View.INVISIBLE);
-                    enemyAnimal5.setVisibility(View.INVISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 1: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.INVISIBLE);
-                    enemyAnimal3.setVisibility(View.INVISIBLE);
-                    enemyAnimal4.setVisibility(View.INVISIBLE);
-                    enemyAnimal5.setVisibility(View.INVISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 2: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.VISIBLE);
-                    enemyAnimal3.setVisibility(View.INVISIBLE);
-                    enemyAnimal4.setVisibility(View.INVISIBLE);
-                    enemyAnimal5.setVisibility(View.INVISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 3: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.VISIBLE);
-                    enemyAnimal3.setVisibility(View.VISIBLE);
-                    enemyAnimal4.setVisibility(View.INVISIBLE);
-                    enemyAnimal5.setVisibility(View.INVISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 4: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.VISIBLE);
-                    enemyAnimal3.setVisibility(View.VISIBLE);
-                    enemyAnimal4.setVisibility(View.VISIBLE);
-                    enemyAnimal5.setVisibility(View.INVISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 5: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.VISIBLE);
-                    enemyAnimal3.setVisibility(View.VISIBLE);
-                    enemyAnimal4.setVisibility(View.VISIBLE);
-                    enemyAnimal5.setVisibility(View.VISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 6: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.VISIBLE);
-                    enemyAnimal3.setVisibility(View.VISIBLE);
-                    enemyAnimal4.setVisibility(View.VISIBLE);
-                    enemyAnimal5.setVisibility(View.VISIBLE);
-                    enemyAnimal6.setVisibility(View.VISIBLE);
-                    break;
-                }
-            }
-        } else {
-            switch (playerAnimalList.get(1).size()) {
-                case 0: {
-                    playerAnimal1.setVisibility(View.INVISIBLE);
-                    playerAnimal2.setVisibility(View.INVISIBLE);
-                    playerAnimal3.setVisibility(View.INVISIBLE);
-                    playerAnimal4.setVisibility(View.INVISIBLE);
-                    playerAnimal5.setVisibility(View.INVISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 1: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.INVISIBLE);
-                    playerAnimal3.setVisibility(View.INVISIBLE);
-                    playerAnimal4.setVisibility(View.INVISIBLE);
-                    playerAnimal5.setVisibility(View.INVISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 2: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.VISIBLE);
-                    playerAnimal3.setVisibility(View.INVISIBLE);
-                    playerAnimal4.setVisibility(View.INVISIBLE);
-                    playerAnimal5.setVisibility(View.INVISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 3: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.VISIBLE);
-                    playerAnimal3.setVisibility(View.VISIBLE);
-                    playerAnimal4.setVisibility(View.INVISIBLE);
-                    playerAnimal5.setVisibility(View.INVISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 4: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.VISIBLE);
-                    playerAnimal3.setVisibility(View.VISIBLE);
-                    playerAnimal4.setVisibility(View.VISIBLE);
-                    playerAnimal5.setVisibility(View.INVISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 5: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.VISIBLE);
-                    playerAnimal3.setVisibility(View.VISIBLE);
-                    playerAnimal4.setVisibility(View.VISIBLE);
-                    playerAnimal5.setVisibility(View.VISIBLE);
-                    playerAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 6: {
-                    playerAnimal1.setVisibility(View.VISIBLE);
-                    playerAnimal2.setVisibility(View.VISIBLE);
-                    playerAnimal3.setVisibility(View.VISIBLE);
-                    playerAnimal4.setVisibility(View.VISIBLE);
-                    playerAnimal5.setVisibility(View.VISIBLE);
-                    playerAnimal6.setVisibility(View.VISIBLE);
-                    break;
-                }
-            }
-            switch (playerAnimalList.get(0).size()) {
-                case 0: {
-                    enemyAnimal1.setVisibility(View.INVISIBLE);
-                    enemyAnimal2.setVisibility(View.INVISIBLE);
-                    enemyAnimal3.setVisibility(View.INVISIBLE);
-                    enemyAnimal4.setVisibility(View.INVISIBLE);
-                    enemyAnimal5.setVisibility(View.INVISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 1: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.INVISIBLE);
-                    enemyAnimal3.setVisibility(View.INVISIBLE);
-                    enemyAnimal4.setVisibility(View.INVISIBLE);
-                    enemyAnimal5.setVisibility(View.INVISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 2: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.VISIBLE);
-                    enemyAnimal3.setVisibility(View.INVISIBLE);
-                    enemyAnimal4.setVisibility(View.INVISIBLE);
-                    enemyAnimal5.setVisibility(View.INVISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 3: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.VISIBLE);
-                    enemyAnimal3.setVisibility(View.VISIBLE);
-                    enemyAnimal4.setVisibility(View.INVISIBLE);
-                    enemyAnimal5.setVisibility(View.INVISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 4: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.VISIBLE);
-                    enemyAnimal3.setVisibility(View.VISIBLE);
-                    enemyAnimal4.setVisibility(View.VISIBLE);
-                    enemyAnimal5.setVisibility(View.INVISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 5: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.VISIBLE);
-                    enemyAnimal3.setVisibility(View.VISIBLE);
-                    enemyAnimal4.setVisibility(View.VISIBLE);
-                    enemyAnimal5.setVisibility(View.VISIBLE);
-                    enemyAnimal6.setVisibility(View.INVISIBLE);
-                    break;
-                }
-                case 6: {
-                    enemyAnimal1.setVisibility(View.VISIBLE);
-                    enemyAnimal2.setVisibility(View.VISIBLE);
-                    enemyAnimal3.setVisibility(View.VISIBLE);
-                    enemyAnimal4.setVisibility(View.VISIBLE);
-                    enemyAnimal5.setVisibility(View.VISIBLE);
-                    enemyAnimal6.setVisibility(View.VISIBLE);
-                    break;
-                }
-            }
-        }
-    }
-
     private void renderAnimalPropertes(Player player, Room room) {
         List<Animal> playerAnimals = new ArrayList<>();
         List<Animal> enemyAnimals = new ArrayList<>();
 
-        for (int i = 0; i < room.getAnimalsList().size(); i++) {
+        for (int i = 0; i < room.getAnimals().size(); i++) {
             if (room.getPlayers().get(0) == player) {
-                if (room.getAnimalsList().get(i).getPlayer() == room.getPlayers().get(0)) {
-                    playerAnimals.add(room.getAnimalsList().get(i));
+                if (room.getAnimals().get(i).getPlayer() == room.getPlayers().get(0)) {
+                    playerAnimals.add(room.getAnimals().get(i));
                 } else {
-                    enemyAnimals.add(room.getAnimalsList().get(i));
+                    enemyAnimals.add(room.getAnimals().get(i));
                 }
             } else {
-                if (room.getAnimalsList().get(i).getPlayer() == room.getPlayers().get(0)) {
-                    enemyAnimals.add(room.getAnimalsList().get(i));
+                if (room.getAnimals().get(i).getPlayer() == room.getPlayers().get(0)) {
+                    enemyAnimals.add(room.getAnimals().get(i));
                 } else {
-                    playerAnimals.add(room.getAnimalsList().get(i));
+                    playerAnimals.add(room.getAnimals().get(i));
                 }
             }
         }
@@ -774,7 +390,10 @@ public class BoardFragment extends Fragment {
     public void refreshRoom(String playerId, Room room) {
         System.out.printf("Trying board for room->%s", room);
         Player player = getPlayer(playerId, room);
-        renderAnimals(player, room);
+
+        ViewGroup playerLayout = view.findViewById(R.id.playerLayout);
+        Utils.renderPlayerAnimals(player, room, playerLayout);
+
         renderAnimalPropertes(player, room);
     }
 

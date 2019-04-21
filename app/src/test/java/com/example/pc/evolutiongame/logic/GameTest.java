@@ -169,7 +169,7 @@ public class GameTest {
         }
 
 
-        room.getAnimalsList();
+        room.getAnimals();
     }
 
 
@@ -263,19 +263,19 @@ public class GameTest {
         }
         while (!room.allPlayersPass());
 
-        room.getAnimalsList();
+        room.getAnimals();
 
         room.getField().killAllMustDie();
 
-        room.getAnimalsList();
+        room.getAnimals();
 
         room.getField().killAllMustNotDie();
 
-        room.getAnimalsList();
+        room.getAnimals();
 
         room.getField().killAll();
 
-        room.getAnimalsList();
+        room.getAnimals();
 
         Gson gson = new GsonBuilder().create();
         String roomAsJson = gson.toJson(room);
