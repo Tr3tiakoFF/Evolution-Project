@@ -18,6 +18,7 @@ import com.example.pc.evolutiongame.wifidirect.discovery.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.pc.evolutiongame.Utils.getEnemyPlayers;
 import static com.example.pc.evolutiongame.Utils.getPlayer;
 
 public class BoardFragment extends Fragment {
@@ -389,13 +390,14 @@ public class BoardFragment extends Fragment {
 
     public void refreshRoom(String playerId, Room room) {
         System.out.printf("Trying board for room->%s", room);
-        Player player = getPlayer(playerId, room);
 
         ViewGroup playerLayout = view.findViewById(R.id.playerLayout);
+        Player player = getPlayer(playerId, room);
         Utils.renderPlayerAnimals(player, room, playerLayout);
 
         ViewGroup enemyLayout = view.findViewById(R.id.enemyLayout);
-        Utils.renderPlayerAnimals(player, room, enemyLayout);
+        List<Player> enemyPlayers = getEnemyPlayers(playerId, room);
+        Utils.renderPlayerAnimals(enemyPlayers.get(0), room, enemyLayout);
 
         renderAnimalPropertes(player, room);
     }

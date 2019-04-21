@@ -7,6 +7,7 @@ import com.example.pc.evolutiongame.model.Animal;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Room;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -16,6 +17,16 @@ public class Utils {
 
     public static String getNewId() {
         return String.format("%04X", rand.nextInt());
+    }
+
+    public static List<Player> getEnemyPlayers(String playerId, Room room) {
+        List<Player> players = new ArrayList<>();
+        for (Player player : room.getPlayers()) {
+            if (!playerId.equals(player.getId())) {
+                players.add(player);
+            }
+        }
+        return players;
     }
 
     public static Player getPlayer(String playerId, Room room) {
