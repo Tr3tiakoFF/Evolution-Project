@@ -210,7 +210,7 @@ public class BoardFragment extends Fragment {
                     enemyAnimals.add(room.getAnimals().get(i));
                 }
             } else {
-                if (room.getAnimals().get(i).getPlayer().equals(room.getPlayers().get(0).getId())) {
+                if (room.getAnimals().get(i).getPlayer().getId().equals(room.getPlayers().get(0).getId())) {
                     enemyAnimals.add(room.getAnimals().get(i));
                 } else {
                     playerAnimals.add(room.getAnimals().get(i));
