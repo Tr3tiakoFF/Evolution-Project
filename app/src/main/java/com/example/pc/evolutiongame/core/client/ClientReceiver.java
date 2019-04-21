@@ -67,7 +67,7 @@ public class ClientReceiver implements Processor {
                     if (room.getField().getAnimalsCount(currentPlayer) == 0) {
                         currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
                     } else {
-                        if (true) {
+                        if (Math.random() * 10 >= 4) {
                             currentPlayer.playProperty(room.getField(), (int) (Math.random() * room.getCurrentPlayer().getCardsCount()), (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer())), 0);
                         } else {
                             currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
