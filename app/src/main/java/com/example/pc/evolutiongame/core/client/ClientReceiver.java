@@ -15,6 +15,7 @@ import static com.example.pc.evolutiongame.core.control.Action.REFRESH_STATE;
 import static com.example.pc.evolutiongame.core.control.Action.SET_ID;
 import static com.example.pc.evolutiongame.core.control.Phase.EVOLUTION;
 import static com.example.pc.evolutiongame.core.control.Phase.POWER;
+import static java.lang.Thread.sleep;
 
 public class ClientReceiver implements Processor {
 
@@ -43,6 +44,12 @@ public class ClientReceiver implements Processor {
         }
 
         if (REFRESH_STATE == game.getAction()) {
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             Room room = game.getRoom();
 
             if (handler != null) {
