@@ -64,7 +64,7 @@ public class ClientReceiver implements Processor {
                     System.out.println("Player should turn");
 
                     int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
-                    if (currentPlayer.getAnimalsCount(room.getField()) == 0) {
+                    if (room.getField().getAnimalsCount(currentPlayer) == 0) {
                         currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
                     } else {
                         if (true) {

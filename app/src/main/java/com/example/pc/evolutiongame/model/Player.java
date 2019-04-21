@@ -89,10 +89,6 @@ public class Player {
                 '}';
     }
 
-    public int getAnimalsCount(Field field) {
-        return field.getAnimalsCount(this);
-    }
-
     public List<Card> getCards() {
         return cards;
     }
