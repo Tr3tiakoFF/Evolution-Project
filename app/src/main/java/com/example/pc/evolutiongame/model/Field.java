@@ -166,7 +166,7 @@ public class Field {
     public int getAnimalsCount(Player player) {
         int animalCount = 0;
         for (int i = 0; i < this.getAnimalsCount(); i++) {
-            if (this.getAnimals().get(i).player == player) {
+            if (this.getAnimals().get(i).getPlayer().getId().equals(player.getId())) {
                 animalCount++;
             }
         }
@@ -176,7 +176,7 @@ public class Field {
     public int getAnimalsPropertyCount(Player player) {
         int animalPropertyCount = 0;
         for (int i = 0; i < this.getAnimalsCount(); i++) {
-            if (this.getAnimals().get(i).player == player) {
+            if (this.getAnimals().get(i).getPlayer().getId().equals(player.getId())) {
                 animalPropertyCount += this.getAnimals().get(i).getPropertyCount();
             }
         }
@@ -186,7 +186,7 @@ public class Field {
     public int getAnimalsFoodCapacityCount(Player player) {
         int animalFoodCapacityCount = 0;
         for (int i = 0; i < this.getAnimalsCount(); i++) {
-            if (this.getAnimals().get(i).player == player) {
+            if (this.getAnimals().get(i).getPlayer().getId().equals(player.getId())) {
                 this.getAnimals().get(i).calculateFoodCapacity();
                 animalFoodCapacityCount += this.getAnimals().get(i).capacityFood;
             }
@@ -197,7 +197,7 @@ public class Field {
     public List<Animal> getAnimals(Player player) {
         List<Animal> animals = new ArrayList<>();
         for (int i = 0; i < getAnimalsCount(); i++) {
-            if (this.getAnimals().get(i).player == player) {
+            if (this.getAnimals().get(i).getPlayer().getId().equals(player.getId())) {
                 animals.add(this.getAnimals().get(i));
             }
         }
