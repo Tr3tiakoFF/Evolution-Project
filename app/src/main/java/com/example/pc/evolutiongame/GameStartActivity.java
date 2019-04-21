@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
-import com.example.pc.evolutiongame.core.UiRenderer;
 import com.example.pc.evolutiongame.model.Room;
 import com.example.pc.evolutiongame.wifidirect.discovery.R;
 
 import static android.os.SystemClock.sleep;
 
 @Deprecated
-public class GameStartActivity extends Activity implements UiRenderer {
+public class GameStartActivity extends Activity {
 
     private ImageView imageView;
     private int alpha = 100, red = 243, green = 0, blue = 23;
@@ -98,7 +97,6 @@ public class GameStartActivity extends Activity implements UiRenderer {
         }
     }
 
-    @Override
     public void render(Room room) {
         setNextColor();
         imageView.setBackgroundColor(Color.argb(alpha, red, green, blue));

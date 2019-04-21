@@ -1,5 +1,5 @@
 package com.example.pc.evolutiongame.core;
 
-public interface Processable {
+public interface Processor {
     void process(EvolutionContext evolutionContext, String msg) throws InterruptedException;
 }

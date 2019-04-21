@@ -1,7 +1,8 @@
 package com.example.pc.evolutiongame.core.client;
 
+import com.example.pc.evolutiongame.core.Connectable;
 import com.example.pc.evolutiongame.core.EvolutionContext;
-import com.example.pc.evolutiongame.core.Processable;
+import com.example.pc.evolutiongame.core.Processor;
 import com.example.pc.evolutiongame.core.Sendable;
 
 import java.io.BufferedReader;
@@ -19,14 +20,16 @@ public class TcpClient implements Sendable {
     private Socket clientSocket;
     private PrintWriter out;
     private EvolutionContext context;
-    private final Processable processable;
+    private final Processor processor;
+    private final Connectable clientConnector;
 
-    public TcpClient(EvolutionContext context, Processable processable) {
+    public TcpClient(EvolutionContext context, Processor processor, Connectable clientConnector) {
         this.context = context;
-        this.processable = processable;
+        this.processor = processor;
+        this.clientConnector = clientConnector;
     }
 
-    public void createConnection(final String ip, final int port) {
+    public void start(final String ip, final int port) {
         new Thread(new Runnable() {
 
             @Override
@@ -40,25 +43,21 @@ public class TcpClient implements Sendable {
                     final BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
                     context.setSender(TcpClient.this);
+                    clientConnector.started(context);
 
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            while (!Thread.interrupted()) {
-                                try {
-                                    String msg = in.readLine();
-                                    if (msg == null) {
-                                        System.out.printf("Server is disconnected->%s%n", clientSocket.getRemoteSocketAddress());
-                                        break;
-                                    }
-                                    System.out.printf("Received message from->%s%n", clientSocket.getRemoteSocketAddress());
-                                    processable.process(context, msg);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                    while (!Thread.interrupted()) {
+                        try {
+                            String msg = in.readLine();
+                            if (msg == null) {
+                                System.out.printf("Server is disconnected->%s%n", clientSocket.getRemoteSocketAddress());
+                                break;
                             }
+                            System.out.printf("Received message from->%s%n", clientSocket.getRemoteSocketAddress());
+                            processor.process(context, msg);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                    }).start();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -86,7 +85,7 @@ public class TcpClient implements Sendable {
 
     public static void main(String[] args) {
         TcpClient client = getClientConfiguration(null);
-        client.createConnection(SERVER_HOST, SERVER_PORT);
+        client.start(SERVER_HOST, SERVER_PORT);
 
 //        for (int i = 0; i < 100; i++) {
 //            client.sendMessage("Hi from all of us " + i);

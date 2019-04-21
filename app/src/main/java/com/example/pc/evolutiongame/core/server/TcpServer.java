@@ -3,7 +3,7 @@ package com.example.pc.evolutiongame.core.server;
 import com.example.pc.evolutiongame.core.Acceptable;
 import com.example.pc.evolutiongame.core.Connectable;
 import com.example.pc.evolutiongame.core.EvolutionContext;
-import com.example.pc.evolutiongame.core.Processable;
+import com.example.pc.evolutiongame.core.Processor;
 import com.example.pc.evolutiongame.core.Sendable;
 
 import java.io.BufferedReader;
@@ -23,13 +23,13 @@ public class TcpServer implements Sendable {
     public static final int SERVER_PORT = 6666;
 
     private final Set<Socket> clients;
-    private final Processable processable;
+    private final Processor processor;
     private final Acceptable acceptable;
     private final Connectable connectable;
     private final EvolutionContext context;
 
-    public TcpServer(EvolutionContext context, Processable processable, Acceptable acceptable, Connectable connectable) {
-        this.processable = processable;
+    public TcpServer(EvolutionContext context, Processor processor, Acceptable acceptable, Connectable connectable) {
+        this.processor = processor;
         this.acceptable = acceptable;
         this.connectable = connectable;
 
@@ -78,7 +78,7 @@ public class TcpServer implements Sendable {
                                             break;
                                         }
                                         System.out.printf("Received msg from->%s%n", clientSocket.getRemoteSocketAddress());
-                                        processable.process(context, msg);
+                                        processor.process(context, msg);
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();

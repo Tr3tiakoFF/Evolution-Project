@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 
-import com.example.pc.evolutiongame.core.UiRenderer;
 import com.example.pc.evolutiongame.logic.CardGiver;
 import com.example.pc.evolutiongame.logic.DeckShufler;
 import com.example.pc.evolutiongame.model.Animal;
@@ -25,7 +24,7 @@ import java.util.List;
 
 import static com.example.pc.evolutiongame.Utils.getNewId;
 
-public class MainBoardActivity extends Activity implements UiRenderer {
+public class MainBoardActivity extends Activity {
 
     Player player;
 
@@ -781,7 +780,7 @@ public class MainBoardActivity extends Activity implements UiRenderer {
         startActivity(intent);
     }
 
-    @Override
+//    @Override
     public void render(Room room) {
         renderAnimals(room);
         renderAnimalPropertes(room);

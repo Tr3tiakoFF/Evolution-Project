@@ -7,7 +7,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.pc.evolutiongame.core.UiRenderer;
 import com.example.pc.evolutiongame.logic.CardGiver;
 import com.example.pc.evolutiongame.logic.DeckShufler;
 import com.example.pc.evolutiongame.model.Card;
@@ -21,7 +20,7 @@ import java.util.List;
 
 import static com.example.pc.evolutiongame.Utils.getNewId;
 
-public class MainHandActivity extends Activity implements UiRenderer {
+public class MainHandActivity extends Activity {
 
     Player player;
 
@@ -86,7 +85,7 @@ public class MainHandActivity extends Activity implements UiRenderer {
     }
 
 
-    @Override
+//    @Override
     public void render(Room room) {
         List<Card> hand = new ArrayList<>();
 

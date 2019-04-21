@@ -1,7 +1,7 @@
 package com.example.pc.evolutiongame.core.server;
 
 import com.example.pc.evolutiongame.core.EvolutionContext;
-import com.example.pc.evolutiongame.core.Processable;
+import com.example.pc.evolutiongame.core.Processor;
 import com.example.pc.evolutiongame.core.Sendable;
 import com.example.pc.evolutiongame.core.control.Action;
 import com.example.pc.evolutiongame.core.control.Game;
@@ -17,7 +17,7 @@ import static com.example.pc.evolutiongame.core.control.Action.REFRESH_STATE;
 import static com.example.pc.evolutiongame.core.control.Phase.EVOLUTION;
 import static com.example.pc.evolutiongame.core.control.Phase.POWER;
 
-public class ServerReceiver implements Processable {
+public class ServerReceiver implements Processor {
 
     private final Gson gson;
 

@@ -17,6 +17,6 @@ public class ServerConnector implements Connectable {
         context.setRoom(new Room(NUMBER_PLAYER));
 
         getClientConfiguration(null)
-                .createConnection(context.getAddress().getHostAddress(), context.getPort());
+                .start(context.getAddress().getHostAddress(), context.getPort());
     }
 }

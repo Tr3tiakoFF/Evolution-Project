@@ -35,9 +35,9 @@ import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
 import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 
-public class WiFiServiceDiscoveryActivity extends Activity implements
-        WiFiDirectServicesList.DeviceClickListener, Handler.Callback, WiFiChatFragment.MessageTarget,
-        ConnectionInfoListener {
+public class WiFiServiceDiscoveryActivity extends Activity
+        implements WiFiDirectServicesList.DeviceClickListener, Handler.Callback,
+        WiFiChatFragment.MessageTarget, ConnectionInfoListener {
 
     public static final String TAG = "evolutiongame";
 
@@ -48,8 +48,6 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
     public static final int MESSAGE_READ = 0x400 + 1;
     public static final int MY_HANDLE = 0x400 + 2;
     private WifiP2pManager manager;
-
-//    public static final int SERVER_PORT = 4545;
 
     private final IntentFilter intentFilter = new IntentFilter();
     private Channel channel;
@@ -275,10 +273,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
     public boolean handleMessage(Message msg) {
         switch (msg.what) {
             case MESSAGE_READ:
-                byte[] readBuf = (byte[]) msg.obj;
-                // construct a string from the valid bytes in the buffer
-                String readMessage = new String(readBuf, 0, msg.arg1);
-                Log.d(TAG, readMessage);
+                String readMessage = (String) msg.obj;
                 (chatFragment).pushMessage("Buddy: " + readMessage);
                 break;
 
@@ -305,23 +300,26 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
 
     @Override
     public void onConnectionInfoAvailable(WifiP2pInfo p2pInfo) {
-        Thread handler = null;
         /*
          * The group owner accepts connections using a server socket and then spawns a
          * client socket for every client. This is handled by {@code
          * GroupOwnerSocketHandler}
          */
+
+        chatFragment = new WiFiChatFragment();
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
             getServerConfiguration().start(SERVER_PORT);
         } else {
             Log.d(TAG, "Connected as peer");
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
-            getClientConfiguration(null).createConnection(serverAddress, SERVER_PORT);
+            getClientConfiguration(handler).start(serverAddress, SERVER_PORT);
         }
-        chatFragment = new WiFiChatFragment();
-        getFragmentManager().beginTransaction()
-                .replace(R.id.container_root, chatFragment).commit();
+
+//        Intent intent = new Intent(this, MainBoardActivity.class);
+//        startActivity(intent);
+
+        getFragmentManager().beginTransaction().replace(R.id.container_root, chatFragment).commit();
         statusTxtView.setVisibility(View.GONE);
     }
 
