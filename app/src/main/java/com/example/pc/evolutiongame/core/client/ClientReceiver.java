@@ -40,7 +40,7 @@ public class ClientReceiver implements Processor {
             String id = game.getPlayer().getId();
             System.out.printf("Set id for client->%s%n", id);
             context.setId(id);
-            handler.obtainMessage(WiFiServiceDiscoveryActivity.SET_ID, -1, -1, id).sendToTarget();
+            obtainMessage(WiFiServiceDiscoveryActivity.SET_ID, id);
         }
 
         if (REFRESH_STATE == game.getAction()) {
@@ -52,9 +52,7 @@ public class ClientReceiver implements Processor {
 
             Room room = game.getRoom();
 
-            if (handler != null) {
-                handler.obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, -1, -1, room).sendToTarget();
-            }
+            obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, room);
 
             Player currentPlayer = room.getCurrentPlayer();
 
@@ -63,8 +61,18 @@ public class ClientReceiver implements Processor {
                 if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass() && currentPlayer.canPlay()) {
                     System.out.println("Player should turn");
 
-                    int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
-                    currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
+                    if (currentPlayer.getAnimalsCount(room.getField()) == 0) {
+                        int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
+                        currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
+                    } else {
+                        if (Math.random() * 10 >= 5) {
+                            room.getCurrentPlayer().playProperty(room.getField(), (int) (Math.random() * room.getCurrentPlayer().getCardsCount()), (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer())), 0);
+                        } else {
+                            int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
+                            currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
+                        }
+                    }
+                    obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, room);
 
                     if (!currentPlayer.canPlay()) {
                         currentPlayer.setPass(true);
@@ -98,6 +106,12 @@ public class ClientReceiver implements Processor {
                     System.out.println("Player skip message and waiting turn");
                 }
             }
+        }
+    }
+
+    private void obtainMessage(int what, Object obj) {
+        if (handler != null) {
+            handler.obtainMessage(what, -1, -1, obj).sendToTarget();
         }
     }
 }
