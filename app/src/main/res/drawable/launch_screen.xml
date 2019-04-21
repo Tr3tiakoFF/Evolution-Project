@@ -14,11 +14,16 @@
             android:gravity="center" />
     </item>
 
-    <!-- Your product logo - 144dp color version of your app icon -->
     <item>
         <bitmap
             android:src="@drawable/splash_sharp_vision"
-            android:gravity="left" />
+            android:gravity="bottom|right" />
+    </item>
+
+    <item>
+        <bitmap
+            android:src="@drawable/splash_mimicry"
+            android:gravity="bottom|left" />
     </item>
 
 </layer-list>
