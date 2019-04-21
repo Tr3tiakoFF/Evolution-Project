@@ -1,7 +1,6 @@
 package com.example.pc.evolutiongame.logic;
 
 import com.example.pc.evolutiongame.model.Card;
-import com.example.pc.evolutiongame.model.Room;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,19 +26,19 @@ public class CardGiver {
         return listOfCards;
     }
 
-    public static List<List<Card>> getCardsForPlayersForUnits(int numberPlayers, List<Card> deck, Room room) {
-        List<List<Card>> listOfCards = new ArrayList<List<Card>>() {
-        };
-        for (int i = 0; i < numberPlayers; i++) {
-            if (room.getPlayers().get(i).getAnimalsCount(room.getField()) == 0) {
-
-                List<Card> localList = getCardsForPlayer(deck, 6);
-                listOfCards.add(localList);
-            } else {
-                List<Card> localList = getCardsForPlayer(deck, room.getPlayers().get(i).getAnimalsCount(room.getField()) + 1);
-                listOfCards.add(localList);
-            }
-        }
-        return listOfCards;
-    }
+//    public static List<List<Card>> getCardsForPlayersForUnits(int numberPlayers, List<Card> deck, Room room) {
+//        List<List<Card>> listOfCards = new ArrayList<List<Card>>() {
+//        };
+//        for (int i = 0; i < numberPlayers; i++) {
+//            if (room.getPlayers().get(i).getAnimalsCount(room.getField()) == 0) {
+//
+//                List<Card> localList = getCardsForPlayer(deck, 6);
+//                listOfCards.add(localList);
+//            } else {
+//                List<Card> localList = getCardsForPlayer(deck, room.getPlayers().get(i).getAnimalsCount(room.getField()) + 1);
+//                listOfCards.add(localList);
+//            }
+//        }
+//        return listOfCards;
+//    }
 }

@@ -77,7 +77,7 @@ public class ServerReceiver implements Processor {
                     System.out.println("Start evolution phase");
 
                     room.setAllNotPass();
-                    List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayersForUnits(room.numberPlayers(), room.getDeck(), room);
+                    List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
                     for (int i = 0; i < room.numberPlayers(); i++) {
                         room.addCardsToPlayer(i, cardsForPlayers.get(i));
                     }
