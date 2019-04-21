@@ -2,6 +2,7 @@ package com.example.pc.evolutiongame;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.pc.evolutiongame.core.UiRenderer;
@@ -22,6 +23,10 @@ public class MainHandActivity extends Activity implements UiRenderer {
 
     Player player;
 
+    Button playLikeAnimal1, playLikeAnimal2, playLikeAnimal3, playLikeAnimal4, playLikeAnimal5, playLikeAnimal6;
+    Button playLikeFirstProp1, playLikeFirstProp2, playLikeFirstProp3, playLikeFirstProp4, playLikeFirstProp5, playLikeFirstProp6;
+    Button playLikeSecondProp1, playLikeSecondProp2, playLikeSecondProp3, playLikeSecondProp4, playLikeSecondProp5, playLikeSecondProp6;
+
     ImageView playerCard1, playerCard2, playerCard3, playerCard4, playerCard5, playerCard6;
 
     @Override
@@ -35,6 +40,28 @@ public class MainHandActivity extends Activity implements UiRenderer {
         playerCard4 = (ImageView) findViewById(R.id.playerCard4);
         playerCard5 = (ImageView) findViewById(R.id.playerCard5);
         playerCard6 = (ImageView) findViewById(R.id.playerCard6);
+
+        playLikeAnimal1 = (Button) findViewById(R.id.playAnimal1);
+        playLikeAnimal2 = (Button) findViewById(R.id.playAnimal2);
+        playLikeAnimal3 = (Button) findViewById(R.id.playAnimal3);
+        playLikeAnimal4 = (Button) findViewById(R.id.playAnimal4);
+        playLikeAnimal5 = (Button) findViewById(R.id.playAnimal5);
+        playLikeAnimal6 = (Button) findViewById(R.id.playAnimal6);
+
+        playLikeFirstProp1 = (Button) findViewById(R.id.Prop1_1);
+        playLikeFirstProp2 = (Button) findViewById(R.id.Prop2_1);
+        playLikeFirstProp3 = (Button) findViewById(R.id.Prop3_1);
+        playLikeFirstProp4 = (Button) findViewById(R.id.Prop4_1);
+        playLikeFirstProp5 = (Button) findViewById(R.id.Prop5_1);
+        playLikeFirstProp6 = (Button) findViewById(R.id.Prop6_1);
+
+        playLikeSecondProp1 = (Button) findViewById(R.id.Prop1_2);
+        playLikeSecondProp2 = (Button) findViewById(R.id.Prop2_2);
+        playLikeSecondProp3 = (Button) findViewById(R.id.Prop3_2);
+        playLikeSecondProp4 = (Button) findViewById(R.id.Prop4_2);
+        playLikeSecondProp5 = (Button) findViewById(R.id.Prop5_2);
+        playLikeSecondProp6 = (Button) findViewById(R.id.Prop6_2);
+
 
         Room room = new Room();
 

@@ -12,6 +12,7 @@ import com.example.pc.evolutiongame.wifidirect.discovery.R;
 
 import static android.os.SystemClock.sleep;
 
+@Deprecated
 public class GameStartActivity extends Activity implements UiRenderer {
 
     private ImageView imageView;

@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.example.pc.evolutiongame.wifidirect.discovery.R;
 import com.example.pc.evolutiongame.wifidirect.discovery.WiFiServiceDiscoveryActivity;
 
+import static android.os.SystemClock.sleep;
+
 public class MainActivity extends Activity {
     Button startServer;
     Button startClient;
@@ -20,6 +22,7 @@ public class MainActivity extends Activity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_start_activity);
+
 
         startServer = (Button) findViewById(R.id.onlineButton);
         startClient = (Button) findViewById(R.id.offlineButton);
@@ -46,6 +49,8 @@ public class MainActivity extends Activity {
                 openHyb();
             }
         });
+
+        sleep(750);
     }
 
     public void openServer() {

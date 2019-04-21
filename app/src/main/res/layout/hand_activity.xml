@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:backgroundTint="#d9e8c0">
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -72,6 +73,11 @@
                             android:id="@+id/playAnimal1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="Animal" />
 
                         <TextView
@@ -82,8 +88,13 @@
 
                         <Button
                             android:id="@+id/Prop1_1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="92dp"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="1_prop" />
 
                         <TextView
@@ -93,9 +104,14 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/Prop5_1"
+                            android:id="@+id/Prop1_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="2_Prop" />
 
                         <TextView
@@ -169,6 +185,11 @@
                             android:id="@+id/playAnimal2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="Animal" />
 
                         <TextView
@@ -178,9 +199,14 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/Prop2_1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="1_prop" />
 
                         <TextView
@@ -193,6 +219,11 @@
                             android:id="@+id/Prop2_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="2_Prop" />
 
                         <TextView
@@ -265,6 +296,11 @@
                             android:id="@+id/playAnimal3"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="Animal" />
 
                         <TextView
@@ -277,6 +313,11 @@
                             android:id="@+id/Prop3_1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="1_prop" />
 
                         <TextView
@@ -289,6 +330,11 @@
                             android:id="@+id/Prop3_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="2_Prop" />
 
                         <TextView
@@ -361,6 +407,11 @@
                             android:id="@+id/playAnimal4"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="Animal" />
 
                         <TextView
@@ -373,6 +424,11 @@
                             android:id="@+id/Prop4_1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="1_prop" />
 
                         <TextView
@@ -385,6 +441,11 @@
                             android:id="@+id/Prop4_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="2_Prop" />
 
                         <TextView
@@ -458,6 +519,11 @@
                             android:id="@+id/playAnimal5"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="Animal" />
 
                         <TextView
@@ -467,9 +533,14 @@
                             android:text="TextView" />
 
                         <Button
-                            android:id="@+id/button3333"
+                            android:id="@+id/Prop5_1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="1_prop" />
 
                         <TextView
@@ -482,6 +553,11 @@
                             android:id="@+id/Prop5_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="2_Prop" />
 
                         <TextView
@@ -554,6 +630,11 @@
                             android:id="@+id/playAnimal6"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="Animal" />
 
                         <TextView
@@ -566,6 +647,11 @@
                             android:id="@+id/Prop6_1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="1_prop" />
 
                         <TextView
@@ -578,6 +664,11 @@
                             android:id="@+id/Prop6_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:background="@drawable/buttonshape"
+                            android:shadowColor="#A8A8A8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="5"
                             android:text="2_Prop" />
 
                         <TextView
