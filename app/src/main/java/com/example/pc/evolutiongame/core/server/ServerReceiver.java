@@ -34,6 +34,12 @@ public class ServerReceiver implements Processor {
         Game game = gson.fromJson(msg, Game.class);
 
         if (REFRESH_STATE == game.getAction()) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             Room room = game.getRoom();
             evolutionContext.setRoom(room);
 
@@ -54,6 +60,8 @@ public class ServerReceiver implements Processor {
                 }
 
                 room.setNextPlayer();
+
+                room.calculateAnimalsFoodCapacity();
 
                 sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
             }

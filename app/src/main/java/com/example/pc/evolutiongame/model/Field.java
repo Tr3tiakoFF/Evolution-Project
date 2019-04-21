@@ -202,4 +202,10 @@ public class Field {
         }
         return animals;
     }
+
+    public void calculateAnimalsFoodCapacity() {
+        for (int i = 0; i < this.getAnimalsCount(); i++) {
+            this.getAnimals().get(i).calculateFoodCapacity();
+        }
+    }
 }
