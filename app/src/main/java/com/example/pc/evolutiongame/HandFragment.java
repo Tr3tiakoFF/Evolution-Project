@@ -96,6 +96,13 @@ public class HandFragment extends Fragment {
             }
         }
 
+        playerCard6.setVisibility(View.VISIBLE);
+        playerCard1.setVisibility(View.VISIBLE);
+        playerCard2.setVisibility(View.VISIBLE);
+        playerCard3.setVisibility(View.VISIBLE);
+        playerCard4.setVisibility(View.VISIBLE);
+        playerCard5.setVisibility(View.VISIBLE);
+
         if (hand.size() >= 1) {
             renderCard(playerCard1, hand.get(0));
             if (hand.size() >= 2) {
@@ -108,11 +115,38 @@ public class HandFragment extends Fragment {
                             renderCard(playerCard5, hand.get(4));
                             if (hand.size() >= 6) {
                                 renderCard(playerCard6, hand.get(5));
+                            } else {
+                                playerCard6.setVisibility(View.INVISIBLE);
                             }
+                        } else {
+                            playerCard6.setVisibility(View.INVISIBLE);
+                            playerCard5.setVisibility(View.INVISIBLE);
                         }
+                    } else {
+                        playerCard6.setVisibility(View.INVISIBLE);
+                        playerCard4.setVisibility(View.INVISIBLE);
+                        playerCard5.setVisibility(View.INVISIBLE);
                     }
+                } else {
+                    playerCard6.setVisibility(View.INVISIBLE);
+                    playerCard3.setVisibility(View.INVISIBLE);
+                    playerCard4.setVisibility(View.INVISIBLE);
+                    playerCard5.setVisibility(View.INVISIBLE);
                 }
+            } else {
+                playerCard6.setVisibility(View.INVISIBLE);
+                playerCard2.setVisibility(View.INVISIBLE);
+                playerCard3.setVisibility(View.INVISIBLE);
+                playerCard4.setVisibility(View.INVISIBLE);
+                playerCard5.setVisibility(View.INVISIBLE);
             }
+        } else {
+            playerCard6.setVisibility(View.INVISIBLE);
+            playerCard1.setVisibility(View.INVISIBLE);
+            playerCard2.setVisibility(View.INVISIBLE);
+            playerCard3.setVisibility(View.INVISIBLE);
+            playerCard4.setVisibility(View.INVISIBLE);
+            playerCard5.setVisibility(View.INVISIBLE);
         }
     }
 
