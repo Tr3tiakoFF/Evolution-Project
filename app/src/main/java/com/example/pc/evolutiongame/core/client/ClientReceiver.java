@@ -44,7 +44,9 @@ public class ClientReceiver implements Processor {
         if (REFRESH_STATE == game.getAction()) {
             Room room = game.getRoom();
 
-            handler.obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, -1, -1, room).sendToTarget();
+            if (handler != null) {
+                handler.obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, -1, -1, room).sendToTarget();
+            }
 
             Player currentPlayer = room.getCurrentPlayer();
 
