@@ -1,7 +1,7 @@
 package com.example.pc.evolutiongame.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player {
     private String id;
@@ -9,7 +9,7 @@ public class Player {
     private List<Card> cards;
 
     public Player() {
-        this.cards = new ArrayList<>();
+        this.cards = new CopyOnWriteArrayList<>();
     }
 
     public Player(String id) {
@@ -48,9 +48,12 @@ public class Player {
     }
 
     public void playProperty(Field field, int localRandomCardNumber, int localRandomAnimalNumber, int cardPropertyNum) {
-        if (isValid(field.getAnimals(this).get(localRandomAnimalNumber).properties, cards.get(localRandomCardNumber).properties.get(cardPropertyNum))
-        )
-            field.getAnimals(this).get(localRandomAnimalNumber).properties.add(cards.get(localRandomCardNumber).properties.get(cardPropertyNum));
+        List<Animal> animals = field.getAnimals(this);
+        List<Property> properties = animals.get(localRandomAnimalNumber).properties;
+        Property property = cards.get(localRandomCardNumber).properties.get(cardPropertyNum);
+        if (isValid(properties, property)) {
+            properties.add(property);
+        }
         cards.remove(localRandomCardNumber);
     }
 
