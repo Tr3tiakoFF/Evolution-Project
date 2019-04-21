@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WpsInfo;
 import android.net.wifi.p2p.WifiP2pConfig;
@@ -24,9 +23,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
-
-import com.example.pc.evolutiongame.MainBoardActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -78,6 +77,9 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main);
         statusTxtView = (TextView) findViewById(R.id.status_text);
 
@@ -309,7 +311,6 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
          * client socket for every client. This is handled by {@code
          * GroupOwnerSocketHandler}
          */
-
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
             getServerConfiguration().start(SERVER_PORT);
@@ -318,8 +319,6 @@ public class WiFiServiceDiscoveryActivity extends Activity implements
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
             getClientConfiguration(null).createConnection(serverAddress, SERVER_PORT);
         }
-        Intent intent = new Intent(this, MainBoardActivity.class);
-        startActivity(intent);
         chatFragment = new WiFiChatFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.container_root, chatFragment).commit();

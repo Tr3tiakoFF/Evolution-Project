@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pc.evolutiongame.wifidirect.discovery">
+    package="com.example.pc.evolutiongame.wifidirect.discovery"
+    android:theme="@android:style/Theme.NoTitleBar">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -61,6 +62,9 @@
             android:screenOrientation="landscape"></activity>
         <activity
             android:name="com.example.pc.evolutiongame.MainBoardActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name="com.example.pc.evolutiongame.MainHandActivity"
             android:screenOrientation="landscape"></activity>
     </application>
 

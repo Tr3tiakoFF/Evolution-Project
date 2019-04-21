@@ -14,11 +14,11 @@
             android:gravity="center" />
     </item>
 
-    <!--&lt;!&ndash; Your product logo - 144dp color version of your app icon &ndash;&gt;-->
-    <!--<item>-->
-    <!--<bitmap-->
-    <!--android:src="@drawable/v3_start_title"-->
-    <!--android:gravity="bottom"/>-->
-    <!--</item>-->
+    <!-- Your product logo - 144dp color version of your app icon -->
+    <item>
+        <bitmap
+            android:src="@drawable/splash_sharp_vision"
+            android:gravity="left" />
+    </item>
 
 </layer-list>

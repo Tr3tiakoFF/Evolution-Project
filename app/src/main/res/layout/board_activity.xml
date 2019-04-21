@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".MainBoardActivity">
+    tools:context="com.example.pc.evolutiongame.MainBoardActivity">
 
     <TableLayout
         android:id="@+id/enemyPropertyTable2"
@@ -1580,6 +1580,11 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="553dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
         android:text="PASS" />
 
     <Button
@@ -1590,6 +1595,11 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="22dp"
         android:layout_marginEnd="0dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
         android:text="HAND" />
 
     <Button
@@ -1600,6 +1610,11 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="22dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
         android:text="Button" />
 
     <TableLayout
