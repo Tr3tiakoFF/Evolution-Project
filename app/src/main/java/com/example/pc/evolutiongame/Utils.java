@@ -42,12 +42,16 @@ public class Utils {
 
         for (int i = 0; i < playerLayout.getChildCount(); i++) {
             View animalView = playerLayout.getChildAt(i);
-            animalView.setVisibility(View.INVISIBLE);
+            if (animalView != null) {
+                animalView.setVisibility(View.INVISIBLE);
+            }
         }
 
         for (int i = 0; i < playerAnimals.size(); i++) {
             View animalView = playerLayout.getChildAt(i);
-            animalView.setVisibility(View.VISIBLE);
+            if (animalView != null) {
+                animalView.setVisibility(View.VISIBLE);
+            }
         }
     }
 }
