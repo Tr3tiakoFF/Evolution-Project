@@ -1,5 +1,7 @@
 package com.example.pc.evolutiongame.core.server;
 
+import android.os.Handler;
+
 import com.example.pc.evolutiongame.core.Connectable;
 import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.model.Room;
@@ -9,6 +11,11 @@ import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
 public class ServerConnector implements Connectable {
 
     private static final int NUMBER_PLAYER = 2;
+    private Handler handler;
+
+    public ServerConnector(Handler handler) {
+        this.handler = handler;
+    }
 
     @Override
     public void started(EvolutionContext context) {
@@ -16,7 +23,6 @@ public class ServerConnector implements Connectable {
 
         context.setRoom(new Room(NUMBER_PLAYER));
 
-        getClientConfiguration(null)
-                .start(context.getAddress().getHostAddress(), context.getPort());
+        getClientConfiguration(handler).start(context.getAddress().getHostAddress(), context.getPort());
     }
 }

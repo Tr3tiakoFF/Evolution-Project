@@ -15,11 +15,11 @@ import com.google.gson.GsonBuilder;
 
 public class Configuration {
 
-    public static TcpServer getServerConfiguration() {
+    public static TcpServer getServerConfiguration(Handler handler) {
         Gson gson = new GsonBuilder().create();
         EvolutionContext context = new EvolutionContext();
 
-        return new TcpServer(context, new ServerReceiver(gson), new AcceptableImpl(gson), new ServerConnector());
+        return new TcpServer(context, new ServerReceiver(gson), new AcceptableImpl(gson), new ServerConnector(handler));
     }
 
     public static TcpClient getClientConfiguration(Handler handler) {

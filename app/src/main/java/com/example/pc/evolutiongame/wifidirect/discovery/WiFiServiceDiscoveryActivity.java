@@ -300,7 +300,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
          */
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
-            getServerConfiguration().start(SERVER_PORT);
+            getServerConfiguration(handler).start(SERVER_PORT);
         } else {
             Log.d(TAG, "Connected as peer");
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
