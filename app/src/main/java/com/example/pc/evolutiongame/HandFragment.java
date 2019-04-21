@@ -14,8 +14,9 @@ import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Room;
 import com.example.pc.evolutiongame.wifidirect.discovery.R;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.pc.evolutiongame.Utils.getPlayer;
 
 public class HandFragment extends Fragment {
 
@@ -88,13 +89,8 @@ public class HandFragment extends Fragment {
         if (view == null) {
             return;
         }
-        List<Card> hand = new ArrayList<>();
-
-        for (Player player : room.getPlayers()) {
-            if (playerId.equals(player.getId())) {
-                hand = player.getCards();
-            }
-        }
+        Player player = getPlayer(playerId, room);
+        List<Card> hand = player.getCards();
 
         if (hand.size() >= 1) {
             renderCard(playerCard1, hand.get(0));

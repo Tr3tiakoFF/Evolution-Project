@@ -18,11 +18,11 @@ import com.example.pc.evolutiongame.wifidirect.discovery.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.pc.evolutiongame.Utils.getPlayer;
+
 public class BoardFragment extends Fragment {
 
     public static final String TAG = "evolutiongame";
-
-    Player player;
 
     Button hand, reRender, open;
 
@@ -309,11 +309,13 @@ public class BoardFragment extends Fragment {
         return view;
     }
 
-    private void renderAnimals(Room room) {
+    private void renderAnimals(Player player, Room room) {
         List<List<Animal>> playerAnimalList = new ArrayList<>();
+
         for (int i = 0; i < room.numberPlayers(); i++) {
             playerAnimalList.add(room.getField().getAnimals(room.getPlayers().get(i)));
         }
+
         if (room.getPlayers().get(0) == player) {
             switch (playerAnimalList.get(0).size()) {
                 case 0: {
@@ -579,9 +581,7 @@ public class BoardFragment extends Fragment {
         }
     }
 
-    private void renderAnimalPropertes(Room room) {
-        List<Animal> animalList = room.getAnimalsList();
-
+    private void renderAnimalPropertes(Player player, Room room) {
         List<Animal> playerAnimals = new ArrayList<>();
         List<Animal> enemyAnimals = new ArrayList<>();
 
@@ -773,8 +773,9 @@ public class BoardFragment extends Fragment {
 
     public void refreshRoom(String playerId, Room room) {
         System.out.printf("Trying board for room->%s", room);
-        renderAnimals(room);
-        renderAnimalPropertes(room);
+        Player player = getPlayer(playerId, room);
+        renderAnimals(player, room);
+        renderAnimalPropertes(player, room);
     }
 
     public void setHandFragment(HandFragment handFragment) {
