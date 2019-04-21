@@ -203,14 +203,14 @@ public class BoardFragment extends Fragment {
         List<Animal> enemyAnimals = new ArrayList<>();
 
         for (int i = 0; i < room.getAnimals().size(); i++) {
-            if (room.getPlayers().get(0) == player) {
-                if (room.getAnimals().get(i).getPlayer() == room.getPlayers().get(0)) {
+            if (room.getPlayers().get(0).getId().equals(player.getId())) {
+                if (room.getAnimals().get(i).getPlayer().getId().equals(room.getPlayers().get(0).getId())) {
                     playerAnimals.add(room.getAnimals().get(i));
                 } else {
                     enemyAnimals.add(room.getAnimals().get(i));
                 }
             } else {
-                if (room.getAnimals().get(i).getPlayer() == room.getPlayers().get(0)) {
+                if (room.getAnimals().get(i).getPlayer().equals(room.getPlayers().get(0).getId())) {
                     enemyAnimals.add(room.getAnimals().get(i));
                 } else {
                     playerAnimals.add(room.getAnimals().get(i));
