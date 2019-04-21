@@ -61,12 +61,12 @@ public class ClientReceiver implements Processor {
                 if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass() && currentPlayer.canPlay()) {
                     System.out.println("Player should turn");
 
-                    if (currentPlayer.getAnimalsCount(room.getField()) == 0) {
+                    if (false) {
                         int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
                         currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
                     } else {
-                        if (Math.random() * 10 >= 5) {
-                            room.getCurrentPlayer().playProperty(room.getField(), (int) (Math.random() * room.getCurrentPlayer().getCardsCount()), (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer())), 0);
+                        if (true) {
+                            currentPlayer.playProperty(room.getField(), (int) (Math.random() * room.getCurrentPlayer().getCardsCount()), (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer())), 0);
                         } else {
                             int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
                             currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
