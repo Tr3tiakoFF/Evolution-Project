@@ -14,7 +14,7 @@ public class Animal {
 
     Player player;
 
-    List<Property> properties = new ArrayList<Property>();
+    List<Property> properties = new ArrayList<>();
 
     public void calculateFoodCapacity() {
         int foodCapacity = 1;
@@ -73,7 +73,7 @@ public class Animal {
         return player;
     }
 
-    public List<Property> getProperty() {
+    public List<Property> getProperties() {
         return this.properties;
     }
 }
