@@ -47,11 +47,10 @@ public class BoardFragment extends Fragment {
     ImageView enemyImageView_4_1, enemyImageView_4_2, enemyImageView_4_3, enemyImageView_4_4, enemyImageView_4_5, enemyImageView_4_6;
     ImageView enemyImageView_5_1, enemyImageView_5_2, enemyImageView_5_3, enemyImageView_5_4, enemyImageView_5_5, enemyImageView_5_6;
     ImageView enemyImageView_6_1, enemyImageView_6_2, enemyImageView_6_3, enemyImageView_6_4, enemyImageView_6_5, enemyImageView_6_6;
-    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.board_fragment, container, false);
+        View view = inflater.inflate(R.layout.board_fragment, container, false);
 
         hand = (Button) view.findViewById(R.id.showDeckButton);
         reRender = (Button) view.findViewById(R.id.foodCapacityButton);
@@ -183,59 +182,59 @@ public class BoardFragment extends Fragment {
         enemyAnimal5 = (Button) view.findViewById(R.id.enemyMinion5);
         enemyAnimal6 = (Button) view.findViewById(R.id.enemyMinion6);
 
-        final Room room = new Room();
+//        final Room room = new Room();
+//
+//        room.addPlayer(new Player(getNewId()));
+//        room.addPlayer(new Player(getNewId()));
+//        room.addDeck(DeckShufler.deckShuffle());
+//
+//        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
+//
+//        for (int i = 0; i < room.numberPlayers(); i++) {
+//            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
+//        }
+//
+//        room.setAllNotPass();
+//
+//        do {
+//            Player currentPlayer = room.getCurrentPlayer();
+//
+//            int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
+//
+//            currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
+//
+//            if (currentPlayer.getCardsCount() == 0) {
+//                currentPlayer.setPass(true);
+//            }
+//            room.setNextPlayer();
+//        }
+//        while (!room.allPlayersPass());
+//
+//        cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
+//
+//        for (int i = 0; i < room.numberPlayers(); i++) {
+//            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
+//        }
+//
+//        room.setAllNotPass();
+//
+//
+//        do {
+//            Player currentPlayer = room.getCurrentPlayer();
+//
+//            int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
+//            int localRandomAnimalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
+//
+//            room.getCurrentPlayer().playProperty(room.getField(), localRandomCardNumber, localRandomAnimalNumber, 0);
+//
+//            if (room.getCurrentPlayer().getCardsCount() == 0) {
+//                room.getCurrentPlayer().setPass(true);
+//            }
+//            room.setNextPlayer();
+//        }
+//        while (!room.allPlayersPass());
 
-        room.addPlayer(new Player(getNewId()));
-        room.addPlayer(new Player(getNewId()));
-        room.addDeck(DeckShufler.deckShuffle());
-
-        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
-
-        for (int i = 0; i < room.numberPlayers(); i++) {
-            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
-        }
-
-        room.setAllNotPass();
-
-        do {
-            Player currentPlayer = room.getCurrentPlayer();
-
-            int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
-
-            currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
-
-            if (currentPlayer.getCardsCount() == 0) {
-                currentPlayer.setPass(true);
-            }
-            room.setNextPlayer();
-        }
-        while (!room.allPlayersPass());
-
-        cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
-
-        for (int i = 0; i < room.numberPlayers(); i++) {
-            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
-        }
-
-        room.setAllNotPass();
-
-
-        do {
-            Player currentPlayer = room.getCurrentPlayer();
-
-            int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
-            int localRandomAnimalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
-
-            room.getCurrentPlayer().playProperty(room.getField(), localRandomCardNumber, localRandomAnimalNumber, 0);
-
-            if (room.getCurrentPlayer().getCardsCount() == 0) {
-                room.getCurrentPlayer().setPass(true);
-            }
-            room.setNextPlayer();
-        }
-        while (!room.allPlayersPass());
-
-        render(room);
+//        refreshRoom(room);
 
 //        playerAnimal1.setVisibility(View.INVISIBLE);
 //        playerAnimal2.setVisibility(View.INVISIBLE);
@@ -258,34 +257,34 @@ public class BoardFragment extends Fragment {
             }
         });
 
-        reRender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
-
-                for (int i = 0; i < room.numberPlayers(); i++) {
-                    room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
-                }
-
-                room.setAllNotPass();
-
-
-                do {
-                    Player currentPlayer = room.getCurrentPlayer();
-
-                    int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
-                    int localRandomAnimalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
-
-                    room.getCurrentPlayer().playProperty(room.getField(), localRandomCardNumber, localRandomAnimalNumber, 0);
-
-                    if (room.getCurrentPlayer().getCardsCount() == 0) {
-                        room.getCurrentPlayer().setPass(true);
-                    }
-                    room.setNextPlayer();
-                }
-                while (!room.allPlayersPass());
-
-                render(room);
+//        reRender.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
+//
+//                for (int i = 0; i < room.numberPlayers(); i++) {
+//                    room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
+//                }
+//
+//                room.setAllNotPass();
+//
+//
+//                do {
+//                    Player currentPlayer = room.getCurrentPlayer();
+//
+//                    int localRandomCardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
+//                    int localRandomAnimalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
+//
+//                    room.getCurrentPlayer().playProperty(room.getField(), localRandomCardNumber, localRandomAnimalNumber, 0);
+//
+//                    if (room.getCurrentPlayer().getCardsCount() == 0) {
+//                        room.getCurrentPlayer().setPass(true);
+//                    }
+//                    room.setNextPlayer();
+//                }
+//                while (!room.allPlayersPass());
+//
+//                refreshRoom(room);
 
 //                playerAnimal1.setVisibility(View.INVISIBLE);
 //                playerAnimal2.setVisibility(View.INVISIBLE);
@@ -300,8 +299,8 @@ public class BoardFragment extends Fragment {
 //                enemyAnimal4.setVisibility(View.INVISIBLE);
 //                enemyAnimal5.setVisibility(View.INVISIBLE);
 //                enemyAnimal6.setVisibility(View.INVISIBLE);
-            }
-        });
+//            }
+//        });
 
         open.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -774,11 +773,7 @@ public class BoardFragment extends Fragment {
         }
     }
 
-    public void pushMessage(String readMessage) {
-
-    }
-
-    public void render(Room room) {
+    public void refreshRoom(Room room) {
         renderAnimals(room);
         renderAnimalPropertes(room);
     }

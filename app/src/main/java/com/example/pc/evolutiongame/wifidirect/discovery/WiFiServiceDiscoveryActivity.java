@@ -28,6 +28,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.pc.evolutiongame.BoardFragment;
+import com.example.pc.evolutiongame.model.Room;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
     public static final String SERVICE_INSTANCE = "_evolution_game";
     public static final String SERVICE_REG_TYPE = "_evolution._tcp";
 
-    public static final int MESSAGE_READ = 0x400 + 1;
+    public static final int ROOM_READ = 0x400 + 1;
     public static final int MY_HANDLE = 0x400 + 2;
     private WifiP2pManager manager;
 
@@ -264,9 +265,9 @@ public class WiFiServiceDiscoveryActivity extends Activity
     @Override
     public boolean handleMessage(Message msg) {
         switch (msg.what) {
-            case MESSAGE_READ:
-                String readMessage = (String) msg.obj;
-                (chatFragment).pushMessage(readMessage);
+            case ROOM_READ:
+                Room room = (Room) msg.obj;
+                (chatFragment).refreshRoom(room);
                 break;
 
             case MY_HANDLE:

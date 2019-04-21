@@ -32,7 +32,6 @@ public class ClientReceiver implements Processor {
         if (msg == null) {
             return;
         }
-        handler.obtainMessage(WiFiServiceDiscoveryActivity.MESSAGE_READ, msg.length(), -1, msg).sendToTarget();
 
         Game game = gson.fromJson(msg, Game.class);
 
@@ -44,6 +43,8 @@ public class ClientReceiver implements Processor {
 
         if (REFRESH_STATE == game.getAction()) {
             Room room = game.getRoom();
+
+            handler.obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, -1, -1, room).sendToTarget();
 
             Player currentPlayer = room.getCurrentPlayer();
 
