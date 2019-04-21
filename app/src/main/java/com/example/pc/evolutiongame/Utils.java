@@ -29,9 +29,11 @@ public class Utils {
 
     public static List<Animal> getPlayerAnimals(Player player, Room room) {
         List<Animal> playerAnimals = new ArrayList<>();
-        for (Animal animal : room.getAnimals()) {
-            if (player.getId().equals(animal.getPlayer().getId())) {
-                playerAnimals.add(animal);
+        synchronized (room) {
+            for (Animal animal : room.getAnimals()) {
+                if (player.getId().equals(animal.getPlayer().getId())) {
+                    playerAnimals.add(animal);
+                }
             }
         }
         return playerAnimals;
