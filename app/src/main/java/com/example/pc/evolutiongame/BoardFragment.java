@@ -51,7 +51,7 @@ public class BoardFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.board_activity, container, false);
+        view = inflater.inflate(R.layout.board_fragment, container, false);
 
         hand = (Button) view.findViewById(R.id.showDeckButton);
         reRender = (Button) view.findViewById(R.id.foodCapacityButton);
