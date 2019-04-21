@@ -394,6 +394,9 @@ public class BoardFragment extends Fragment {
         ViewGroup playerLayout = view.findViewById(R.id.playerLayout);
         Utils.renderPlayerAnimals(player, room, playerLayout);
 
+        ViewGroup enemyLayout = view.findViewById(R.id.enemyLayout);
+        Utils.renderPlayerAnimals(player, room, enemyLayout);
+
         renderAnimalPropertes(player, room);
     }
 
