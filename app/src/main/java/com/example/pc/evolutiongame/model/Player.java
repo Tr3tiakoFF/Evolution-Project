@@ -49,7 +49,7 @@ public class Player {
 
     public void playProperty(Field field, int localRandomCardNumber, int localRandomAnimalNumber, int cardPropertyNum) {
         List<Animal> animals = field.getAnimals(this);
-        List<Property> properties = animals.get(localRandomAnimalNumber).properties;
+        List<Property> properties = animals.get(localRandomAnimalNumber).getProperty();
         Property property = cards.get(localRandomCardNumber).properties.get(cardPropertyNum);
         if (isValid(properties, property)) {
             properties.add(property);

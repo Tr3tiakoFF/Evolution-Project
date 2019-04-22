@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
     Button startServer;
     Button startClient;
     Button startHyb;
+    Button faq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,28 @@ public class MainActivity extends Activity {
         startServer = (Button) findViewById(R.id.onlineButton);
         startClient = (Button) findViewById(R.id.offlineButton);
         startHyb = (Button) findViewById(R.id.hybridButton);
+        faq = (Button) findViewById(R.id.faq);
 
+//        faq.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                {
+//                    File file = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/brouchure.pdf");
+//                    if (file.exists()) {
+//                        Intent intent = new Intent(Intent.ACTION_VIEW);
+//                        Uri uri = Uri.fromFile(file);
+//                        intent.setDataAndType(uri, "application/pdf");
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//                        try {
+//                            startActivity(intent);
+//                        } catch (ActivityNotFoundException e) {
+//                            Toast.makeText(MainActivity.this, "No Application available to view pdf", Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//                }
+//            }
+//        });
 
         startServer.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -198,24 +198,26 @@ public class BoardFragment extends Fragment {
         return view;
     }
 
-    private void renderAnimalPropertes(Player player, Room room) {
+    private void renderAnimalPropertes(String playerId, Room room) {
         List<Animal> playerAnimals = new ArrayList<>();
         List<Animal> enemyAnimals = new ArrayList<>();
 
-        for (int i = 0; i < room.getAnimals().size(); i++) {
-            if (room.getPlayers().get(0).getId().equals(player.getId())) {
-                if (room.getAnimals().get(i).getPlayer().getId().equals(room.getPlayers().get(0).getId())) {
-                    playerAnimals.add(room.getAnimals().get(i));
-                } else {
-                    enemyAnimals.add(room.getAnimals().get(i));
-                }
+        Player player = new Player();
+        Player enemy = new Player();
+
+        for (int i = 0; i < room.getPlayers().size(); i++) {
+            if (playerId.equals(room.getPlayers().get(0).getId())) {
+                player = room.getPlayers().get(0);
+                enemy = room.getPlayers().get(1);
             } else {
-                if (room.getAnimals().get(i).getPlayer().equals(room.getPlayers().get(0).getId())) {
-                    enemyAnimals.add(room.getAnimals().get(i));
-                } else {
-                    playerAnimals.add(room.getAnimals().get(i));
-                }
+                player = room.getPlayers().get(1);
+                enemy = room.getPlayers().get(0);
             }
+        }
+
+        for (int i = 0; i < room.getAnimals().size(); i++) {
+            playerAnimals = room.getField().getAnimals(player);
+            enemyAnimals = room.getField().getAnimals(enemy);
         }
 
         renderPlayerAnimals(playerAnimals);
@@ -247,24 +249,56 @@ public class BoardFragment extends Fragment {
             imageView_2, ImageView imageView_3, ImageView imageView_4, ImageView imageView_5, ImageView
                                      imageView_6, int i) {
         if (animals.get(i).getProperty().size() >= 1) {
+            imageView_1.setVisibility(View.VISIBLE);
             renderProp(animals.get(i).getProperty().get(0), imageView_1);
             if (animals.get(i).getProperty().size() >= 2) {
+                imageView_2.setVisibility(View.VISIBLE);
                 renderProp(animals.get(i).getProperty().get(1), imageView_2);
                 if (animals.get(i).getProperty().size() >= 3) {
+                    imageView_3.setVisibility(View.VISIBLE);
                     renderProp(animals.get(i).getProperty().get(2), imageView_3);
                     if (animals.get(i).getProperty().size() >= 4) {
+                        imageView_4.setVisibility(View.VISIBLE);
                         renderProp(animals.get(i).getProperty().get(3), imageView_4);
                         if (animals.get(i).getProperty().size() >= 5) {
+                            imageView_5.setVisibility(View.VISIBLE);
                             renderProp(animals.get(i).getProperty().get(4), imageView_5);
                             if (animals.get(i).getProperty().size() >= 6) {
+                                imageView_6.setVisibility(View.VISIBLE);
                                 renderProp(animals.get(i).getProperty().get(5), imageView_6);
+                            } else {
+                                imageView_6.setVisibility(View.INVISIBLE);
                             }
+                        } else {
+                            imageView_5.setVisibility(View.INVISIBLE);
+                            imageView_6.setVisibility(View.INVISIBLE);
                         }
+                    } else {
+                        imageView_4.setVisibility(View.INVISIBLE);
+                        imageView_5.setVisibility(View.INVISIBLE);
+                        imageView_6.setVisibility(View.INVISIBLE);
                     }
+                } else {
+                    imageView_3.setVisibility(View.INVISIBLE);
+                    imageView_4.setVisibility(View.INVISIBLE);
+                    imageView_5.setVisibility(View.INVISIBLE);
+                    imageView_6.setVisibility(View.INVISIBLE);
                 }
+            } else {
+                imageView_2.setVisibility(View.INVISIBLE);
+                imageView_3.setVisibility(View.INVISIBLE);
+                imageView_4.setVisibility(View.INVISIBLE);
+                imageView_5.setVisibility(View.INVISIBLE);
+                imageView_6.setVisibility(View.INVISIBLE);
             }
+        } else {
+            imageView_1.setVisibility(View.INVISIBLE);
+            imageView_2.setVisibility(View.INVISIBLE);
+            imageView_3.setVisibility(View.INVISIBLE);
+            imageView_4.setVisibility(View.INVISIBLE);
+            imageView_5.setVisibility(View.INVISIBLE);
+            imageView_6.setVisibility(View.INVISIBLE);
         }
-        System.out.println(i);
     }
 
     private void renderEnemyAnimals(List<Animal> enemyAnimals) {
@@ -391,6 +425,8 @@ public class BoardFragment extends Fragment {
     public void refreshRoom(String playerId, Room room) {
         System.out.printf("Trying board for room->%s", room);
 
+        renderAnimalPropertes(playerId, room);
+
         ViewGroup playerLayout = view.findViewById(R.id.playerLayout);
         Player player = getPlayer(playerId, room);
         Utils.renderPlayerAnimals(player, room, playerLayout);
@@ -399,7 +435,6 @@ public class BoardFragment extends Fragment {
         List<Player> enemyPlayers = getEnemyPlayers(playerId, room);
         Utils.renderPlayerAnimals(enemyPlayers.get(0), room, enemyLayout);
 
-        renderAnimalPropertes(player, room);
     }
 
     public void setHandFragment(HandFragment handFragment) {
