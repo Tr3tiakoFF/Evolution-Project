@@ -340,8 +340,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
             }
         }
 
-        if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.PLAYER
-                || GameMode.valueOf(gameMode.toUpperCase()) == GameMode.HYBRID) {
+        if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.PLAYER) {
             if (!p2pInfo.isGroupOwner) {
                 Log.d(TAG, "Connected as peer");
                 String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
