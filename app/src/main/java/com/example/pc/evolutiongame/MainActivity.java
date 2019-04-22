@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
         startHyb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openBotGame(GameMode.HYBRID);
+//                openBotGame(GameMode.HYBRID);
             }
         });
     }
