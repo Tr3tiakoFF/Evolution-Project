@@ -5,7 +5,7 @@
     android:layout_gravity="top"
     android:gravity="top"
     android:orientation="vertical"
-    android:background="@color/colorBackStart">
+    android:background="@drawable/launch_screen">
 
 
     <ListView

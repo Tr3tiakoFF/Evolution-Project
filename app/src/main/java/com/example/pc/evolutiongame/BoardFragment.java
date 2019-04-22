@@ -185,7 +185,7 @@ public class BoardFragment extends Fragment {
         hand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.container_root, handFragment).commit();
+                getFragmentManager().beginTransaction().replace(R.id.container_root, handFragment, "handFragment").addToBackStack("handFragment").commit();
             }
         });
 

@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.os.SystemClock.sleep;
-import static com.example.pc.evolutiongame.Configuration.getHumanConfiguration;
+import static com.example.pc.evolutiongame.Configuration.getBotConfiguration;
 import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 import static java.lang.String.format;
@@ -66,6 +66,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
     private TextView statusTxtView;
     private HandFragment handFragment;
     private String playerId;
+    private Room room;
 
     /**
      * Called when the activity is first created.
@@ -276,7 +277,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
                 break;
 
             case ROOM_READ:
-                Room room = (Room) msg.obj;
+                room = (Room) msg.obj;
                 boardFragment.refreshRoom(playerId, room);
                 handFragment.refreshRoom(playerId, room);
                 break;
@@ -309,6 +310,12 @@ public class WiFiServiceDiscoveryActivity extends Activity
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        boardFragment.refreshRoom(playerId, room);
+    }
+
+    @Override
     public void onConnectionInfoAvailable(WifiP2pInfo p2pInfo) {
         /*
          * The group owner accepts connections using a server socket and then spawns a
@@ -322,8 +329,8 @@ public class WiFiServiceDiscoveryActivity extends Activity
             Log.d(TAG, "Connected as peer");
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
 
-//            getBotConfiguration(handler).start(serverAddress, SERVER_PORT);
-            getHumanConfiguration(handler).start(serverAddress, SERVER_PORT);
+            getBotConfiguration(handler).start(serverAddress, SERVER_PORT);
+//            getHumanConfiguration(handler).start(serverAddress, SERVER_PORT);
         }
 
         boardFragment = new BoardFragment();
