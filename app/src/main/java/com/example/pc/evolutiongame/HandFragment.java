@@ -22,15 +22,12 @@ public class HandFragment extends Fragment {
 
     public static final String TAG = "evolutiongame";
 
-//    Player player;
-
     Button playLikeAnimal1, playLikeAnimal2, playLikeAnimal3, playLikeAnimal4, playLikeAnimal5, playLikeAnimal6;
     Button playLikeFirstProp1, playLikeFirstProp2, playLikeFirstProp3, playLikeFirstProp4, playLikeFirstProp5, playLikeFirstProp6;
     Button playLikeSecondProp1, playLikeSecondProp2, playLikeSecondProp3, playLikeSecondProp4, playLikeSecondProp5, playLikeSecondProp6;
 
     ImageView playerCard1, playerCard2, playerCard3, playerCard4, playerCard5, playerCard6;
     private View view;
-    private String playerId;
     private Room room;
     private List<Card> hand;
     private Player player;
@@ -73,24 +70,30 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 0);
                 getFragmentManager().popBackStack();
+//                context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
             }
         });
+
+        refreshFragment();
 
         return view;
     }
 
 
     public void refreshRoom(String playerId, Room room) {
-        this.playerId = playerId;
-        this.room = room;
         System.out.printf("Trying hand for room->%s", room);
-        if (view == null) {
-
-            return;
-        }
+        this.room = room;
         player = getPlayer(playerId, room);
         hand = player.getCards();
 
+        if (view == null) {
+            return;
+        }
+
+        refreshFragment();
+    }
+
+    private void refreshFragment() {
         playerCard6.setVisibility(View.VISIBLE);
         playerCard1.setVisibility(View.VISIBLE);
         playerCard2.setVisibility(View.VISIBLE);
