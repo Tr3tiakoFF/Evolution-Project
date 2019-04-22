@@ -53,7 +53,6 @@ public class WiFiServiceDiscoveryActivity extends Activity
     public static final int SET_ID = 0x400 + 1;
     public static final int ROOM_READ = 0x400 + 2;
     public static final int ENDGAME = 0x400 + 3;
-    //    public static final int MY_HANDLE = 0x400 + 2;
     private WifiP2pManager manager;
 
     private final IntentFilter intentFilter = new IntentFilter();
@@ -292,11 +291,6 @@ public class WiFiServiceDiscoveryActivity extends Activity
 
                 Toast.makeText(this, format("Winner is %s", winnerId), Toast.LENGTH_SHORT).show();
                 break;
-
-//            case MY_HANDLE:
-//                Object obj = msg.obj;
-//                (boardFragment).setChatManager((ChatManager) obj);
-
         }
         return true;
     }
