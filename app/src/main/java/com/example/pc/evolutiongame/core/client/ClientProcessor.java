@@ -95,6 +95,8 @@ public class ClientProcessor implements Processor {
             }
             System.out.println("Player skip message and waiting turn");
         }
+
+        obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, room);
     }
 
     private void obtainMessage(int what, Object obj) {
