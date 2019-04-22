@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pc.evolutiongame.BoardFragment;
 import com.example.pc.evolutiongame.HandFragment;
@@ -38,6 +39,7 @@ import static android.os.SystemClock.sleep;
 import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
 import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
+import static java.lang.String.format;
 
 public class WiFiServiceDiscoveryActivity extends Activity
         implements WiFiDirectServicesList.DeviceClickListener, Handler.Callback, ConnectionInfoListener {
@@ -50,6 +52,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
 
     public static final int SET_ID = 0x400 + 1;
     public static final int ROOM_READ = 0x400 + 2;
+    public static final int ENDGAME = 0x400 + 3;
     //    public static final int MY_HANDLE = 0x400 + 2;
     private WifiP2pManager manager;
 
@@ -279,6 +282,17 @@ public class WiFiServiceDiscoveryActivity extends Activity
                 handFragment.refreshRoom(playerId, room);
                 break;
 
+            case ENDGAME:
+                room = (Room) msg.obj;
+                String winnerId = room.getWinnerId();
+                if (playerId.equals(winnerId)) {
+                    Toast.makeText(this, "You are winner!", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+
+                Toast.makeText(this, format("Winner is %s", winnerId), Toast.LENGTH_SHORT).show();
+                break;
+
 //            case MY_HANDLE:
 //                Object obj = msg.obj;
 //                (boardFragment).setChatManager((ChatManager) obj);
@@ -327,6 +341,6 @@ public class WiFiServiceDiscoveryActivity extends Activity
 
     public void appendStatus(String status) {
         String current = statusTxtView.getText().toString();
-        statusTxtView.setText(String.format("%s\n%s", current, status));
+        statusTxtView.setText(format("%s\n%s", current, status));
     }
 }

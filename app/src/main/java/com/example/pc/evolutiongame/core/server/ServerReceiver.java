@@ -77,8 +77,9 @@ public class ServerReceiver implements Processor {
                     System.out.println("Extinction phase is completed");
 
                     if (room.getDeck().isEmpty()) {
-                        System.out.printf("Room get winner->%s%n", room.getWinner());
+                        System.out.printf("Room get winner->%s%n", room.getWinnerId());
 
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, Phase.ENDGAME, room)));
                         return;
                     }
 

@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import static com.example.pc.evolutiongame.core.control.Action.REFRESH_STATE;
 import static com.example.pc.evolutiongame.core.control.Action.SET_ID;
+import static com.example.pc.evolutiongame.core.control.Phase.ENDGAME;
 import static com.example.pc.evolutiongame.core.control.Phase.EVOLUTION;
 import static com.example.pc.evolutiongame.core.control.Phase.POWER;
 import static java.lang.Thread.sleep;
@@ -43,15 +44,20 @@ public class ClientReceiver implements Processor {
             obtainMessage(WiFiServiceDiscoveryActivity.SET_ID, id);
         }
 
-        if (REFRESH_STATE == game.getAction()) {
-            try {
-                sleep(300);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        try {
+            sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        if (REFRESH_STATE == game.getAction()) {
             Room room = game.getRoom();
             Player currentPlayer = room.getCurrentPlayer();
+
+            if (ENDGAME == game.getPhase()) {
+                obtainMessage(WiFiServiceDiscoveryActivity.ENDGAME, room);
+                return;
+            }
 
             obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, room);
 

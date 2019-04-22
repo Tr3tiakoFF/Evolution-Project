@@ -163,13 +163,14 @@ public class Room {
         players.get(i).addCards(cards);
     }
 
-    public String getWinner() {
+    public String getWinnerId() {
         this.calculateAnimalsFoodCapacity();
         int[] countArr = new int[this.players.size()];
         for (int i = 0; i < this.players.size(); i++) {
             countArr[i] = this.players.get(i).calculateEndgameCounter(this.field);
         }
         int winnerNum = this.getWiner(countArr);
+
         return this.getPlayers().get(winnerNum).getId();
     }
 
