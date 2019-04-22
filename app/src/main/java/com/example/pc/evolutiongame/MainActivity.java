@@ -15,8 +15,8 @@ import com.example.pc.evolutiongame.wifidirect.discovery.WiFiServiceDiscoveryAct
 import static android.os.SystemClock.sleep;
 
 public class MainActivity extends Activity {
-    Button startServer;
-    Button startClient;
+    Button startPlayer;
+    Button startBot;
     Button startHyb;
     Button faq;
 
@@ -30,8 +30,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.game_start_activity);
 
 
-        startServer = (Button) findViewById(R.id.onlineButton);
-        startClient = (Button) findViewById(R.id.offlineButton);
+        startPlayer = (Button) findViewById(R.id.onlineButton);
+        startBot = (Button) findViewById(R.id.offlineButton);
         startHyb = (Button) findViewById(R.id.hybridButton);
         faq = (Button) findViewById(R.id.faq);
 
@@ -56,17 +56,17 @@ public class MainActivity extends Activity {
 //            }
 //        });
 
-        startServer.setOnClickListener(new View.OnClickListener() {
+        startPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openServer();
+                openOnlineGame();
             }
         });
 
-        startClient.setOnClickListener(new View.OnClickListener() {
+        startBot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openClient();
+                openOnlineGame();
             }
         });
 
@@ -80,13 +80,13 @@ public class MainActivity extends Activity {
         sleep(750);
     }
 
-    public void openServer() {
-        Intent intent = new Intent(this, WiFiServiceDiscoveryActivity.class);
-        startActivity(intent);
+    public void openOnlineGame() {
+        Toast.makeText(this, "In dev :)", Toast.LENGTH_SHORT).show();
     }
 
-    public void openClient() {
-        Toast.makeText(this, "In dev :)", Toast.LENGTH_SHORT).show();
+    public void openBotGame() {
+        Intent intent = new Intent(this, WiFiServiceDiscoveryActivity.class);
+        startActivity(intent);
     }
 
     public void openHyb() {
