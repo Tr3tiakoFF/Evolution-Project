@@ -333,6 +333,8 @@ public class WiFiServiceDiscoveryActivity extends Activity
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
             getServerConfiguration(handler).start(SERVER_PORT);
+
+//            getBotConfiguration(handler).start(context.getAddress().getHostAddress(), context.getPort());
         } else {
             Log.d(TAG, "Connected as peer");
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
@@ -350,6 +352,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
         handFragment = new HandFragment();
         if (humanConfiguration != null) {
             handFragment.setSender(humanConfiguration.getContext().getSender());
+            boardFragment.setSender(humanConfiguration.getContext().getSender());
         }
         boardFragment.setHandFragment(handFragment);
 
