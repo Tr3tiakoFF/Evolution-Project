@@ -1,5 +1,6 @@
 package com.example.pc.evolutiongame.model;
 
+import com.example.pc.evolutiongame.core.control.Phase;
 import com.example.pc.evolutiongame.logic.FoodGenerator;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class Room {
     private int capacityFood;
     private int playerControlCount;
     private int numberPlayers;
+    private Phase phase;
 
     public Room() {
         this.numberPlayers = 2;
@@ -192,5 +194,13 @@ public class Room {
 
     public void calculateAnimalsFoodCapacity() {
         field.calculateAnimalsFoodCapacity();
+    }
+
+    public Phase getPhase() {
+        return phase;
+    }
+
+    public void setPhase(Phase phase) {
+        this.phase = phase;
     }
 }

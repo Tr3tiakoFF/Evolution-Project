@@ -35,6 +35,7 @@ public class ServerReceiver implements Processor {
 
         if (REFRESH_STATE == game.getAction()) {
             Room room = game.getRoom();
+            room.setPhase(game.getPhase());
             evolutionContext.setRoom(room);
 
             Sendable sender = evolutionContext.getSender();

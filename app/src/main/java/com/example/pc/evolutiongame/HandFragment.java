@@ -8,11 +8,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.pc.evolutiongame.core.Sendable;
+import com.example.pc.evolutiongame.core.control.Action;
+import com.example.pc.evolutiongame.core.control.Game;
 import com.example.pc.evolutiongame.model.Card;
 import com.example.pc.evolutiongame.model.LowLevelAnimalProperty;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Room;
 import com.example.pc.evolutiongame.wifidirect.discovery.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
@@ -28,9 +33,10 @@ public class HandFragment extends Fragment {
 
     ImageView playerCard1, playerCard2, playerCard3, playerCard4, playerCard5, playerCard6;
     private View view;
-    private Room room;
     private List<Card> hand;
     private Player player;
+    private Sendable sender;
+    private Room room;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,12 +70,15 @@ public class HandFragment extends Fragment {
         playLikeSecondProp5 = (Button) view.findViewById(R.id.Prop5_2);
         playLikeSecondProp6 = (Button) view.findViewById(R.id.Prop6_2);
 
+        final Gson gson = new GsonBuilder().create();
+
 //        TODO
         playLikeAnimal1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 0);
                 refreshFragment();
+                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
             }
         });
         playLikeAnimal2.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +86,7 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 1);
                 refreshFragment();
+                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
             }
         });
         playLikeAnimal3.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +94,7 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 2);
                 refreshFragment();
+                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
             }
         });
         playLikeAnimal4.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +102,7 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 3);
                 refreshFragment();
+                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
             }
         });
         playLikeAnimal5.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +110,7 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 4);
                 refreshFragment();
+                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
             }
         });
         playLikeAnimal6.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +118,7 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 5);
                 refreshFragment();
+                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
             }
         });
 
@@ -253,5 +267,9 @@ public class HandFragment extends Fragment {
                 playerCard.setImageResource(R.drawable.parasite_fat_tissue_174x118);
             }
         }
+    }
+
+    public void setSender(Sendable sender) {
+        this.sender = sender;
     }
 }

@@ -74,8 +74,6 @@ public class WiFiServiceDiscoveryActivity extends Activity
     private HandFragment handFragment;
     private String playerId;
     private Room room;
-    private TcpClient humanConfiguration;
-    private Gson gson;
 
     /**
      * Called when the activity is first created.
@@ -104,8 +102,6 @@ public class WiFiServiceDiscoveryActivity extends Activity
         WiFiDirectServicesList servicesList = new WiFiDirectServicesList();
         getFragmentManager().beginTransaction()
                 .add(R.id.container_root, servicesList, "services").commit();
-
-        gson = new GsonBuilder().create();
 
         sleep(10);
     }
@@ -324,9 +320,6 @@ public class WiFiServiceDiscoveryActivity extends Activity
     public void onBackPressed() {
         super.onBackPressed();
         boardFragment.refreshRoom(playerId, room);
-
-        EvolutionContext context = humanConfiguration.getContext();
-        context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
     }
 
     @Override
@@ -336,6 +329,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
          * client socket for every client. This is handled by {@code
          * GroupOwnerSocketHandler}
          */
+        TcpClient humanConfiguration = null;
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
             getServerConfiguration(handler).start(SERVER_PORT);
@@ -350,6 +344,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
 
         boardFragment = new BoardFragment();
         handFragment = new HandFragment();
+        handFragment.setSender(humanConfiguration.getContext().getSender());
         boardFragment.setHandFragment(handFragment);
 
         getFragmentManager().beginTransaction().replace(R.id.container_root, boardFragment).commit();
