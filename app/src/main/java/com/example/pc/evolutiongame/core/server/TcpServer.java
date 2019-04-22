@@ -119,7 +119,7 @@ public class TcpServer implements Sendable {
     }
 
     public static void main(String[] args) {
-        TcpServer server = getServerConfiguration(null);
+        TcpServer server = getServerConfiguration(null, null);
         server.start(SERVER_HOST, SERVER_PORT);
     }
 }

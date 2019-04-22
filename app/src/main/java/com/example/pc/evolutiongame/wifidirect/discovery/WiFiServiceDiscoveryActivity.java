@@ -329,36 +329,37 @@ public class WiFiServiceDiscoveryActivity extends Activity
          * client socket for every client. This is handled by {@code
          * GroupOwnerSocketHandler}
          */
-        TcpClient humanConfiguration = null;
+        boardFragment = new BoardFragment();
+        handFragment = new HandFragment();
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
-            getServerConfiguration(handler).start(SERVER_PORT);
-
-//            getBotConfiguration(handler).start(context.getAddress().getHostAddress(), context.getPort());
+            getServerConfiguration(handler, gameMode).start(SERVER_PORT);
         } else {
             Log.d(TAG, "Connected as peer");
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
 
-            if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.PLAYER) {
-                humanConfiguration = getHumanConfiguration(handler);
-            }
-            if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.BOT) {
-                humanConfiguration = getBotConfiguration(handler);
-            }
-            humanConfiguration.start(serverAddress, SERVER_PORT);
+            TcpClient player = getPlayer(gameMode);
+            player.start(serverAddress, SERVER_PORT);
+
+            handFragment.setSender(player.getContext().getSender());
+            boardFragment.setSender(player.getContext().getSender());
         }
 
-        boardFragment = new BoardFragment();
-        handFragment = new HandFragment();
-        if (humanConfiguration != null) {
-            handFragment.setSender(humanConfiguration.getContext().getSender());
-            boardFragment.setSender(humanConfiguration.getContext().getSender());
-        }
         boardFragment.setHandFragment(handFragment);
 
         getFragmentManager().beginTransaction().replace(R.id.container_root, boardFragment).commit();
 
         statusTxtView.setVisibility(View.GONE);
+    }
+
+    private TcpClient getPlayer(String gameMode) {
+        if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.PLAYER) {
+            return getHumanConfiguration(handler);
+        }
+        if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.BOT) {
+            return getBotConfiguration(handler);
+        }
+        return null;
     }
 
     public void appendStatus(String status) {

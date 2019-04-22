@@ -2,11 +2,14 @@ package com.example.pc.evolutiongame.core.server;
 
 import android.os.Handler;
 
+import com.example.pc.evolutiongame.GameMode;
 import com.example.pc.evolutiongame.core.Connectable;
 import com.example.pc.evolutiongame.core.EvolutionContext;
+import com.example.pc.evolutiongame.core.client.TcpClient;
 import com.example.pc.evolutiongame.model.Room;
 
 import static com.example.pc.evolutiongame.Configuration.getBotConfiguration;
+import static com.example.pc.evolutiongame.Configuration.getHumanConfiguration;
 
 public class ServerConnector implements Connectable {
 
@@ -23,6 +26,17 @@ public class ServerConnector implements Connectable {
 
         context.setRoom(new Room(NUMBER_PLAYER));
 
-//        getBotConfiguration(handler).start(context.getAddress().getHostAddress(), context.getPort());
+        TcpClient player = getPlayer(context.getGameMode());
+        player.start(context.getAddress().getHostAddress(), context.getPort());
+    }
+
+    private TcpClient getPlayer(String gameMode) {
+        if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.PLAYER) {
+            return getHumanConfiguration(handler);
+        }
+        if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.BOT) {
+            return getBotConfiguration(handler);
+        }
+        return null;
     }
 }
