@@ -22,10 +22,12 @@ public class ClientProcessor implements Processor {
 
     private final Gson gson;
     private final Handler handler;
+    private final com.example.pc.evolutiongame.core.Player player;
 
-    public ClientProcessor(Gson gson, Handler handler) {
+    public ClientProcessor(Gson gson, Handler handler, com.example.pc.evolutiongame.core.Player player) {
         this.gson = gson;
         this.handler = handler;
+        this.player = player;
     }
 
     @Override
@@ -72,26 +74,7 @@ public class ClientProcessor implements Processor {
             System.out.println("Process evolution phase");
             if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass() && currentPlayer.canPlay()) {
                 System.out.println("Player should turn");
-
-                int localRandomCardNumber = (int) (Math.random() * currentPlayer.getCardsCount());
-                if (room.getField().getAnimalsCount(currentPlayer) == 0) {
-                    currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
-                } else {
-                    if (Math.random() * 10 >= 4) {
-                        int cardNumber = (int) (Math.random() * room.getCurrentPlayer().getCardsCount());
-                        int animalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
-                        currentPlayer.playProperty(room.getField(), cardNumber, animalNumber, 0);
-                    } else {
-                        currentPlayer.playAnimal(room.getField(), localRandomCardNumber);
-                    }
-                }
-                obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, room);
-
-                if (!currentPlayer.canPlay()) {
-                    currentPlayer.setPass(true);
-                }
-
-                context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
+                player.play(context, game);
                 return;
             }
 
@@ -107,17 +90,7 @@ public class ClientProcessor implements Processor {
             System.out.println("Process power phase");
             if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass()) {
                 System.out.println("Player should turn");
-
-                int animalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
-
-                room.getCurrentPlayer().giveFood(room, animalNumber);
-
-                if (room.getCapacityFood() == 0) {
-                    room.getCurrentPlayer().setPass(true);
-                }
-
-                context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, POWER, room)));
-
+                player.play(context, game);
                 return;
             }
             System.out.println("Player skip message and waiting turn");
