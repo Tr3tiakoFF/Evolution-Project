@@ -30,7 +30,13 @@ import android.widget.Toast;
 
 import com.example.pc.evolutiongame.BoardFragment;
 import com.example.pc.evolutiongame.HandFragment;
+import com.example.pc.evolutiongame.core.EvolutionContext;
+import com.example.pc.evolutiongame.core.client.TcpClient;
+import com.example.pc.evolutiongame.core.control.Action;
+import com.example.pc.evolutiongame.core.control.Game;
 import com.example.pc.evolutiongame.model.Room;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +44,7 @@ import java.util.Map;
 import static android.os.SystemClock.sleep;
 import static com.example.pc.evolutiongame.Configuration.getHumanConfiguration;
 import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
+import static com.example.pc.evolutiongame.core.control.Phase.EVOLUTION;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 import static java.lang.String.format;
 
@@ -67,6 +74,8 @@ public class WiFiServiceDiscoveryActivity extends Activity
     private HandFragment handFragment;
     private String playerId;
     private Room room;
+    private TcpClient humanConfiguration;
+    private Gson gson;
 
     /**
      * Called when the activity is first created.
@@ -95,6 +104,8 @@ public class WiFiServiceDiscoveryActivity extends Activity
         WiFiDirectServicesList servicesList = new WiFiDirectServicesList();
         getFragmentManager().beginTransaction()
                 .add(R.id.container_root, servicesList, "services").commit();
+
+        gson = new GsonBuilder().create();
 
         sleep(10);
     }
@@ -313,6 +324,9 @@ public class WiFiServiceDiscoveryActivity extends Activity
     public void onBackPressed() {
         super.onBackPressed();
         boardFragment.refreshRoom(playerId, room);
+
+        EvolutionContext context = humanConfiguration.getContext();
+        context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
     }
 
     @Override
@@ -330,7 +344,8 @@ public class WiFiServiceDiscoveryActivity extends Activity
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
 
 //            getBotConfiguration(handler).start(serverAddress, SERVER_PORT);
-            getHumanConfiguration(handler).start(serverAddress, SERVER_PORT);
+            humanConfiguration = getHumanConfiguration(handler);
+            humanConfiguration.start(serverAddress, SERVER_PORT);
         }
 
         boardFragment = new BoardFragment();

@@ -83,6 +83,10 @@ public class TcpClient implements Sendable {
         clientSocket.shutdownOutput();
     }
 
+    public EvolutionContext getContext() {
+        return context;
+    }
+
     public static void main(String[] args) {
         TcpClient client = getBotConfiguration(null);
         client.start(SERVER_HOST, SERVER_PORT);
