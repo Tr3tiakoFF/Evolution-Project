@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 
     public void openBotGame(GameMode gameMode) {
         Intent intent = new Intent(this, WiFiServiceDiscoveryActivity.class);
-        intent.putExtra("gameMode", gameMode);
+        intent.putExtra("gameMode", gameMode.toString());
         startActivity(intent);
     }
 }
