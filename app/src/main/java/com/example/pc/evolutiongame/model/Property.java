@@ -10,4 +10,11 @@ public class Property {
     public LowLevelAnimalProperty getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "Property{" +
+                "value=" + value +
+                '}';
+    }
 }
