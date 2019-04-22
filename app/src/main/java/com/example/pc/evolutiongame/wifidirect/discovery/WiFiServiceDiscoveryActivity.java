@@ -333,8 +333,6 @@ public class WiFiServiceDiscoveryActivity extends Activity
          * client socket for every client. This is handled by {@code
          * GroupOwnerSocketHandler}
          */
-        boardFragment = new BoardFragment();
-        handFragment = new HandFragment();
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
             getServerConfiguration(handler, gameMode, this).start(SERVER_PORT);
@@ -345,12 +343,14 @@ public class WiFiServiceDiscoveryActivity extends Activity
             TcpClient player = getPlayer(gameMode);
             player.start(serverAddress, SERVER_PORT);
 
+            boardFragment = new BoardFragment();
+            handFragment = new HandFragment();
             handFragment.setSender(player.getContext().getSender());
             boardFragment.setSender(player.getContext().getSender());
             boardFragment.setHandFragment(handFragment);
+            getFragmentManager().beginTransaction().replace(R.id.container_root, boardFragment).commit();
         }
 
-        getFragmentManager().beginTransaction().replace(R.id.container_root, boardFragment).commit();
 
         statusTxtView.setVisibility(View.GONE);
     }
@@ -379,8 +379,11 @@ public class WiFiServiceDiscoveryActivity extends Activity
         TcpClient player = getPlayer(context.getGameMode());
         player.start(context.getAddress().getHostAddress(), context.getPort());
 
+        boardFragment = new BoardFragment();
+        handFragment = new HandFragment();
         handFragment.setSender(player.getContext().getSender());
         boardFragment.setSender(player.getContext().getSender());
         boardFragment.setHandFragment(handFragment);
+        getFragmentManager().beginTransaction().replace(R.id.container_root, boardFragment).commit();
     }
 }
