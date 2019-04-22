@@ -30,13 +30,8 @@ import android.widget.Toast;
 
 import com.example.pc.evolutiongame.BoardFragment;
 import com.example.pc.evolutiongame.HandFragment;
-import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.core.client.TcpClient;
-import com.example.pc.evolutiongame.core.control.Action;
-import com.example.pc.evolutiongame.core.control.Game;
 import com.example.pc.evolutiongame.model.Room;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +39,6 @@ import java.util.Map;
 import static android.os.SystemClock.sleep;
 import static com.example.pc.evolutiongame.Configuration.getHumanConfiguration;
 import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
-import static com.example.pc.evolutiongame.core.control.Phase.EVOLUTION;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 import static java.lang.String.format;
 
@@ -344,7 +338,9 @@ public class WiFiServiceDiscoveryActivity extends Activity
 
         boardFragment = new BoardFragment();
         handFragment = new HandFragment();
-        handFragment.setSender(humanConfiguration.getContext().getSender());
+        if (humanConfiguration != null) {
+            handFragment.setSender(humanConfiguration.getContext().getSender());
+        }
         boardFragment.setHandFragment(handFragment);
 
         getFragmentManager().beginTransaction().replace(R.id.container_root, boardFragment).commit();
