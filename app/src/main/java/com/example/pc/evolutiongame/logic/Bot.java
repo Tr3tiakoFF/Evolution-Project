@@ -61,6 +61,8 @@ public class Bot implements Player {
             context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, POWER, room)));
         }
 
+        obtainMessage(WiFiServiceDiscoveryActivity.ROOM_READ, room);
+
     }
 
     private void obtainMessage(int what, Object obj) {

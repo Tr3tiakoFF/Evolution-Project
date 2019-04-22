@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         startBot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openOnlineGame();
+                openBotGame();
             }
         });
 
