@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 
+import com.example.pc.evolutiongame.core.Sendable;
 import com.example.pc.evolutiongame.model.Animal;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Property;
@@ -47,6 +48,7 @@ public class BoardFragment extends Fragment {
     ImageView enemyImageView_6_1, enemyImageView_6_2, enemyImageView_6_3, enemyImageView_6_4, enemyImageView_6_5, enemyImageView_6_6;
     private HandFragment handFragment;
     private View view;
+    private Sendable sender;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -517,5 +519,9 @@ public class BoardFragment extends Fragment {
 
     public void setHandFragment(HandFragment handFragment) {
         this.handFragment = handFragment;
+    }
+
+    public void setSender(Sendable sender) {
+        this.sender = sender;
     }
 }
