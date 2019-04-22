@@ -321,38 +321,36 @@ public class WiFiServiceDiscoveryActivity extends Activity
 
     @Override
     public void onConnectionInfoAvailable(WifiP2pInfo p2pInfo) {
-        if (p2pInfo.isGroupOwner) {
-            Log.d(TAG, "Connected as group owner");
-            getServerConfiguration(handler).start(SERVER_PORT);
-        }
-        boardFragment = new BoardFragment();
-
         Intent intent = getIntent();
         String gameMode = intent.getStringExtra("gameMode");
 
-        if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.BOT) {
-            if (!p2pInfo.isGroupOwner) {
-                Log.d(TAG, "Connected as peer");
-                String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
+        /*
+         * The group owner accepts connections using a server socket and then spawns a
+         * client socket for every client. This is handled by {@code
+         * GroupOwnerSocketHandler}
+         */
+        TcpClient humanConfiguration = null;
+        if (p2pInfo.isGroupOwner) {
+            Log.d(TAG, "Connected as group owner");
+            getServerConfiguration(handler).start(SERVER_PORT);
+        } else {
+            Log.d(TAG, "Connected as peer");
+            String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
 
-                TcpClient tcpClient = getBotConfiguration(handler);
-                tcpClient.start(serverAddress, SERVER_PORT);
+            if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.PLAYER) {
+                humanConfiguration = getHumanConfiguration(handler);
             }
+            if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.BOT) {
+                humanConfiguration = getBotConfiguration(handler);
+            }
+            humanConfiguration.start(serverAddress, SERVER_PORT);
         }
 
-        if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.PLAYER) {
-            if (!p2pInfo.isGroupOwner) {
-                Log.d(TAG, "Connected as peer");
-                String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
-
-                TcpClient tcpClient = getHumanConfiguration(handler);
-                tcpClient.start(serverAddress, SERVER_PORT);
-
-                handFragment = new HandFragment();
-                handFragment.setSender(tcpClient.getContext().getSender());
-            }
+        boardFragment = new BoardFragment();
+        handFragment = new HandFragment();
+        if (humanConfiguration != null) {
+            handFragment.setSender(humanConfiguration.getContext().getSender());
         }
-
         boardFragment.setHandFragment(handFragment);
 
         getFragmentManager().beginTransaction().replace(R.id.container_root, boardFragment).commit();
