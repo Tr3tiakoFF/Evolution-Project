@@ -285,11 +285,11 @@ public class WiFiServiceDiscoveryActivity extends Activity
                 room = (Room) msg.obj;
                 String winnerId = room.getWinnerId();
                 if (playerId.equals(winnerId)) {
-                    Toast.makeText(this, "You are winner!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "You are winner!", Toast.LENGTH_LONG).show();
                     break;
                 }
 
-                Toast.makeText(this, format("Winner is %s", winnerId), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, format("Winner is %s", winnerId), Toast.LENGTH_LONG).show();
                 break;
         }
         return true;
