@@ -64,13 +64,47 @@ public class HandFragment extends Fragment {
         playLikeSecondProp5 = (Button) view.findViewById(R.id.Prop5_2);
         playLikeSecondProp6 = (Button) view.findViewById(R.id.Prop6_2);
 
-
+//        TODO
         playLikeAnimal1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 0);
-                getFragmentManager().popBackStack();
-//                context.getSender().sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
+                refreshFragment();
+            }
+        });
+        playLikeAnimal2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.playAnimal(room.getField(), 1);
+                refreshFragment();
+            }
+        });
+        playLikeAnimal3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.playAnimal(room.getField(), 2);
+                refreshFragment();
+            }
+        });
+        playLikeAnimal4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.playAnimal(room.getField(), 3);
+                refreshFragment();
+            }
+        });
+        playLikeAnimal5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.playAnimal(room.getField(), 4);
+                refreshFragment();
+            }
+        });
+        playLikeAnimal6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.playAnimal(room.getField(), 5);
+                refreshFragment();
             }
         });
 
