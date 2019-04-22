@@ -35,27 +35,6 @@ public class MainActivity extends Activity {
         startHyb = (Button) findViewById(R.id.hybridButton);
         faq = (Button) findViewById(R.id.faq);
 
-//        faq.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                {
-//                    File file = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/brouchure.pdf");
-//                    if (file.exists()) {
-//                        Intent intent = new Intent(Intent.ACTION_VIEW);
-//                        Uri uri = Uri.fromFile(file);
-//                        intent.setDataAndType(uri, "application/pdf");
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//
-//                        try {
-//                            startActivity(intent);
-//                        } catch (ActivityNotFoundException e) {
-//                            Toast.makeText(MainActivity.this, "No Application available to view pdf", Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-//                }
-//            }
-//        });
-
         startPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,8 +55,6 @@ public class MainActivity extends Activity {
                 openHyb();
             }
         });
-
-        sleep(750);
     }
 
     public void openOnlineGame() {

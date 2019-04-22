@@ -6,7 +6,7 @@ import com.example.pc.evolutiongame.core.Connectable;
 import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.model.Room;
 
-import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
+import static com.example.pc.evolutiongame.Configuration.getBotConfiguration;
 
 public class ServerConnector implements Connectable {
 
@@ -23,6 +23,6 @@ public class ServerConnector implements Connectable {
 
         context.setRoom(new Room(NUMBER_PLAYER));
 
-        getClientConfiguration(handler).start(context.getAddress().getHostAddress(), context.getPort());
+        getBotConfiguration(handler).start(context.getAddress().getHostAddress(), context.getPort());
     }
 }

@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
-import static com.example.pc.evolutiongame.Configuration.getClientConfiguration;
+import static com.example.pc.evolutiongame.Configuration.getBotConfiguration;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_HOST;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 
@@ -84,7 +84,7 @@ public class TcpClient implements Sendable {
     }
 
     public static void main(String[] args) {
-        TcpClient client = getClientConfiguration(null);
+        TcpClient client = getBotConfiguration(null);
         client.start(SERVER_HOST, SERVER_PORT);
 
 //        for (int i = 0; i < 100; i++) {
