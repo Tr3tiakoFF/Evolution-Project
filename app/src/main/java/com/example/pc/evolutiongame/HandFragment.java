@@ -154,12 +154,33 @@ public class HandFragment extends Fragment {
     }
 
     private void refreshFragment() {
-        playerCard6.setVisibility(View.VISIBLE);
         playerCard1.setVisibility(View.VISIBLE);
         playerCard2.setVisibility(View.VISIBLE);
         playerCard3.setVisibility(View.VISIBLE);
         playerCard4.setVisibility(View.VISIBLE);
         playerCard5.setVisibility(View.VISIBLE);
+        playerCard6.setVisibility(View.VISIBLE);
+
+        playLikeAnimal1.setVisibility(View.VISIBLE);
+        playLikeAnimal2.setVisibility(View.VISIBLE);
+        playLikeAnimal3.setVisibility(View.VISIBLE);
+        playLikeAnimal4.setVisibility(View.VISIBLE);
+        playLikeAnimal5.setVisibility(View.VISIBLE);
+        playLikeAnimal6.setVisibility(View.VISIBLE);
+
+        playLikeFirstProp1.setVisibility(View.VISIBLE);
+        playLikeFirstProp2.setVisibility(View.VISIBLE);
+        playLikeFirstProp3.setVisibility(View.VISIBLE);
+        playLikeFirstProp4.setVisibility(View.VISIBLE);
+        playLikeFirstProp5.setVisibility(View.VISIBLE);
+        playLikeFirstProp6.setVisibility(View.VISIBLE);
+
+        playLikeSecondProp1.setVisibility(View.VISIBLE);
+        playLikeSecondProp2.setVisibility(View.VISIBLE);
+        playLikeSecondProp3.setVisibility(View.VISIBLE);
+        playLikeSecondProp4.setVisibility(View.VISIBLE);
+        playLikeSecondProp5.setVisibility(View.VISIBLE);
+        playLikeSecondProp6.setVisibility(View.VISIBLE);
 
         if (hand.size() >= 1) {
             renderCard(playerCard1, hand.get(0));
@@ -175,36 +196,99 @@ public class HandFragment extends Fragment {
                                 renderCard(playerCard6, hand.get(5));
                             } else {
                                 playerCard6.setVisibility(View.INVISIBLE);
+                                playLikeAnimal6.setVisibility(View.INVISIBLE);
+                                playLikeFirstProp6.setVisibility(View.INVISIBLE);
+                                playLikeSecondProp6.setVisibility(View.INVISIBLE);
                             }
                         } else {
-                            playerCard6.setVisibility(View.INVISIBLE);
                             playerCard5.setVisibility(View.INVISIBLE);
+                            playLikeAnimal5.setVisibility(View.INVISIBLE);
+                            playLikeFirstProp5.setVisibility(View.INVISIBLE);
+                            playLikeSecondProp5.setVisibility(View.INVISIBLE);
+                            playerCard6.setVisibility(View.INVISIBLE);
+                            playLikeAnimal6.setVisibility(View.INVISIBLE);
+                            playLikeFirstProp6.setVisibility(View.INVISIBLE);
+                            playLikeSecondProp6.setVisibility(View.INVISIBLE);
                         }
                     } else {
-                        playerCard6.setVisibility(View.INVISIBLE);
                         playerCard4.setVisibility(View.INVISIBLE);
+                        playLikeAnimal4.setVisibility(View.INVISIBLE);
+                        playLikeFirstProp4.setVisibility(View.INVISIBLE);
+                        playLikeSecondProp4.setVisibility(View.INVISIBLE);
                         playerCard5.setVisibility(View.INVISIBLE);
+                        playLikeAnimal5.setVisibility(View.INVISIBLE);
+                        playLikeFirstProp4.setVisibility(View.INVISIBLE);
+                        playLikeSecondProp5.setVisibility(View.INVISIBLE);
+                        playerCard6.setVisibility(View.INVISIBLE);
+                        playLikeAnimal6.setVisibility(View.INVISIBLE);
+                        playLikeFirstProp6.setVisibility(View.INVISIBLE);
+                        playLikeSecondProp6.setVisibility(View.INVISIBLE);
                     }
                 } else {
-                    playerCard6.setVisibility(View.INVISIBLE);
                     playerCard3.setVisibility(View.INVISIBLE);
+                    playLikeAnimal3.setVisibility(View.INVISIBLE);
+                    playLikeFirstProp3.setVisibility(View.INVISIBLE);
+                    playLikeSecondProp3.setVisibility(View.INVISIBLE);
                     playerCard4.setVisibility(View.INVISIBLE);
+                    playLikeAnimal4.setVisibility(View.INVISIBLE);
+                    playLikeFirstProp4.setVisibility(View.INVISIBLE);
+                    playLikeSecondProp4.setVisibility(View.INVISIBLE);
                     playerCard5.setVisibility(View.INVISIBLE);
+                    playLikeAnimal5.setVisibility(View.INVISIBLE);
+                    playLikeFirstProp5.setVisibility(View.INVISIBLE);
+                    playLikeSecondProp5.setVisibility(View.INVISIBLE);
+                    playerCard6.setVisibility(View.INVISIBLE);
+                    playLikeAnimal6.setVisibility(View.INVISIBLE);
+                    playLikeFirstProp6.setVisibility(View.INVISIBLE);
+                    playLikeSecondProp6.setVisibility(View.INVISIBLE);
                 }
             } else {
-                playerCard6.setVisibility(View.INVISIBLE);
                 playerCard2.setVisibility(View.INVISIBLE);
+                playLikeAnimal2.setVisibility(View.INVISIBLE);
+                playLikeFirstProp2.setVisibility(View.INVISIBLE);
+                playLikeSecondProp2.setVisibility(View.INVISIBLE);
                 playerCard3.setVisibility(View.INVISIBLE);
+                playLikeAnimal3.setVisibility(View.INVISIBLE);
+                playLikeFirstProp3.setVisibility(View.INVISIBLE);
+                playLikeSecondProp3.setVisibility(View.INVISIBLE);
                 playerCard4.setVisibility(View.INVISIBLE);
+                playLikeAnimal4.setVisibility(View.INVISIBLE);
+                playLikeFirstProp4.setVisibility(View.INVISIBLE);
+                playLikeSecondProp4.setVisibility(View.INVISIBLE);
                 playerCard5.setVisibility(View.INVISIBLE);
+                playLikeAnimal5.setVisibility(View.INVISIBLE);
+                playLikeFirstProp5.setVisibility(View.INVISIBLE);
+                playLikeSecondProp5.setVisibility(View.INVISIBLE);
+                playerCard6.setVisibility(View.INVISIBLE);
+                playLikeAnimal6.setVisibility(View.INVISIBLE);
+                playLikeFirstProp6.setVisibility(View.INVISIBLE);
+                playLikeSecondProp6.setVisibility(View.INVISIBLE);
             }
         } else {
-            playerCard6.setVisibility(View.INVISIBLE);
             playerCard1.setVisibility(View.INVISIBLE);
+            playLikeAnimal1.setVisibility(View.INVISIBLE);
+            playLikeFirstProp1.setVisibility(View.INVISIBLE);
+            playLikeSecondProp1.setVisibility(View.INVISIBLE);
             playerCard2.setVisibility(View.INVISIBLE);
+            playLikeAnimal2.setVisibility(View.INVISIBLE);
+            playLikeFirstProp2.setVisibility(View.INVISIBLE);
+            playLikeSecondProp2.setVisibility(View.INVISIBLE);
             playerCard3.setVisibility(View.INVISIBLE);
+            playLikeAnimal3.setVisibility(View.INVISIBLE);
+            playLikeFirstProp3.setVisibility(View.INVISIBLE);
+            playLikeSecondProp3.setVisibility(View.INVISIBLE);
             playerCard4.setVisibility(View.INVISIBLE);
+            playLikeAnimal4.setVisibility(View.INVISIBLE);
+            playLikeFirstProp4.setVisibility(View.INVISIBLE);
+            playLikeSecondProp4.setVisibility(View.INVISIBLE);
             playerCard5.setVisibility(View.INVISIBLE);
+            playLikeAnimal5.setVisibility(View.INVISIBLE);
+            playLikeFirstProp5.setVisibility(View.INVISIBLE);
+            playLikeSecondProp5.setVisibility(View.INVISIBLE);
+            playerCard6.setVisibility(View.INVISIBLE);
+            playLikeAnimal6.setVisibility(View.INVISIBLE);
+            playLikeFirstProp6.setVisibility(View.INVISIBLE);
+            playLikeSecondProp6.setVisibility(View.INVISIBLE);
         }
     }
 

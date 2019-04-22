@@ -67,7 +67,8 @@
                             android:id="@+id/textView44"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/playAnimal1"
@@ -84,7 +85,8 @@
                             android:id="@+id/textView55"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop1_1"
@@ -101,7 +103,8 @@
                             android:id="@+id/textView66"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop1_2"
@@ -118,7 +121,8 @@
                             android:id="@+id/textView77"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
@@ -179,7 +183,8 @@
                             android:id="@+id/textView4"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/playAnimal2"
@@ -196,7 +201,8 @@
                             android:id="@+id/textView5"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop2_1"
@@ -213,7 +219,8 @@
                             android:id="@+id/textView6"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop2_2"
@@ -230,7 +237,8 @@
                             android:id="@+id/textView7"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
@@ -290,7 +298,8 @@
                             android:id="@+id/textView444"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/playAnimal3"
@@ -307,7 +316,8 @@
                             android:id="@+id/textView555"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop3_1"
@@ -324,7 +334,8 @@
                             android:id="@+id/textView666"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop3_2"
@@ -341,7 +352,8 @@
                             android:id="@+id/textView777"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
@@ -401,7 +413,8 @@
                             android:id="@+id/textView44444444"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/playAnimal4"
@@ -418,7 +431,8 @@
                             android:id="@+id/textView5555"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop4_1"
@@ -435,7 +449,8 @@
                             android:id="@+id/textView6666"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop4_2"
@@ -452,7 +467,8 @@
                             android:id="@+id/textView7777"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
@@ -513,7 +529,8 @@
                             android:id="@+id/textView4444"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/playAnimal5"
@@ -530,7 +547,8 @@
                             android:id="@+id/textView55555"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop5_1"
@@ -547,7 +565,8 @@
                             android:id="@+id/textView66666"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop5_2"
@@ -564,7 +583,8 @@
                             android:id="@+id/textView77777"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
@@ -624,7 +644,8 @@
                             android:id="@+id/textView4444444"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/playAnimal6"
@@ -641,7 +662,8 @@
                             android:id="@+id/textView55555555"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop6_1"
@@ -658,7 +680,8 @@
                             android:id="@+id/textView66666666"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
 
                         <Button
                             android:id="@+id/Prop6_2"
@@ -675,7 +698,8 @@
                             android:id="@+id/textView7777777"
                             android:layout_width="2dp"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:visibility="invisible" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
