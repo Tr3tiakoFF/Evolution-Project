@@ -8,12 +8,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
+import com.example.pc.evolutiongame.core.Sendable;
+import com.example.pc.evolutiongame.core.control.Action;
+import com.example.pc.evolutiongame.core.control.Game;
+import com.example.pc.evolutiongame.core.control.Phase;
 import com.example.pc.evolutiongame.model.Animal;
 import com.example.pc.evolutiongame.model.Player;
 import com.example.pc.evolutiongame.model.Property;
 import com.example.pc.evolutiongame.model.Room;
 import com.example.pc.evolutiongame.wifidirect.discovery.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +36,8 @@ public class BoardFragment extends Fragment {
 
     Button playerAnimal1, playerAnimal2, playerAnimal3, playerAnimal4, playerAnimal5, playerAnimal6;
     Button enemyAnimal1, enemyAnimal2, enemyAnimal3, enemyAnimal4, enemyAnimal5, enemyAnimal6;
+
+    TextView gamePhase;
 
     TableLayout playerTable1, playerTable2, playerTable3, playerTable4, playerTable5, playerTable6;
     ImageView playerImageView_1_1, playerImageView_1_2, playerImageView_1_3, playerImageView_1_4, playerImageView_1_5, playerImageView_1_6;
@@ -47,6 +56,10 @@ public class BoardFragment extends Fragment {
     ImageView enemyImageView_6_1, enemyImageView_6_2, enemyImageView_6_3, enemyImageView_6_4, enemyImageView_6_5, enemyImageView_6_6;
     private HandFragment handFragment;
     private View view;
+    private String playerId;
+    private Room room;
+    private Player player;
+    private Sendable sender;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +68,8 @@ public class BoardFragment extends Fragment {
         hand = (Button) view.findViewById(R.id.showDeckButton);
         reRender = (Button) view.findViewById(R.id.foodCapacityButton);
         open = (Button) view.findViewById(R.id.passButton);
+
+        gamePhase = (TextView) view.findViewById(R.id.gamePhase);
 
         playerTable1 = (TableLayout) view.findViewById(R.id.playerPropertyTable1);
         {
@@ -181,6 +196,19 @@ public class BoardFragment extends Fragment {
         enemyAnimal4 = (Button) view.findViewById(R.id.enemyMinion4);
         enemyAnimal5 = (Button) view.findViewById(R.id.enemyMinion5);
         enemyAnimal6 = (Button) view.findViewById(R.id.enemyMinion6);
+
+        final Gson gson = new GsonBuilder().create();
+
+        playerAnimal1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.POWER) {
+                    player.giveFood(room, 0);
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
+            }
+        });
+
 
         hand.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -501,21 +529,28 @@ public class BoardFragment extends Fragment {
     }
 
     public void refreshRoom(String playerId, Room room) {
+        this.playerId = playerId;
+        this.room = room;
         System.out.printf("Trying board for room->%s", room);
 
         renderAnimalPropertes(playerId, room);
 
         ViewGroup playerLayout = view.findViewById(R.id.playerLayout);
-        Player player = getPlayer(playerId, room);
+        player = getPlayer(playerId, room);
         Utils.renderPlayerAnimals(player, room, playerLayout);
 
         ViewGroup enemyLayout = view.findViewById(R.id.enemyLayout);
         List<Player> enemyPlayers = getEnemyPlayers(playerId, room);
         Utils.renderPlayerAnimals(enemyPlayers.get(0), room, enemyLayout);
 
+        gamePhase.setText(room.getPhase().name());
     }
 
     public void setHandFragment(HandFragment handFragment) {
         this.handFragment = handFragment;
+    }
+
+    public void setSender(Sendable sender) {
+        this.sender = sender;
     }
 }

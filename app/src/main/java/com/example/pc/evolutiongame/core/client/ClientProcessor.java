@@ -52,7 +52,7 @@ public class ClientProcessor implements Processor {
         }
 
         try {
-            sleep(300);
+            sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

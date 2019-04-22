@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import static com.example.pc.evolutiongame.core.control.Action.REFRESH_STATE;
+import static com.example.pc.evolutiongame.core.control.Phase.ENDGAME;
 import static com.example.pc.evolutiongame.core.control.Phase.EVOLUTION;
 import static com.example.pc.evolutiongame.core.control.Phase.POWER;
 
@@ -35,7 +36,6 @@ public class ServerReceiver implements Processor {
 
         if (REFRESH_STATE == game.getAction()) {
             Room room = game.getRoom();
-            room.setPhase(game.getPhase());
             evolutionContext.setRoom(room);
 
             Sendable sender = evolutionContext.getSender();
@@ -49,6 +49,7 @@ public class ServerReceiver implements Processor {
                     room.setAllNotPass();
                     room.setCapacityFood(room.numberPlayers());
 
+                    room.setPhase(POWER);
                     sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, POWER, room)));
 
                     return;
@@ -58,6 +59,7 @@ public class ServerReceiver implements Processor {
 
                 room.calculateAnimalsFoodCapacity();
 
+                room.setPhase(EVOLUTION);
                 sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, EVOLUTION, room)));
             }
 
@@ -74,9 +76,11 @@ public class ServerReceiver implements Processor {
                     if (room.getDeck().isEmpty()) {
                         System.out.printf("Room get winner->%s%n", room.getWinnerId());
 
-                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, Phase.ENDGAME, room)));
+                        room.setPhase(ENDGAME);
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, ENDGAME, room)));
                         return;
                     }
+
 
                     System.out.println("Start evolution phase");
 
@@ -86,6 +90,7 @@ public class ServerReceiver implements Processor {
                         room.addCardsToPlayer(i, cardsForPlayers.get(i));
                     }
 
+                    room.setPhase(EVOLUTION);
                     sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, Phase.EVOLUTION, room)));
 
                     return;
@@ -93,6 +98,7 @@ public class ServerReceiver implements Processor {
 
                 room.setNextPlayer();
 
+                room.setPhase(POWER);
                 sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, POWER, room)));
             }
         }

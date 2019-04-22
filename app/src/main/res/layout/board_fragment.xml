@@ -1709,6 +1709,16 @@
             android:layout_toEndOf="@+id/playerMinion5"
             android:background="@drawable/animal_174x118"
             android:text="Animal" />
+
+        <TextView
+            android:id="@+id/gamePhase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="189dp"
+            android:layout_marginTop="173dp"
+            android:text="TextView" />
     </RelativeLayout>
 
 

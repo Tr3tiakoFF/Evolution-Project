@@ -50,6 +50,7 @@ public class AcceptableImpl implements Acceptable {
             room.addCardsToPlayer(i, cardsForPlayers.get(i));
         }
 
+        room.setPhase(Phase.EVOLUTION);
         sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, Phase.EVOLUTION, room)));
     }
 }
