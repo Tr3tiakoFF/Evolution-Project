@@ -30,6 +30,10 @@ public class HandFragment extends Fragment {
 
     ImageView playerCard1, playerCard2, playerCard3, playerCard4, playerCard5, playerCard6;
     private View view;
+    private String playerId;
+    private Room room;
+    private List<Card> hand;
+    private Player player;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,33 +68,28 @@ public class HandFragment extends Fragment {
         playLikeSecondProp6 = (Button) view.findViewById(R.id.Prop6_2);
 
 
-//        Room room = new Room();
-//
-//        room.addPlayer(new Player(getNewId()));
-//        room.addPlayer(new Player(getNewId()));
-//        room.addDeck(DeckShufler.deckShuffle());
-//
-//        List<List<Card>> cardsForPlayers = CardGiver.getCardsForPlayers(room.numberPlayers(), room.getDeck());
-//
-//        for (int i = 0; i < room.numberPlayers(); i++) {
-//            room.getPlayers().get(i).addCards(cardsForPlayers.get(i));
-//        }
-//
-//        player = room.getPlayers().get(0);
-//
-//        refreshRoom(room);
+        playLikeAnimal1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.playAnimal(room.getField(), 0);
+                getFragmentManager().popBackStack();
+            }
+        });
 
         return view;
     }
 
 
     public void refreshRoom(String playerId, Room room) {
+        this.playerId = playerId;
+        this.room = room;
         System.out.printf("Trying hand for room->%s", room);
         if (view == null) {
+
             return;
         }
-        Player player = getPlayer(playerId, room);
-        List<Card> hand = player.getCards();
+        player = getPlayer(playerId, room);
+        hand = player.getCards();
 
         playerCard6.setVisibility(View.VISIBLE);
         playerCard1.setVisibility(View.VISIBLE);

@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.os.SystemClock.sleep;
-import static com.example.pc.evolutiongame.Configuration.getBotConfiguration;
+import static com.example.pc.evolutiongame.Configuration.getHumanConfiguration;
 import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 import static java.lang.String.format;
@@ -329,8 +329,8 @@ public class WiFiServiceDiscoveryActivity extends Activity
             Log.d(TAG, "Connected as peer");
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
 
-            getBotConfiguration(handler).start(serverAddress, SERVER_PORT);
-//            getHumanConfiguration(handler).start(serverAddress, SERVER_PORT);
+//            getBotConfiguration(handler).start(serverAddress, SERVER_PORT);
+            getHumanConfiguration(handler).start(serverAddress, SERVER_PORT);
         }
 
         boardFragment = new BoardFragment();
