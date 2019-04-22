@@ -7,12 +7,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.pc.evolutiongame.wifidirect.discovery.R;
 import com.example.pc.evolutiongame.wifidirect.discovery.WiFiServiceDiscoveryActivity;
-
-import static android.os.SystemClock.sleep;
 
 public class MainActivity extends Activity {
     Button startPlayer;
@@ -38,35 +35,28 @@ public class MainActivity extends Activity {
         startPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openOnlineGame();
+                openBotGame(GameMode.PLAYER);
             }
         });
 
         startBot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openBotGame();
+                openBotGame(GameMode.BOT);
             }
         });
 
         startHyb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHyb();
+                openBotGame(GameMode.HYBRID);
             }
         });
     }
 
-    public void openOnlineGame() {
-        Toast.makeText(this, "In dev :)", Toast.LENGTH_SHORT).show();
-    }
-
-    public void openBotGame() {
+    public void openBotGame(GameMode gameMode) {
         Intent intent = new Intent(this, WiFiServiceDiscoveryActivity.class);
+        intent.putExtra("gameMode", gameMode);
         startActivity(intent);
-    }
-
-    public void openHyb() {
-        Toast.makeText(this, "In dev :)", Toast.LENGTH_SHORT).show();
     }
 }

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WpsInfo;
 import android.net.wifi.p2p.WifiP2pConfig;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pc.evolutiongame.BoardFragment;
+import com.example.pc.evolutiongame.GameMode;
 import com.example.pc.evolutiongame.HandFragment;
 import com.example.pc.evolutiongame.core.client.TcpClient;
 import com.example.pc.evolutiongame.model.Room;
@@ -37,6 +39,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.os.SystemClock.sleep;
+import static com.example.pc.evolutiongame.Configuration.getBotConfiguration;
 import static com.example.pc.evolutiongame.Configuration.getHumanConfiguration;
 import static com.example.pc.evolutiongame.Configuration.getServerConfiguration;
 import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
@@ -318,29 +321,39 @@ public class WiFiServiceDiscoveryActivity extends Activity
 
     @Override
     public void onConnectionInfoAvailable(WifiP2pInfo p2pInfo) {
-        /*
-         * The group owner accepts connections using a server socket and then spawns a
-         * client socket for every client. This is handled by {@code
-         * GroupOwnerSocketHandler}
-         */
-        TcpClient humanConfiguration = null;
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
             getServerConfiguration(handler).start(SERVER_PORT);
-        } else {
-            Log.d(TAG, "Connected as peer");
-            String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
-
-//            getBotConfiguration(handler).start(serverAddress, SERVER_PORT);
-            humanConfiguration = getHumanConfiguration(handler);
-            humanConfiguration.start(serverAddress, SERVER_PORT);
         }
-
         boardFragment = new BoardFragment();
-        handFragment = new HandFragment();
-        if (humanConfiguration != null) {
-            handFragment.setSender(humanConfiguration.getContext().getSender());
+
+        Intent intent = getIntent();
+        String gameMode = intent.getStringExtra("gameMode");
+
+        if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.BOT) {
+            if (!p2pInfo.isGroupOwner) {
+                Log.d(TAG, "Connected as peer");
+                String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
+
+                TcpClient tcpClient = getBotConfiguration(handler);
+                tcpClient.start(serverAddress, SERVER_PORT);
+            }
         }
+
+        if (GameMode.valueOf(gameMode.toUpperCase()) == GameMode.PLAYER
+                || GameMode.valueOf(gameMode.toUpperCase()) == GameMode.HYBRID) {
+            if (!p2pInfo.isGroupOwner) {
+                Log.d(TAG, "Connected as peer");
+                String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
+
+                TcpClient tcpClient = getHumanConfiguration(handler);
+                tcpClient.start(serverAddress, SERVER_PORT);
+
+                handFragment = new HandFragment();
+                handFragment.setSender(tcpClient.getContext().getSender());
+            }
+        }
+
         boardFragment.setHandFragment(handFragment);
 
         getFragmentManager().beginTransaction().replace(R.id.container_root, boardFragment).commit();
