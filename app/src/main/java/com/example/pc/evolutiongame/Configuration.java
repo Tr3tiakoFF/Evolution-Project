@@ -4,7 +4,7 @@ import android.os.Handler;
 
 import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.core.client.ClientConnector;
-import com.example.pc.evolutiongame.core.client.ClientReceiver;
+import com.example.pc.evolutiongame.core.client.BotProcessor;
 import com.example.pc.evolutiongame.core.client.TcpClient;
 import com.example.pc.evolutiongame.core.server.AcceptableImpl;
 import com.example.pc.evolutiongame.core.server.ServerConnector;
@@ -26,6 +26,6 @@ public class Configuration {
         Gson gson = new GsonBuilder().create();
         EvolutionContext context = new EvolutionContext();
 
-        return new TcpClient(context, new ClientReceiver(gson, handler), new ClientConnector(handler));
+        return new TcpClient(context, new BotProcessor(gson, handler), new ClientConnector(handler));
     }
 }

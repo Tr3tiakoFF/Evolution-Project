@@ -18,12 +18,12 @@ import static com.example.pc.evolutiongame.core.control.Phase.EVOLUTION;
 import static com.example.pc.evolutiongame.core.control.Phase.POWER;
 import static java.lang.Thread.sleep;
 
-public class ClientReceiver implements Processor {
+public class BotProcessor implements Processor {
 
     private final Gson gson;
     private final Handler handler;
 
-    public ClientReceiver(Gson gson, Handler handler) {
+    public BotProcessor(Gson gson, Handler handler) {
         this.gson = gson;
         this.handler = handler;
     }
