@@ -78,7 +78,9 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 0);
                 refreshFragment();
-                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (sender != null) {
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
             }
         });
         playLikeAnimal2.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +88,9 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 1);
                 refreshFragment();
-                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (sender != null) {
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
             }
         });
         playLikeAnimal3.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +98,9 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 2);
                 refreshFragment();
-                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (sender != null) {
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
             }
         });
         playLikeAnimal4.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +108,9 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 3);
                 refreshFragment();
-                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (sender != null) {
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
             }
         });
         playLikeAnimal5.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +118,9 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 4);
                 refreshFragment();
-                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (sender != null) {
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
             }
         });
         playLikeAnimal6.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +128,9 @@ public class HandFragment extends Fragment {
             public void onClick(View v) {
                 player.playAnimal(room.getField(), 5);
                 refreshFragment();
-                sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (sender != null) {
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
             }
         });
 
