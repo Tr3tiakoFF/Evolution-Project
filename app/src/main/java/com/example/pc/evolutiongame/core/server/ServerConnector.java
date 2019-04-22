@@ -23,6 +23,6 @@ public class ServerConnector implements Connectable {
 
         context.setRoom(new Room(NUMBER_PLAYER));
 
-//        getBotConfiguration(handler).start(context.getAddress().getHostAddress(), context.getPort());
+        getBotConfiguration(handler).start(context.getAddress().getHostAddress(), context.getPort());
     }
 }

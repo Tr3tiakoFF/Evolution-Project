@@ -208,6 +208,51 @@ public class BoardFragment extends Fragment {
                 }
             }
         });
+        playerAnimal2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.POWER) {
+                    player.giveFood(room, 1);
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
+            }
+        });
+        playerAnimal3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.POWER) {
+                    player.giveFood(room, 2);
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
+            }
+        });
+        playerAnimal4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.POWER) {
+                    player.giveFood(room, 3);
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
+            }
+        });
+        playerAnimal5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.POWER) {
+                    player.giveFood(room, 4);
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
+            }
+        });
+        playerAnimal6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.POWER) {
+                    player.giveFood(room, 5);
+                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                }
+            }
+        });
 
 
         hand.setOnClickListener(new View.OnClickListener() {
