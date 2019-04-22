@@ -5,14 +5,147 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
+
+    <TableLayout
+        android:id="@+id/enemyPropertyTable1"
+        android:layout_width="78dp"
+        android:layout_height="116dp"
+        android:layout_alignStart="@id/enemyLayout"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:elevation="@android:dimen/app_icon_size"
+        android:visibility="visible">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/enemyPropertyTable1"
+            android:layout_alignTop="@+id/enemyPropertyTable1">
+
+            <TextView
+                android:id="@+id/textView1.1"
+                android:layout_width="2dp"
+                android:layout_height="2dp"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@+id/enemyPropertyTable1">
+
+            <TextView
+                android:id="@+id/textView1.0.1"
+                android:layout_width="1dp"
+                android:layout_height="36dp" />
+
+            <ImageView
+                android:id="@+id/imageView1.1.1"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:visibility="visible"
+                tools:src="@tools:sample/backgrounds/scenic[10]" />
+
+            <TextView
+                android:id="@+id/textView1.0.2"
+                android:layout_width="2dp"
+                android:layout_height="36dp" />
+
+            <ImageView
+                android:id="@+id/imageView1.1.2"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                tools:src="@tools:sample/backgrounds/scenic[10]" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView1.2"
+                android:layout_width="2dp"
+                android:layout_height="2dp"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView1.0.3"
+                android:layout_width="1dp"
+                android:layout_height="36dp" />
+
+            <ImageView
+                android:id="@+id/imageView1.2.1"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                tools:src="@tools:sample/backgrounds/scenic[10]" />
+
+            <TextView
+                android:id="@+id/textView1.0.4"
+                android:layout_width="2dp"
+                android:layout_height="36dp" />
+
+            <ImageView
+                android:id="@+id/imageView1.2.2"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                tools:src="@tools:sample/backgrounds/scenic[0]" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView1.3"
+                android:layout_width="2dp"
+                android:layout_height="2dp"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView1.0.5"
+                android:layout_width="1dp"
+                android:layout_height="36dp" />
+
+            <ImageView
+                android:id="@+id/imageView1.3.1"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                tools:src="@tools:sample/backgrounds/scenic[10]" />
+
+            <TextView
+                android:id="@+id/textView1.0.6"
+                android:layout_width="2dp"
+                android:layout_height="36dp" />
+
+            <ImageView
+                android:id="@+id/imageView1.3.2"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                tools:src="@tools:sample/backgrounds/scenic[10]" />
+
+        </TableRow>
+
+    </TableLayout>
+
     <TableLayout
         android:id="@+id/enemyPropertyTable2"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/enemyMinion2"
-        android:layout_alignTop="@+id/enemyMinion2"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignStart="@id/enemyPropertyTable1"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -139,10 +272,9 @@
         android:id="@+id/enemyPropertyTable3"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/enemyMinion3"
-        android:layout_alignTop="@+id/enemyMinion3"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignStart="@+id/enemyPropertyTable2"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -269,10 +401,9 @@
         android:id="@+id/enemyPropertyTable4"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/enemyMinion4"
-        android:layout_alignTop="@+id/enemyMinion4"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignStart="@+id/enemyPropertyTable3"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -399,10 +530,9 @@
         android:id="@+id/enemyPropertyTable5"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/enemyMinion5"
-        android:layout_alignTop="@+id/enemyMinion5"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignStart="@+id/enemyPropertyTable4"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -529,10 +659,9 @@
         android:id="@+id/enemyPropertyTable6"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/enemyMinion6"
-        android:layout_alignTop="@+id/enemyMinion6"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignStart="@+id/enemyPropertyTable5"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -660,10 +789,10 @@
         android:id="@+id/playerPropertyTable1"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/playerMinion1"
-        android:layout_alignTop="@+id/playerMinion1"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -790,10 +919,10 @@
         android:id="@+id/playerPropertyTable2"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/playerMinion2"
-        android:layout_alignTop="@+id/playerMinion2"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignStart="@+id/playerPropertyTable1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="79dp"
+        android:layout_marginBottom="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -920,10 +1049,10 @@
         android:id="@+id/playerPropertyTable3"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/playerMinion3"
-        android:layout_alignTop="@+id/playerMinion3"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignStart="@+id/playerPropertyTable2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="79dp"
+        android:layout_marginBottom="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -1050,10 +1179,10 @@
         android:id="@+id/playerPropertyTable4"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/playerMinion4"
-        android:layout_alignTop="@+id/playerMinion4"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignStart="@+id/playerPropertyTable3"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="79dp"
+        android:layout_marginBottom="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -1180,10 +1309,10 @@
         android:id="@+id/playerPropertyTable5"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/playerMinion5"
-        android:layout_alignTop="@+id/playerMinion5"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignStart="@+id/playerPropertyTable4"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="79dp"
+        android:layout_marginBottom="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -1310,10 +1439,10 @@
         android:id="@+id/playerPropertyTable6"
         android:layout_width="78dp"
         android:layout_height="116dp"
-        android:layout_alignStart="@+id/playerMinion6"
-        android:layout_alignTop="@+id/playerMinion6"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignStart="@+id/playerPropertyTable5"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="79dp"
+        android:layout_marginBottom="10dp"
         android:elevation="@android:dimen/app_icon_size">
 
         <TableRow
@@ -1626,138 +1755,6 @@
         android:shadowDy="0"
         android:shadowRadius="5"
         android:text="Food" />
-
-    <TableLayout
-        android:id="@+id/enemyPropertyTable1"
-        android:layout_width="78dp"
-        android:layout_height="116dp"
-        android:layout_alignStart="@+id/enemyMinion1"
-        android:layout_alignTop="@+id/enemyMinion1"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:elevation="@android:dimen/app_icon_size"
-        android:visibility="visible">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView1.1"
-                android:layout_width="2dp"
-                android:layout_height="2dp"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignTop="@+id/enemyPropertyTable1">
-
-            <TextView
-                android:id="@+id/textView1.0.1"
-                android:layout_width="1dp"
-                android:layout_height="36dp" />
-
-            <ImageView
-                android:id="@+id/imageView1.1.1"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:visibility="visible"
-                tools:src="@tools:sample/backgrounds/scenic[10]" />
-
-            <TextView
-                android:id="@+id/textView1.0.2"
-                android:layout_width="2dp"
-                android:layout_height="36dp" />
-
-            <ImageView
-                android:id="@+id/imageView1.1.2"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                tools:src="@tools:sample/backgrounds/scenic[10]" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView1.2"
-                android:layout_width="2dp"
-                android:layout_height="2dp"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView1.0.3"
-                android:layout_width="1dp"
-                android:layout_height="36dp" />
-
-            <ImageView
-                android:id="@+id/imageView1.2.1"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                tools:src="@tools:sample/backgrounds/scenic[10]" />
-
-            <TextView
-                android:id="@+id/textView1.0.4"
-                android:layout_width="2dp"
-                android:layout_height="36dp" />
-
-            <ImageView
-                android:id="@+id/imageView1.2.2"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                tools:src="@tools:sample/backgrounds/scenic[0]" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView1.3"
-                android:layout_width="2dp"
-                android:layout_height="2dp"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView1.0.5"
-                android:layout_width="1dp"
-                android:layout_height="36dp" />
-
-            <ImageView
-                android:id="@+id/imageView1.3.1"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                tools:src="@tools:sample/backgrounds/scenic[10]" />
-
-            <TextView
-                android:id="@+id/textView1.0.6"
-                android:layout_width="2dp"
-                android:layout_height="36dp" />
-
-            <ImageView
-                android:id="@+id/imageView1.3.2"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                tools:src="@tools:sample/backgrounds/scenic[10]" />
-
-        </TableRow>
-
-    </TableLayout>
 
 
 </RelativeLayout>
