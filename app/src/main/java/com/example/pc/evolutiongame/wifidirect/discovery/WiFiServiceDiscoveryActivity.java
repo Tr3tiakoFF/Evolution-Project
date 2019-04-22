@@ -32,6 +32,8 @@ import android.widget.Toast;
 import com.example.pc.evolutiongame.BoardFragment;
 import com.example.pc.evolutiongame.GameMode;
 import com.example.pc.evolutiongame.HandFragment;
+import com.example.pc.evolutiongame.core.Connectable;
+import com.example.pc.evolutiongame.core.EvolutionContext;
 import com.example.pc.evolutiongame.core.client.TcpClient;
 import com.example.pc.evolutiongame.model.Room;
 
@@ -46,8 +48,10 @@ import static com.example.pc.evolutiongame.core.server.TcpServer.SERVER_PORT;
 import static java.lang.String.format;
 
 public class WiFiServiceDiscoveryActivity extends Activity
-        implements WiFiDirectServicesList.DeviceClickListener, Handler.Callback, ConnectionInfoListener {
+        implements WiFiDirectServicesList.DeviceClickListener, Handler.Callback, ConnectionInfoListener,
+        Connectable {
 
+    private static final int NUMBER_PLAYER = 2;
     public static final String TAG = "evolutiongame";
 
     public static final String TXTRECORD_PROP_AVAILABLE = "available";
@@ -333,7 +337,7 @@ public class WiFiServiceDiscoveryActivity extends Activity
         handFragment = new HandFragment();
         if (p2pInfo.isGroupOwner) {
             Log.d(TAG, "Connected as group owner");
-            getServerConfiguration(handler, gameMode).start(SERVER_PORT);
+            getServerConfiguration(handler, gameMode, this).start(SERVER_PORT);
         } else {
             Log.d(TAG, "Connected as peer");
             String serverAddress = p2pInfo.groupOwnerAddress.getHostAddress();
@@ -343,9 +347,8 @@ public class WiFiServiceDiscoveryActivity extends Activity
 
             handFragment.setSender(player.getContext().getSender());
             boardFragment.setSender(player.getContext().getSender());
+            boardFragment.setHandFragment(handFragment);
         }
-
-        boardFragment.setHandFragment(handFragment);
 
         getFragmentManager().beginTransaction().replace(R.id.container_root, boardFragment).commit();
 
@@ -365,5 +368,19 @@ public class WiFiServiceDiscoveryActivity extends Activity
     public void appendStatus(String status) {
         String current = statusTxtView.getText().toString();
         statusTxtView.setText(format("%s\n%s", current, status));
+    }
+
+    @Override
+    public void started(EvolutionContext context) {
+        System.out.println("Server is started");
+
+        context.setRoom(new Room(NUMBER_PLAYER));
+
+        TcpClient player = getPlayer(context.getGameMode());
+        player.start(context.getAddress().getHostAddress(), context.getPort());
+
+        handFragment.setSender(player.getContext().getSender());
+        boardFragment.setSender(player.getContext().getSender());
+        boardFragment.setHandFragment(handFragment);
     }
 }
