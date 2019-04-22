@@ -164,26 +164,13 @@ public class Room {
     }
 
     public String getWinner() {
+        this.calculateAnimalsFoodCapacity();
         int[] countArr = new int[this.players.size()];
         for (int i = 0; i < this.players.size(); i++) {
             countArr[i] = this.players.get(i).calculateEndgameCounter(this.field);
         }
         int winnerNum = this.getWiner(countArr);
-        switch (winnerNum) {
-            case 1:
-                return "Winner is player  number 1 CONGRATULATIONS!!!!";
-            case 2:
-                return "Winner is player  number 2 CONGRATULATIONS!!!!";
-            case 3:
-                return "Winner is player  number 3 CONGRATULATIONS!!!!";
-            case 4:
-                return "Winner is player  number 4 CONGRATULATIONS!!!!";
-            case 5:
-                return "Winner is player  number 5 CONGRATULATIONS!!!!";
-            case 6:
-                return "Winner is player  number 6 CONGRATULATIONS!!!!";
-        }
-        return "There are no winners";
+        return this.getPlayers().get(winnerNum).getId();
     }
 
     private int getWiner(int[] countArr) {

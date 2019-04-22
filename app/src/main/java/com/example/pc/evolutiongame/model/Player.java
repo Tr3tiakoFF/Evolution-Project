@@ -67,8 +67,8 @@ public class Player {
     }
 
     public void giveFood(Room room, int localRandomAnimalNumber) {
-        if (room.getCapacityFood() == 0) {
-            room.getField().getAnimals().get(localRandomAnimalNumber).getFood();
+        if (room.getCapacityFood() != 0) {
+            room.getField().getAnimals(this).get(localRandomAnimalNumber).getFood();
             room.loseFood();
         } else setPass(true);
     }

@@ -98,7 +98,9 @@ public class ClientReceiver implements Processor {
                 if (context.getId().equals(currentPlayer.getId()) && !currentPlayer.isPass()) {
                     System.out.println("Player should turn");
 
-                    room.getCurrentPlayer().giveFood(room, 0);
+                    int animalNumber = (int) (Math.random() * room.getCurrentPlayerAnimalsCount(room.getCurrentPlayer()));
+
+                    room.getCurrentPlayer().giveFood(room, animalNumber);
 
                     if (room.getCapacityFood() == 0) {
                         room.getCurrentPlayer().setPass(true);

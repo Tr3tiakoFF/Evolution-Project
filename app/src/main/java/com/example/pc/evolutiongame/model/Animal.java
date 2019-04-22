@@ -34,7 +34,7 @@ public class Animal {
     }
 
     public boolean mustDieCheck() {
-        return capacityFood != 0;
+        return capacityFood > 0;
     }
 
     @Override
