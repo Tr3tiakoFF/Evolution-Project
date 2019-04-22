@@ -220,8 +220,86 @@ public class BoardFragment extends Fragment {
             enemyAnimals = room.getField().getAnimals(enemy);
         }
 
+        setAllImageViewINVISIBLE();
+
         renderPlayerAnimals(playerAnimals);
         renderEnemyAnimals(enemyAnimals);
+    }
+
+    private void setAllImageViewINVISIBLE() {
+        enemyImageView_1_1.setVisibility(View.INVISIBLE);
+        enemyImageView_1_2.setVisibility(View.INVISIBLE);
+        enemyImageView_1_3.setVisibility(View.INVISIBLE);
+        enemyImageView_1_4.setVisibility(View.INVISIBLE);
+        enemyImageView_1_5.setVisibility(View.INVISIBLE);
+        enemyImageView_1_6.setVisibility(View.INVISIBLE);
+        enemyImageView_2_1.setVisibility(View.INVISIBLE);
+        enemyImageView_2_2.setVisibility(View.INVISIBLE);
+        enemyImageView_2_3.setVisibility(View.INVISIBLE);
+        enemyImageView_2_4.setVisibility(View.INVISIBLE);
+        enemyImageView_2_5.setVisibility(View.INVISIBLE);
+        enemyImageView_2_6.setVisibility(View.INVISIBLE);
+        enemyImageView_3_1.setVisibility(View.INVISIBLE);
+        enemyImageView_3_2.setVisibility(View.INVISIBLE);
+        enemyImageView_3_3.setVisibility(View.INVISIBLE);
+        enemyImageView_3_4.setVisibility(View.INVISIBLE);
+        enemyImageView_3_5.setVisibility(View.INVISIBLE);
+        enemyImageView_3_6.setVisibility(View.INVISIBLE);
+        enemyImageView_4_1.setVisibility(View.INVISIBLE);
+        enemyImageView_4_2.setVisibility(View.INVISIBLE);
+        enemyImageView_4_3.setVisibility(View.INVISIBLE);
+        enemyImageView_4_4.setVisibility(View.INVISIBLE);
+        enemyImageView_4_5.setVisibility(View.INVISIBLE);
+        enemyImageView_4_6.setVisibility(View.INVISIBLE);
+        enemyImageView_5_1.setVisibility(View.INVISIBLE);
+        enemyImageView_5_2.setVisibility(View.INVISIBLE);
+        enemyImageView_5_3.setVisibility(View.INVISIBLE);
+        enemyImageView_5_4.setVisibility(View.INVISIBLE);
+        enemyImageView_5_5.setVisibility(View.INVISIBLE);
+        enemyImageView_5_6.setVisibility(View.INVISIBLE);
+        enemyImageView_6_1.setVisibility(View.INVISIBLE);
+        enemyImageView_6_2.setVisibility(View.INVISIBLE);
+        enemyImageView_6_3.setVisibility(View.INVISIBLE);
+        enemyImageView_6_4.setVisibility(View.INVISIBLE);
+        enemyImageView_6_5.setVisibility(View.INVISIBLE);
+        enemyImageView_6_6.setVisibility(View.INVISIBLE);
+
+        playerImageView_1_1.setVisibility(View.INVISIBLE);
+        playerImageView_1_2.setVisibility(View.INVISIBLE);
+        playerImageView_1_3.setVisibility(View.INVISIBLE);
+        playerImageView_1_4.setVisibility(View.INVISIBLE);
+        playerImageView_1_5.setVisibility(View.INVISIBLE);
+        playerImageView_1_6.setVisibility(View.INVISIBLE);
+        playerImageView_2_1.setVisibility(View.INVISIBLE);
+        playerImageView_2_2.setVisibility(View.INVISIBLE);
+        playerImageView_2_3.setVisibility(View.INVISIBLE);
+        playerImageView_2_4.setVisibility(View.INVISIBLE);
+        playerImageView_2_5.setVisibility(View.INVISIBLE);
+        playerImageView_2_6.setVisibility(View.INVISIBLE);
+        playerImageView_3_1.setVisibility(View.INVISIBLE);
+        playerImageView_3_2.setVisibility(View.INVISIBLE);
+        playerImageView_3_3.setVisibility(View.INVISIBLE);
+        playerImageView_3_4.setVisibility(View.INVISIBLE);
+        playerImageView_3_5.setVisibility(View.INVISIBLE);
+        playerImageView_3_6.setVisibility(View.INVISIBLE);
+        playerImageView_4_1.setVisibility(View.INVISIBLE);
+        playerImageView_4_2.setVisibility(View.INVISIBLE);
+        playerImageView_4_3.setVisibility(View.INVISIBLE);
+        playerImageView_4_4.setVisibility(View.INVISIBLE);
+        playerImageView_4_5.setVisibility(View.INVISIBLE);
+        playerImageView_4_6.setVisibility(View.INVISIBLE);
+        playerImageView_5_1.setVisibility(View.INVISIBLE);
+        playerImageView_5_2.setVisibility(View.INVISIBLE);
+        playerImageView_5_3.setVisibility(View.INVISIBLE);
+        playerImageView_5_4.setVisibility(View.INVISIBLE);
+        playerImageView_5_5.setVisibility(View.INVISIBLE);
+        playerImageView_5_6.setVisibility(View.INVISIBLE);
+        playerImageView_6_1.setVisibility(View.INVISIBLE);
+        playerImageView_6_2.setVisibility(View.INVISIBLE);
+        playerImageView_6_3.setVisibility(View.INVISIBLE);
+        playerImageView_6_4.setVisibility(View.INVISIBLE);
+        playerImageView_6_5.setVisibility(View.INVISIBLE);
+        playerImageView_6_6.setVisibility(View.INVISIBLE);
     }
 
     private void renderPlayerAnimals(List<Animal> playerAnimals) {
