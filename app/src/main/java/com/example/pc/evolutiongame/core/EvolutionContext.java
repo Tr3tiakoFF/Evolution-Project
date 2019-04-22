@@ -10,6 +10,7 @@ public class EvolutionContext {
     private Sendable sender;
     private int port;
     private InetAddress address;
+    private String gameMode;
 
     public String getId() {
         return id;
@@ -49,5 +50,13 @@ public class EvolutionContext {
 
     public InetAddress getAddress() {
         return address;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public String getGameMode() {
+        return gameMode;
     }
 }

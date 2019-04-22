@@ -18,9 +18,10 @@ import com.google.gson.GsonBuilder;
 
 public class Configuration {
 
-    public static TcpServer getServerConfiguration(Handler handler) {
+    public static TcpServer getServerConfiguration(Handler handler, String gameMode) {
         Gson gson = new GsonBuilder().create();
         EvolutionContext context = new EvolutionContext();
+        context.setGameMode(gameMode);
 
         return new TcpServer(context, new ServerReceiver(gson), new AcceptableImpl(gson), new ServerConnector(handler));
     }
