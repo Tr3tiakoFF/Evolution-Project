@@ -6,6 +6,141 @@
     android:background="@drawable/background">
 
 
+    <TextView
+        android:id="@+id/enemyFoodCapacity1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enemyPropertyTable1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="44dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/enemyFoodCapacity2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enemyPropertyTable2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="44dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/enemyFoodCapacity3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enemyPropertyTable2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="44dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/enemyFoodCapacity4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enemyPropertyTable2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="254dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="44dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/enemyFoodCapacity5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enemyPropertyTable2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="332dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="44dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/enemyFoodCapacity6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enemyPropertyTable2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="410dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="44dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/playerFoodCapacity1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/playerPropertyTable1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/playerFoodCapacity2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/playerPropertyTable1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="98dp"
+        android:layout_marginBottom="10dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/playerFoodCapacity3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/playerPropertyTable1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="176dp"
+        android:layout_marginBottom="10dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/playerFoodCapacity4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/playerPropertyTable1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="260dp"
+        android:layout_marginBottom="14dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/playerFoodCapacity5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/playerPropertyTable1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="332dp"
+        android:layout_marginBottom="10dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/playerFoodCapacity6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/playerPropertyTable1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="410dp"
+        android:layout_marginBottom="10dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/gamePhase"
+        android:layout_width="132dp"
+        android:layout_height="32dp"
+        android:text="TextView"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white" />
+
     <TableLayout
         android:id="@+id/enemyPropertyTable1"
         android:layout_width="78dp"
@@ -1710,15 +1845,6 @@
             android:background="@drawable/animal_174x118"
             android:text="Animal" />
 
-        <TextView
-            android:id="@+id/gamePhase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="189dp"
-            android:layout_marginTop="173dp"
-            android:text="TextView" />
     </RelativeLayout>
 
 

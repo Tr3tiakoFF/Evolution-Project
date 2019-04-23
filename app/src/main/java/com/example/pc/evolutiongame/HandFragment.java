@@ -7,10 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.pc.evolutiongame.core.Sendable;
 import com.example.pc.evolutiongame.core.control.Action;
 import com.example.pc.evolutiongame.core.control.Game;
+import com.example.pc.evolutiongame.core.control.Phase;
+import com.example.pc.evolutiongame.logic.CardState;
 import com.example.pc.evolutiongame.model.Card;
 import com.example.pc.evolutiongame.model.LowLevelAnimalProperty;
 import com.example.pc.evolutiongame.model.Player;
@@ -76,64 +79,207 @@ public class HandFragment extends Fragment {
         playLikeAnimal1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                player.playAnimal(room.getField(), 0);
-                refreshFragment();
-                if (sender != null) {
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    player.playAnimal(room.getField(), 0);
+                    refreshFragment();
+                    if (sender != null) {
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         playLikeAnimal2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                player.playAnimal(room.getField(), 1);
-                refreshFragment();
-                if (sender != null) {
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    player.playAnimal(room.getField(), 1);
+                    refreshFragment();
+                    if (sender != null) {
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         playLikeAnimal3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                player.playAnimal(room.getField(), 2);
-                refreshFragment();
-                if (sender != null) {
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    player.playAnimal(room.getField(), 2);
+                    refreshFragment();
+                    if (sender != null) {
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         playLikeAnimal4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                player.playAnimal(room.getField(), 3);
-                refreshFragment();
-                if (sender != null) {
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    player.playAnimal(room.getField(), 3);
+                    refreshFragment();
+                    if (sender != null) {
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         playLikeAnimal5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                player.playAnimal(room.getField(), 4);
-                refreshFragment();
-                if (sender != null) {
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    player.playAnimal(room.getField(), 4);
+                    refreshFragment();
+                    if (sender != null) {
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         playLikeAnimal6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                player.playAnimal(room.getField(), 5);
-                refreshFragment();
-                if (sender != null) {
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    player.playAnimal(room.getField(), 5);
+                    refreshFragment();
+                    if (sender != null) {
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
+        playLikeFirstProp1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(0).setCardState(CardState.USED_LIKE_FIRST);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeFirstProp2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(1).setCardState(CardState.USED_LIKE_FIRST);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeFirstProp3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(2).setCardState(CardState.USED_LIKE_FIRST);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeFirstProp4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(3).setCardState(CardState.USED_LIKE_FIRST);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeFirstProp5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(4).setCardState(CardState.USED_LIKE_FIRST);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeFirstProp6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(5).setCardState(CardState.USED_LIKE_FIRST);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeSecondProp1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(0).setCardState(CardState.USED_LIKE_SECOND);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeSecondProp2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(1).setCardState(CardState.USED_LIKE_SECOND);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeSecondProp3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(2).setCardState(CardState.USED_LIKE_SECOND);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeSecondProp4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(3).setCardState(CardState.USED_LIKE_SECOND);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeSecondProp5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(4).setCardState(CardState.USED_LIKE_SECOND);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        playLikeSecondProp6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(player.getId())) {
+                    room.getCurrentPlayer().getCards().get(5).setCardState(CardState.USED_LIKE_SECOND);
+                } else {
+                    Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         refreshFragment();
 
         return view;

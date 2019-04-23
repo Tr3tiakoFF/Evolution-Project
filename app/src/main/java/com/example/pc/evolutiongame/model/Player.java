@@ -1,5 +1,7 @@
 package com.example.pc.evolutiongame.model;
 
+import com.example.pc.evolutiongame.logic.CardState;
+
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -91,5 +93,35 @@ public class Player {
 
     public List<Card> getCards() {
         return cards;
+    }
+
+    public boolean gotUsedCards() {
+        for (int i = 0; i < this.getCardsCount(); i++) {
+            if (this.getCards().get(i).getCardState() != CardState.UNUSED) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getUsedCardIndex() {
+        for (int i = 0; i < this.getCardsCount(); i++) {
+            if (this.getCards().get(i).getCardState() != CardState.UNUSED) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public int getUsedCardState() {
+        for (int i = 0; i < this.getCardsCount(); i++) {
+            if (this.getCards().get(i).getCardState() == CardState.USED_LIKE_FIRST) {
+                return 0;
+            }
+            if (this.getCards().get(i).getCardState() == CardState.USED_LIKE_SECOND) {
+                return 1;
+            }
+        }
+        return 0;
     }
 }

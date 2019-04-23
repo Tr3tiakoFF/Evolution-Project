@@ -76,4 +76,8 @@ public class Animal {
     public List<Property> getProperty() {
         return this.properties;
     }
+
+    public int getCapacityFood() {
+        return capacityFood;
+    }
 }

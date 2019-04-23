@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pc.evolutiongame.core.Sendable;
 import com.example.pc.evolutiongame.core.control.Action;
@@ -32,12 +33,14 @@ public class BoardFragment extends Fragment {
 
     public static final String TAG = "evolutiongame";
 
-    Button hand, reRender, open;
+    Button hand, food, open;
 
     Button playerAnimal1, playerAnimal2, playerAnimal3, playerAnimal4, playerAnimal5, playerAnimal6;
     Button enemyAnimal1, enemyAnimal2, enemyAnimal3, enemyAnimal4, enemyAnimal5, enemyAnimal6;
 
     TextView gamePhase;
+    TextView playerFoodCapacity1, playerFoodCapacity2, playerFoodCapacity3, playerFoodCapacity4, playerFoodCapacity5, playerFoodCapacity6;
+    TextView enemyFoodCapacity1, enemyFoodCapacity2, enemyFoodCapacity3, enemyFoodCapacity4, enemyFoodCapacity5, enemyFoodCapacity6;
 
     TableLayout playerTable1, playerTable2, playerTable3, playerTable4, playerTable5, playerTable6;
     ImageView playerImageView_1_1, playerImageView_1_2, playerImageView_1_3, playerImageView_1_4, playerImageView_1_5, playerImageView_1_6;
@@ -66,10 +69,24 @@ public class BoardFragment extends Fragment {
         view = inflater.inflate(R.layout.board_fragment, container, false);
 
         hand = (Button) view.findViewById(R.id.showDeckButton);
-        reRender = (Button) view.findViewById(R.id.foodCapacityButton);
+        food = (Button) view.findViewById(R.id.foodCapacityButton);
         open = (Button) view.findViewById(R.id.passButton);
 
         gamePhase = (TextView) view.findViewById(R.id.gamePhase);
+
+        playerFoodCapacity1 = (TextView) view.findViewById(R.id.playerFoodCapacity1);
+        playerFoodCapacity2 = (TextView) view.findViewById(R.id.playerFoodCapacity2);
+        playerFoodCapacity3 = (TextView) view.findViewById(R.id.playerFoodCapacity3);
+        playerFoodCapacity4 = (TextView) view.findViewById(R.id.playerFoodCapacity4);
+        playerFoodCapacity5 = (TextView) view.findViewById(R.id.playerFoodCapacity5);
+        playerFoodCapacity6 = (TextView) view.findViewById(R.id.playerFoodCapacity6);
+
+        enemyFoodCapacity1 = (TextView) view.findViewById(R.id.enemyFoodCapacity1);
+        enemyFoodCapacity2 = (TextView) view.findViewById(R.id.enemyFoodCapacity2);
+        enemyFoodCapacity3 = (TextView) view.findViewById(R.id.enemyFoodCapacity3);
+        enemyFoodCapacity4 = (TextView) view.findViewById(R.id.enemyFoodCapacity4);
+        enemyFoodCapacity5 = (TextView) view.findViewById(R.id.enemyFoodCapacity5);
+        enemyFoodCapacity6 = (TextView) view.findViewById(R.id.enemyFoodCapacity6);
 
         playerTable1 = (TableLayout) view.findViewById(R.id.playerPropertyTable1);
         {
@@ -202,54 +219,120 @@ public class BoardFragment extends Fragment {
         playerAnimal1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (room.getPhase() == Phase.POWER) {
-                    player.giveFood(room, 0);
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (!player.gotUsedCards()) {
+                    if (room.getPhase() == Phase.POWER && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.giveFood(room, 0);
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.playProperty(room.getField(), player.getUsedCardIndex(), 0, player.getUsedCardState());
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
         playerAnimal2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (room.getPhase() == Phase.POWER) {
-                    player.giveFood(room, 1);
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (!player.gotUsedCards()) {
+                    if (room.getPhase() == Phase.POWER && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.giveFood(room, 1);
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.playProperty(room.getField(), player.getUsedCardIndex(), 1, player.getUsedCardState());
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
         playerAnimal3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (room.getPhase() == Phase.POWER) {
-                    player.giveFood(room, 2);
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (!player.gotUsedCards()) {
+                    if (room.getPhase() == Phase.POWER && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.giveFood(room, 2);
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.playProperty(room.getField(), player.getUsedCardIndex(), 2, player.getUsedCardState());
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
         playerAnimal4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (room.getPhase() == Phase.POWER) {
-                    player.giveFood(room, 3);
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (!player.gotUsedCards()) {
+                    if (room.getPhase() == Phase.POWER && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.giveFood(room, 3);
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.playProperty(room.getField(), player.getUsedCardIndex(), 3, player.getUsedCardState());
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
         playerAnimal5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (room.getPhase() == Phase.POWER) {
-                    player.giveFood(room, 4);
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (!player.gotUsedCards()) {
+                    if (room.getPhase() == Phase.POWER && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.giveFood(room, 4);
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.playProperty(room.getField(), player.getUsedCardIndex(), 4, player.getUsedCardState());
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
         playerAnimal6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (room.getPhase() == Phase.POWER) {
-                    player.giveFood(room, 5);
-                    sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                if (!player.gotUsedCards()) {
+                    if (room.getPhase() == Phase.POWER && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.giveFood(room, 5);
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if (room.getPhase() == Phase.EVOLUTION && room.getCurrentPlayer().getId().equals(playerId)) {
+                        player.playProperty(room.getField(), player.getUsedCardIndex(), 5, player.getUsedCardState());
+                        sender.sendMessage(gson.toJson(new Game(Action.REFRESH_STATE, room.getPhase(), room)));
+                    } else {
+                        Toast.makeText(getActivity(), "You can not do this", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -565,6 +648,11 @@ public class BoardFragment extends Fragment {
                 System.out.println("" + property + " " + imageView.getId());
                 break;
             }
+            case FAT_TISSUE: {
+                imageView.setImageResource(R.drawable.fat_tissue_prp);
+                System.out.println("" + property + " " + imageView.getId());
+                break;
+            }
             default: {
                 imageView.setImageResource(R.drawable.evolution_prp);
                 System.out.println("" + property + " " + imageView.getId());
@@ -589,7 +677,163 @@ public class BoardFragment extends Fragment {
         Utils.renderPlayerAnimals(enemyPlayers.get(0), room, enemyLayout);
 
         gamePhase.setText(room.getPhase().name());
+
+        if (room.getCapacityFood() > 0) {
+            String food_ = String.valueOf(room.getCapacityFood());
+            food.setText(food_);
+        } else {
+            food.setText("Food");
+        }
+
+        setAllFoodInvisible();
+//        renderFoodCapacity();
     }
+
+    private void setAllFoodInvisible() {
+        enemyFoodCapacity1.setVisibility(View.INVISIBLE);
+        enemyFoodCapacity2.setVisibility(View.INVISIBLE);
+        enemyFoodCapacity3.setVisibility(View.INVISIBLE);
+        enemyFoodCapacity4.setVisibility(View.INVISIBLE);
+        enemyFoodCapacity5.setVisibility(View.INVISIBLE);
+        enemyFoodCapacity6.setVisibility(View.INVISIBLE);
+
+        playerFoodCapacity1.setVisibility(View.INVISIBLE);
+        playerFoodCapacity2.setVisibility(View.INVISIBLE);
+        playerFoodCapacity3.setVisibility(View.INVISIBLE);
+        playerFoodCapacity4.setVisibility(View.INVISIBLE);
+        playerFoodCapacity5.setVisibility(View.INVISIBLE);
+        playerFoodCapacity6.setVisibility(View.INVISIBLE);
+    }
+
+//    private void renderFoodCapacity() {
+//        List<Animal> playerAnimals = new ArrayList<>();
+//        List<Animal> enemyAnimals = new ArrayList<>();
+//
+//        Player player = new Player();
+//        Player enemy = new Player();
+//
+//        for (int i = 0; i < room.getPlayers().size(); i++) {
+//            if (playerId.equals(room.getPlayers().get(0).getId())) {
+//                player = room.getPlayers().get(0);
+//                enemy = room.getPlayers().get(1);
+//            } else {
+//                player = room.getPlayers().get(1);
+//                enemy = room.getPlayers().get(0);
+//            }
+//        }
+//
+//        for (int i = 0; i < room.getAnimals().size(); i++) {
+//            playerAnimals = room.getField().getAnimals(player);
+//            enemyAnimals = room.getField().getAnimals(enemy);
+//        }
+//
+//        setAllImageViewINVISIBLE();
+//
+////        renderPlayerFood(playerAnimals);
+////        renderEnemyFood(enemyAnimals);
+//    }
+
+//    private void renderEnemyFood(List<Animal> enemyAnimals) {
+//        enemyFoodCapacity1.setText(enemyAnimals.get(0).getCapacityFood());
+//        enemyFoodCapacity2.setText(enemyAnimals.get(1).getCapacityFood());
+//        enemyFoodCapacity3.setText(enemyAnimals.get(2).getCapacityFood());
+//        enemyFoodCapacity4.setText(enemyAnimals.get(3).getCapacityFood());
+//        enemyFoodCapacity5.setText(enemyAnimals.get(4).getCapacityFood());
+//        enemyFoodCapacity6.setText(enemyAnimals.get(5).getCapacityFood());
+//
+//        switch (enemyAnimals.size()){
+//            case 1: {
+//                enemyFoodCapacity1.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//            case 2: {
+//                enemyFoodCapacity1.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity2.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//            case 3: {
+//                enemyFoodCapacity1.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity2.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity3.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//            case 4: {
+//                enemyFoodCapacity1.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity2.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity3.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity4.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//            case 5: {
+//                enemyFoodCapacity1.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity2.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity3.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity4.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity5.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//            case 6: {
+//                enemyFoodCapacity1.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity2.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity3.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity4.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity5.setVisibility(View.VISIBLE);
+//                enemyFoodCapacity6.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//        }
+//    }
+//
+//    private void renderPlayerFood(List<Animal> playerAnimals) {
+//        playerFoodCapacity1.setText(playerAnimals.get(0).getCapacityFood());
+//        playerFoodCapacity2.setText(playerAnimals.get(1).getCapacityFood());
+//        playerFoodCapacity3.setText(playerAnimals.get(2).getCapacityFood());
+//        playerFoodCapacity4.setText(playerAnimals.get(3).getCapacityFood());
+//        playerFoodCapacity5.setText(playerAnimals.get(4).getCapacityFood());
+//        playerFoodCapacity6.setText(playerAnimals.get(5).getCapacityFood());
+//
+//        switch (playerAnimals.size()){
+//            case 1: {
+//                playerFoodCapacity1.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//            case 2: {
+//                playerFoodCapacity1.setVisibility(View.VISIBLE);
+//                playerFoodCapacity2.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//            case 3: {
+//                playerFoodCapacity1.setVisibility(View.VISIBLE);
+//                playerFoodCapacity2.setVisibility(View.VISIBLE);
+//                playerFoodCapacity3.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//            case 4: {
+//                playerFoodCapacity1.setVisibility(View.VISIBLE);
+//                playerFoodCapacity2.setVisibility(View.VISIBLE);
+//                playerFoodCapacity3.setVisibility(View.VISIBLE);
+//                playerFoodCapacity4.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//            case 5: {
+//                playerFoodCapacity1.setVisibility(View.VISIBLE);
+//                playerFoodCapacity2.setVisibility(View.VISIBLE);
+//                playerFoodCapacity3.setVisibility(View.VISIBLE);
+//                playerFoodCapacity4.setVisibility(View.VISIBLE);
+//                playerFoodCapacity5.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//            case 6: {
+//                playerFoodCapacity1.setVisibility(View.VISIBLE);
+//                playerFoodCapacity2.setVisibility(View.VISIBLE);
+//                playerFoodCapacity3.setVisibility(View.VISIBLE);
+//                playerFoodCapacity4.setVisibility(View.VISIBLE);
+//                playerFoodCapacity5.setVisibility(View.VISIBLE);
+//                playerFoodCapacity6.setVisibility(View.VISIBLE);
+//                break;
+//            }
+//        }
+//    }
 
     public void setHandFragment(HandFragment handFragment) {
         this.handFragment = handFragment;
